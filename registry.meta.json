@@ -763,5 +763,65 @@
     "category": "marketing",
     "description": "Statement footer with an oversized outlined brand word.",
     "height": 640
+  },
+  "error-404": {
+    "title": "404 Page",
+    "category": "screens",
+    "description": "Parallax digits that follow the cursor, search and helpful links.",
+    "height": 700
+  },
+  "error-500": {
+    "title": "500 Page",
+    "category": "screens",
+    "description": "Glitching status code, retry countdown and copyable error ID.",
+    "height": 660
+  },
+  "maintenance-page": {
+    "title": "Maintenance",
+    "category": "screens",
+    "description": "Spinning gear, countdown to return, progress and history.",
+    "height": 800
+  },
+  "inbox-screen": {
+    "title": "Inbox",
+    "category": "screens",
+    "description": "Three-pane email client with folders, unread states and reply.",
+    "height": 760
+  },
+  "file-manager": {
+    "title": "File Manager",
+    "category": "screens",
+    "description": "Folder tree, grid/list views, right-click actions and storage meter.",
+    "height": 760
+  },
+  "cart-screen": {
+    "title": "Cart",
+    "category": "screens",
+    "description": "Quantity steppers, remove with undo, free-shipping progress and summary.",
+    "height": 720
+  },
+  "product-page": {
+    "title": "Product Page",
+    "category": "screens",
+    "description": "Gallery, colour and size pickers, add-to-cart feedback and details.",
+    "height": 900
+  },
+  "order-tracking": {
+    "title": "Order Tracking",
+    "category": "screens",
+    "description": "Animated route map, stage tracker, courier card and history.",
+    "height": 920
+  },
+  "two-factor": {
+    "title": "Two-Factor Setup",
+    "category": "screens",
+    "description": "Scan a QR code, verify a code and save recovery codes.",
+    "height": 760
+  },
+  "reset-password": {
+    "title": "Reset Password",
+    "category": "screens",
+    "description": "Email code, verification and a new password with live rules.",
+    "height": 640
   }
 }
