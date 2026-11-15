@@ -1,40 +1,277 @@
 {
-  "button": { "title": "Button", "category": "foundations", "description": "Seven variants, five sizes, loading state and press spring." },
-  "spinner": { "title": "Spinner", "category": "feedback", "description": "Ring spinner and bouncing-dots loader." },
-  "input": { "title": "Input", "category": "forms", "description": "Input, Textarea, Label and Field with leading/trailing slots and states." },
-  "checkbox": { "title": "Checkbox", "category": "forms", "description": "Animated tick, indeterminate state, optional label and description." },
-  "switch": { "title": "Switch", "category": "forms", "description": "Spring-loaded toggle with optional label." },
-  "radio-group": { "title": "Radio Group", "category": "forms", "description": "Radio, RadioGroup and selectable RadioCard." },
-  "slider": { "title": "Slider", "category": "forms", "description": "Single or range slider with value bubble." },
-  "badge": { "title": "Badge & Kbd", "category": "foundations", "description": "Eight tones with optional pulsing dot, plus keyboard keys." },
-  "avatar": { "title": "Avatar", "category": "foundations", "description": "Avatar with status and ring, plus a fan-out AvatarStack." },
-  "card": { "title": "Card", "category": "foundations", "description": "Card with header, title, description and footer, plus Separator." },
-  "tooltip": { "title": "Tooltip", "category": "overlay", "description": "Zero-setup tooltip with arrow and keyboard shortcut slot." },
-  "progress": { "title": "Progress", "category": "feedback", "description": "Linear, striped, indeterminate, ring and shimmer Skeleton." },
-  "alert": { "title": "Alert", "category": "feedback", "description": "Four-tone alerts and an EmptyState block." },
-  "tabs": { "title": "Tabs", "category": "navigation", "description": "Tabs with a gliding indicator, and a SegmentedControl." },
-  "dialog": { "title": "Dialog", "category": "overlay", "description": "Modal dialog that springs in, plus Sheet (side and bottom drawers)." },
-  "popover": { "title": "Popover", "category": "overlay", "description": "Anchored floating panel with optional arrow." },
-  "dropdown-menu": { "title": "Dropdown Menu", "category": "overlay", "description": "Menus with shortcuts, checkbox and radio items, and submenus." },
-  "toast": { "title": "Toast", "category": "feedback", "description": "Stacking toasts that expand on hover and swipe to dismiss." },
-  "otp-input": { "title": "OTP Input", "category": "forms", "description": "One-time-code boxes with auto-advance and paste." },
-  "accordion": { "title": "Accordion", "category": "foundations", "description": "Animated height accordion with rotating plus icon." },
-  "breadcrumb": { "title": "Breadcrumb", "category": "navigation", "description": "Slash or chevron breadcrumbs that collapse long paths." },
-  "pagination": { "title": "Pagination", "category": "navigation", "description": "Numbered pagination with smart gaps." },
-  "command-palette": { "title": "Command Palette", "category": "signature", "description": "⌘K palette with fuzzy search, groups and shortcuts." },
-  "dock": { "title": "Dock", "category": "signature", "description": "macOS-style dock with cursor magnification." },
-  "stepper": { "title": "Stepper", "category": "navigation", "description": "Numbered steps with a filling connector." },
-  "number-input": { "title": "Number Input", "category": "forms", "description": "−/+ stepper with arrow-key support and clamping." },
-  "spotlight-card": { "title": "Spotlight Card", "category": "effects", "description": "A card whose glow follows the pointer." },
-  "border-beam": { "title": "Border Beam", "category": "effects", "description": "A beam of light orbiting a card's edge." },
-  "marquee": { "title": "Marquee", "category": "effects", "description": "Infinite scrolling row that pauses on hover." },
-  "typewriter": { "title": "Typewriter", "category": "effects", "description": "Types, deletes and cycles through words." },
-  "rotating-words": { "title": "Rotating Words", "category": "effects", "description": "Swaps a word in place with a slide-up spring." },
-  "shiny-text": { "title": "Shiny Text", "category": "effects", "description": "A light sweep across text." },
-  "number-ticker": { "title": "Number Ticker", "category": "effects", "description": "Counts up when scrolled into view." },
-  "confetti": { "title": "Confetti", "category": "effects", "description": "useConfetti() hook and ConfettiButton." },
-  "magnetic": { "title": "Magnetic", "category": "effects", "description": "Child leans toward the pointer, then springs back." },
-  "backgrounds": { "title": "Backgrounds", "category": "effects", "description": "Animated GridBackground and DotBackground." },
-  "tilt-card": { "title": "Tilt Card", "category": "effects", "description": "3D tilt that follows the pointer." },
-  "scroll-reveal": { "title": "Scroll Reveal", "category": "effects", "description": "Fade-and-lift on first scroll into view." }
+  "button": {
+    "title": "Button",
+    "category": "foundations",
+    "description": "Seven variants, five sizes, loading state and press spring."
+  },
+  "spinner": {
+    "title": "Spinner",
+    "category": "feedback",
+    "description": "Ring spinner and bouncing-dots loader."
+  },
+  "input": {
+    "title": "Input",
+    "category": "forms",
+    "description": "Input, Textarea, Label and Field with leading/trailing slots and states."
+  },
+  "checkbox": {
+    "title": "Checkbox",
+    "category": "forms",
+    "description": "Animated tick, indeterminate state, optional label and description."
+  },
+  "switch": {
+    "title": "Switch",
+    "category": "forms",
+    "description": "Spring-loaded toggle with optional label."
+  },
+  "radio-group": {
+    "title": "Radio Group",
+    "category": "forms",
+    "description": "Radio, RadioGroup and selectable RadioCard."
+  },
+  "slider": {
+    "title": "Slider",
+    "category": "forms",
+    "description": "Single or range slider with value bubble."
+  },
+  "badge": {
+    "title": "Badge & Kbd",
+    "category": "foundations",
+    "description": "Eight tones with optional pulsing dot, plus keyboard keys."
+  },
+  "avatar": {
+    "title": "Avatar",
+    "category": "foundations",
+    "description": "Avatar with status and ring, plus a fan-out AvatarStack."
+  },
+  "card": {
+    "title": "Card",
+    "category": "foundations",
+    "description": "Card with header, title, description and footer, plus Separator."
+  },
+  "tooltip": {
+    "title": "Tooltip",
+    "category": "overlay",
+    "description": "Zero-setup tooltip with arrow and keyboard shortcut slot."
+  },
+  "progress": {
+    "title": "Progress",
+    "category": "feedback",
+    "description": "Linear, striped, indeterminate, ring and shimmer Skeleton."
+  },
+  "alert": {
+    "title": "Alert",
+    "category": "feedback",
+    "description": "Four-tone alerts and an EmptyState block."
+  },
+  "tabs": {
+    "title": "Tabs",
+    "category": "navigation",
+    "description": "Tabs with a gliding indicator, and a SegmentedControl."
+  },
+  "dialog": {
+    "title": "Dialog",
+    "category": "overlay",
+    "description": "Modal dialog that springs in, plus Sheet (side and bottom drawers)."
+  },
+  "popover": {
+    "title": "Popover",
+    "category": "overlay",
+    "description": "Anchored floating panel with optional arrow."
+  },
+  "dropdown-menu": {
+    "title": "Dropdown Menu",
+    "category": "overlay",
+    "description": "Menus with shortcuts, checkbox and radio items, and submenus."
+  },
+  "toast": {
+    "title": "Toast",
+    "category": "feedback",
+    "description": "Stacking toasts that expand on hover and swipe to dismiss."
+  },
+  "otp-input": {
+    "title": "OTP Input",
+    "category": "forms",
+    "description": "One-time-code boxes with auto-advance and paste."
+  },
+  "accordion": {
+    "title": "Accordion",
+    "category": "foundations",
+    "description": "Animated height accordion with rotating plus icon."
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb",
+    "category": "navigation",
+    "description": "Slash or chevron breadcrumbs that collapse long paths."
+  },
+  "pagination": {
+    "title": "Pagination",
+    "category": "navigation",
+    "description": "Numbered pagination with smart gaps."
+  },
+  "command-palette": {
+    "title": "Command Palette",
+    "category": "signature",
+    "description": "⌘K palette with fuzzy search, groups and shortcuts."
+  },
+  "dock": {
+    "title": "Dock",
+    "category": "signature",
+    "description": "macOS-style dock with cursor magnification."
+  },
+  "stepper": {
+    "title": "Stepper",
+    "category": "navigation",
+    "description": "Numbered steps with a filling connector."
+  },
+  "number-input": {
+    "title": "Number Input",
+    "category": "forms",
+    "description": "−/+ stepper with arrow-key support and clamping."
+  },
+  "spotlight-card": {
+    "title": "Spotlight Card",
+    "category": "effects",
+    "description": "A card whose glow follows the pointer."
+  },
+  "border-beam": {
+    "title": "Border Beam",
+    "category": "effects",
+    "description": "A beam of light orbiting a card's edge."
+  },
+  "marquee": {
+    "title": "Marquee",
+    "category": "effects",
+    "description": "Infinite scrolling row that pauses on hover."
+  },
+  "typewriter": {
+    "title": "Typewriter",
+    "category": "effects",
+    "description": "Types, deletes and cycles through words."
+  },
+  "rotating-words": {
+    "title": "Rotating Words",
+    "category": "effects",
+    "description": "Swaps a word in place with a slide-up spring."
+  },
+  "shiny-text": {
+    "title": "Shiny Text",
+    "category": "effects",
+    "description": "A light sweep across text."
+  },
+  "number-ticker": {
+    "title": "Number Ticker",
+    "category": "effects",
+    "description": "Counts up when scrolled into view."
+  },
+  "confetti": {
+    "title": "Confetti",
+    "category": "effects",
+    "description": "useConfetti() hook and ConfettiButton."
+  },
+  "magnetic": {
+    "title": "Magnetic",
+    "category": "effects",
+    "description": "Child leans toward the pointer, then springs back."
+  },
+  "backgrounds": {
+    "title": "Backgrounds",
+    "category": "effects",
+    "description": "Animated GridBackground and DotBackground."
+  },
+  "tilt-card": {
+    "title": "Tilt Card",
+    "category": "effects",
+    "description": "3D tilt that follows the pointer."
+  },
+  "scroll-reveal": {
+    "title": "Scroll Reveal",
+    "category": "effects",
+    "description": "Fade-and-lift on first scroll into view."
+  },
+  "select": {
+    "title": "Select",
+    "category": "forms",
+    "description": "Custom select with groups, icons and descriptions."
+  },
+  "combobox": {
+    "title": "Combobox",
+    "category": "forms",
+    "description": "Searchable select; set multiple for tag-style multi-select, with create."
+  },
+  "tag-input": {
+    "title": "Tag Input",
+    "category": "forms",
+    "description": "Enter or comma to add, backspace twice to remove, suggestions."
+  },
+  "color-picker": {
+    "title": "Color Picker",
+    "category": "forms",
+    "description": "Saturation area, hue slider, hex field, eyedropper and swatches."
+  },
+  "toggle-group": {
+    "title": "Toggle Group",
+    "category": "forms",
+    "description": "Pressable button group, single or multiple."
+  },
+  "phone-input": {
+    "title": "Phone Input",
+    "category": "forms",
+    "description": "Country picker with auto-formatting and E.164 output."
+  },
+  "card-input": {
+    "title": "Card Input",
+    "category": "forms",
+    "description": "Card number, expiry and CVC with brand detection and Luhn check."
+  },
+  "time-picker": {
+    "title": "Time Picker",
+    "category": "forms",
+    "description": "Scroll-wheel hours, minutes and AM/PM."
+  },
+  "rating": {
+    "title": "Rating",
+    "category": "forms",
+    "description": "Star rating with hover preview, labels and keyboard support."
+  },
+  "calendar": {
+    "title": "Calendar & Date Pickers",
+    "category": "forms",
+    "description": "Calendar, DatePicker and DateRangePicker with presets. No date library."
+  },
+  "file-dropzone": {
+    "title": "File Dropzone",
+    "category": "forms",
+    "description": "Drag-and-drop uploads with validation, plus FileItem progress rows."
+  },
+  "password-input": {
+    "title": "Password Input",
+    "category": "forms",
+    "description": "Show/hide toggle with a live strength meter and rule checklist."
+  },
+  "autocomplete": {
+    "title": "Autocomplete",
+    "category": "forms",
+    "description": "Suggestions list with highlighted matches, sync or async data."
+  },
+  "search-input": {
+    "title": "Search Input",
+    "category": "forms",
+    "description": "Search field with clear button, / shortcut and result count."
+  },
+  "mention-input": {
+    "title": "Mention Input",
+    "category": "forms",
+    "description": "Textarea where @ opens a people picker."
+  },
+  "signature-pad": {
+    "title": "Signature Pad",
+    "category": "forms",
+    "description": "Draw a signature with mouse, pen or finger; export as PNG."
+  },
+  "inline-edit": {
+    "title": "Inline Edit",
+    "category": "forms",
+    "description": "Click text to edit in place. Enter saves, Escape cancels."
+  }
 }
