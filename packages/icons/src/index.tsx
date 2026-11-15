@@ -1,51 +1,15 @@
 import * as React from "react";
 
-export type IconProps = Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-  /** Width and height in px. Default 24. */
-  size?: number | string;
-  /** Stroke width. Default 2. */
-  strokeWidth?: number | string;
-  /** Accessible label. Without one the icon is hidden from screen readers. */
-  title?: string;
-};
+import { createIcon, type IconProps } from "./create-icon";
+import { extraIconPaths } from "./extra";
 
-export type IconComponent = React.ForwardRefExoticComponent<
-  IconProps & React.RefAttributes<SVGSVGElement>
->;
-
-/** Build an icon component from a single 24×24 path string. */
-export function createIcon(name: string, d: string): IconComponent {
-  const Icon = React.forwardRef<SVGSVGElement, IconProps>(
-    ({ size = 24, strokeWidth = 2, title, color = "currentColor", ...props }, ref) => (
-      <svg
-        ref={ref}
-        xmlns="http://www.w3.org/2000/svg"
-        width={size}
-        height={size}
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={color}
-        strokeWidth={strokeWidth}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        role={title ? "img" : undefined}
-        aria-hidden={title ? undefined : true}
-        aria-label={title}
-        {...props}
-      >
-        {title ? <title>{title}</title> : null}
-        <path d={d} />
-      </svg>
-    ),
-  );
-  Icon.displayName = name;
-  return Icon;
-}
+export * from "./create-icon";
+export * from "./extra-icons";
 
 const CIRCLE = "M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z";
 
 /** Every icon's path data, keyed by kebab-case name. */
-export const iconPaths = {
+const baseIconPaths = {
   home: "M3 10.5L12 3l9 7.5V21h-6v-6H9v6H3z",
   search: "M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13zM15.5 15.5L21 21",
   user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21c0-4 3.6-6 8-6s8 2 8 6",
@@ -117,7 +81,12 @@ export const iconPaths = {
   layers: "M12 3l9 5-9 5-9-5zM3 13l9 5 9-5",
 } as const;
 
+/** Every icon's path data (original + extended set), keyed by kebab-case name. */
+export const iconPaths = { ...baseIconPaths, ...extraIconPaths };
+
 export type IconName = keyof typeof iconPaths;
+/** All icon names, handy for pickers and galleries. */
+export const iconNames = Object.keys(iconPaths) as IconName[];
 
 export const HomeIcon = createIcon("HomeIcon", iconPaths.home);
 export const SearchIcon = createIcon("SearchIcon", iconPaths.search);

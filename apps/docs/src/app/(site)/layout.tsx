@@ -14,6 +14,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
             <Link href="/docs" className="hover:text-foreground">Docs</Link>
             <Link href="/components" className="hover:text-foreground">Components</Link>
             <Link href="/blocks" className="hover:text-foreground">Blocks</Link>
+            <Link href="/icons" className="hover:text-foreground">Icons</Link>
             <a href={site.github} className="hover:text-foreground">GitHub</a>
             <a href="/r/index.json" className="hover:text-foreground">Registry</a>
           </nav>

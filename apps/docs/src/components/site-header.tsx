@@ -14,6 +14,7 @@ const nav = [
   { href: "/docs", label: "Docs" },
   { href: "/components", label: "Components" },
   { href: "/blocks", label: "Blocks" },
+  { href: "/icons", label: "Icons" },
 ];
 
 const accents: { id: ThemeAccent; hex: string }[] = [

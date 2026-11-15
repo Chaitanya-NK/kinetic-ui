@@ -20,7 +20,7 @@ Both channels are built from the same files in `packages/`, so they never drift 
 | [`@kineticui/ui`](packages/ui) | 109 component files: forms, navigation, overlays, data display (tables, charts, Kanban, Gantt), AI (chat, tool calls), collaboration, media, mobile |
 | [`@kineticui/motion`](packages/motion) | 14 effects: Spotlight Card, Border Beam, Marquee, Typewriter, Text Scramble, Parallax, Confetti… |
 | [`@kineticui/blocks`](packages/blocks) | 47 ready-made blocks: app screens (auth, dashboard, checkout, AI workspace), marketing sections (heroes, pricing, footers), screens and widgets |
-| [`@kineticui/icons`](packages/icons) | 70 original 24 px stroke icons as React components |
+| [`@kineticui/icons`](packages/icons) | 348 original 24 px stroke icons as React components, plus `<Icon name>` and `iconNames` |
 | [`@kineticui/cli`](packages/cli) | `kinetic init`, `kinetic add <name>`, `kinetic list` |
 
 ## Use it in your app
