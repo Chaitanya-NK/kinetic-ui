@@ -104,6 +104,7 @@ import {
   UploadIcon,
 } from "@kineticui/icons";
 import { formDemos } from "./forms";
+import { navigationDemos } from "./navigation";
 
 const team = [
   { alt: "Maya Kapoor", color: "#7C8CFF" },
@@ -197,6 +198,7 @@ function OtpDemo() {
 
 export const demos: Record<string, () => React.ReactNode> = {
   ...formDemos,
+  ...navigationDemos,
   button: () => (
     <Stack className="items-center">
       <Row>

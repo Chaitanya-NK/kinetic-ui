@@ -112,7 +112,7 @@
   "command-palette": {
     "title": "Command Palette",
     "category": "signature",
-    "description": "⌘K palette with fuzzy search, groups and shortcuts."
+    "description": "\u2318K palette with fuzzy search, groups and shortcuts."
   },
   "dock": {
     "title": "Dock",
@@ -127,7 +127,7 @@
   "number-input": {
     "title": "Number Input",
     "category": "forms",
-    "description": "−/+ stepper with arrow-key support and clamping."
+    "description": "\u2212/+ stepper with arrow-key support and clamping."
   },
   "spotlight-card": {
     "title": "Spotlight Card",
@@ -273,5 +273,95 @@
     "title": "Inline Edit",
     "category": "forms",
     "description": "Click text to edit in place. Enter saves, Escape cancels."
+  },
+  "navbar": {
+    "title": "Floating Navbar",
+    "category": "navigation",
+    "description": "Pill navbar with sliding hover highlight that hides while scrolling down."
+  },
+  "sidebar": {
+    "title": "Sidebar",
+    "category": "navigation",
+    "description": "App sidebar with sections, badges, footer slot and collapse-to-icons."
+  },
+  "mega-menu": {
+    "title": "Mega Menu",
+    "category": "navigation",
+    "description": "Website navigation with large multi-column dropdown panels."
+  },
+  "bottom-tab-bar": {
+    "title": "Bottom Tab Bar",
+    "category": "navigation",
+    "description": "Mobile tab bar with a sliding active pill and badges."
+  },
+  "mobile-menu": {
+    "title": "Mobile Menu",
+    "category": "navigation",
+    "description": "Morphing hamburger that opens a full-screen menu with staggered links."
+  },
+  "speed-dial": {
+    "title": "Speed Dial",
+    "category": "navigation",
+    "description": "Floating action button that fans out labelled actions."
+  },
+  "table-of-contents": {
+    "title": "Table of Contents",
+    "category": "navigation",
+    "description": "On-this-page list that highlights the section you're reading."
+  },
+  "back-to-top": {
+    "title": "Back to Top",
+    "category": "navigation",
+    "description": "Floating scroll-to-top button with a reading-progress ring."
+  },
+  "context-menu": {
+    "title": "Context Menu",
+    "category": "overlay",
+    "description": "Right-click menu with shortcuts, submenus and destructive items."
+  },
+  "hover-card": {
+    "title": "Hover Card",
+    "category": "overlay",
+    "description": "Rich preview card on hover or focus, with intent delay."
+  },
+  "alert-dialog": {
+    "title": "Confirm Dialog",
+    "category": "overlay",
+    "description": "Blocking confirmation with tones, async confirm and type-to-confirm."
+  },
+  "tour": {
+    "title": "Product Tour",
+    "category": "overlay",
+    "description": "Spotlight onboarding tour with animated cutout and step dots."
+  },
+  "lightbox": {
+    "title": "Lightbox",
+    "category": "overlay",
+    "description": "Image grid with full-screen viewer, swipe, keys and thumbnails."
+  },
+  "theme-switch": {
+    "title": "Theme Switch",
+    "category": "foundations",
+    "description": "Animated sun/moon toggle or Light/Dark/System segmented control."
+  },
+  "countdown": {
+    "title": "Countdown",
+    "category": "feedback",
+    "description": "Live countdown with rolling digits for launches and sales."
+  },
+  "copy-button": {
+    "title": "Copy Button",
+    "category": "foundations",
+    "description": "Copy to clipboard with an animated check confirmation."
+  },
+  "announcement-banner": {
+    "title": "Announcement Banner",
+    "category": "feedback",
+    "description": "Top-of-page banner with tag, link and remembered dismissal."
+  },
+  "cookie-consent": {
+    "title": "Cookie Consent",
+    "category": "feedback",
+    "description": "Accept / reject / per-category cookie preferences, remembered locally."
   }
 }
