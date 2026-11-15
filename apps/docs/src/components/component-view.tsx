@@ -3,7 +3,7 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { themePresets, type ThemePreset } from "@kineticui/core";
-import { Tabs, TabsContent, TabsList, TabsTrigger, Tooltip } from "@kineticui/ui";
+import { Select, Tabs, TabsContent, TabsList, TabsTrigger, Tooltip } from "@kineticui/ui";
 import { DotBackground } from "@kineticui/motion";
 import { ExternalLinkIcon, MonitorIcon, MoonIcon, RotateCcwIcon, SmartphoneIcon, SunIcon, TabletIcon } from "@kineticui/icons";
 import { demos } from "@/demos";
@@ -15,6 +15,22 @@ const widths = [
   { id: "mobile", label: "Mobile (375px)", icon: SmartphoneIcon, px: 375 },
 ] as const;
 const presetIds = Object.keys(themePresets) as ThemePreset[];
+
+function Swatch({ bg, accent }: { bg: string; accent: string }) {
+  return (
+    <span className="relative flex size-4 shrink-0 overflow-hidden rounded-full ring-1 ring-inset ring-white/15" style={{ background: bg }} aria-hidden>
+      <span className="absolute inset-x-0 bottom-0 h-1/2" style={{ background: accent }} />
+    </span>
+  );
+}
+
+const themeOptions = [
+  { value: "default", label: <span className="flex items-center gap-2"><Swatch bg="#0a0a0b" accent="#c6f432" />Kinetic</span> },
+  ...presetIds.map((p) => ({
+    value: p,
+    label: <span className="flex items-center gap-2"><Swatch bg={themePresets[p].seed.background} accent={themePresets[p].seed.accent} />{themePresets[p].label}</span>,
+  })),
+];
 
 function ToolButton({ label, active, onClick, children }: { label: string; active?: boolean; onClick: () => void; children: React.ReactNode }) {
   return (
@@ -44,16 +60,14 @@ export function Preview({ slug, code }: { slug: string; code: string }) {
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <div className="flex flex-wrap items-center gap-1 rounded-xl border border-border bg-surface p-1">
-          <label className="sr-only" htmlFor={`theme-${slug}`}>Preview theme</label>
-          <select
-            id={`theme-${slug}`}
+          <Select
+            aria-label="Preview theme"
             value={preset}
-            onChange={(e) => setPreset(e.target.value as ThemePreset | "default")}
-            className="h-8 rounded-lg bg-transparent px-2 text-xs text-muted outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <option value="default">Kinetic</option>
-            {presetIds.map((p) => <option key={p} value={p}>{themePresets[p].label}</option>)}
-          </select>
+            onValueChange={(v) => setPreset(v as ThemePreset | "default")}
+            options={themeOptions}
+            className="h-8 w-[132px] rounded-lg border-transparent bg-transparent px-2.5 text-xs hover:bg-surface-raised data-[state=open]:bg-surface-raised"
+            contentClassName="w-44"
+          />
           <ToolButton label={mode === "dark" ? "Light mode" : "Dark mode"} onClick={() => { setPreset("default"); setMode(mode === "dark" ? "light" : "dark"); }}>
             {scheme === "dark" ? <SunIcon size={15} /> : <MoonIcon size={15} />}
           </ToolButton>
