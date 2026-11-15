@@ -1,0 +1,28 @@
+// Usage: npm run version:set -- 0.2.0
+// Sets one version across every published package, their @kineticui/* dependency ranges and the docs header badge.
+import { readFileSync, writeFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
+const version = process.argv[2];
+if (!/^\d+\.\d+\.\d+(-[\w.]+)?$/.test(version ?? "")) {
+  console.error("Usage: npm run version:set -- <semver>   e.g. 0.2.0 or 1.0.0-beta.1");
+  process.exit(1);
+}
+const root = fileURLToPath(new URL("..", import.meta.url));
+const packages = ["core", "icons", "motion", "ui", "blocks", "cli"];
+
+for (const p of packages) {
+  const file = `${root}packages/${p}/package.json`;
+  const pkg = JSON.parse(readFileSync(file, "utf8"));
+  pkg.version = version;
+  for (const field of ["dependencies", "peerDependencies", "devDependencies"]) {
+    for (const dep of Object.keys(pkg[field] ?? {})) if (dep.startsWith("@kineticui/")) pkg[field][dep] = `^${version}`;
+  }
+  writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`);
+}
+
+const header = `${root}apps/docs/src/components/site-header.tsx`;
+const [major, minor] = version.split(".");
+writeFileSync(header, readFileSync(header, "utf8").replace(/>v\d+\.\d+(\.\d+)?(-[\w.]+)?</, `>v${major}.${minor}<`));
+
+console.log(`✓ Set ${packages.length} packages to ${version}. Run npm install to refresh the lockfile, then update CHANGELOG.md.`);

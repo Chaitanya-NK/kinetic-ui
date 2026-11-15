@@ -5,7 +5,7 @@ import { Button } from "@kineticui/ui";
 import { GlobeIcon, MailIcon, MapPinIcon, PhoneIcon, PrinterIcon } from "@kineticui/icons";
 
 const experience = [
-  { role: "Senior Design Engineer", org: "Kinetic", period: "2024 — Present", points: ["Built the motion system used across 212 components and 77 blocks.", "Cut bundle size 31% by moving animations to CSS where springs weren't needed.", "Led accessibility audit; reached 99 on Lighthouse a11y across docs."] },
+  { role: "Senior Design Engineer", org: "Kinetic", period: "2024 — Present", points: ["Built the motion system used across 164 components and 78 blocks.", "Cut bundle size 31% by moving animations to CSS where springs weren't needed.", "Led accessibility audit; reached 99 on Lighthouse a11y across docs."] },
   { role: "Frontend Engineer", org: "Orbit", period: "2021 — 2024", points: ["Shipped the animated money-movement redesign that lifted retention 38%.", "Owned the React Native design system for 40 product engineers."] },
   { role: "UI Developer", org: "Field Studio", period: "2019 — 2021", points: ["Built marketing sites and prototypes for 20+ clients."] },
 ];

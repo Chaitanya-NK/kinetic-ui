@@ -16,10 +16,10 @@ Both channels are built from the same files in `packages/`, so they never drift 
 
 | Package | What's inside |
 |---|---|
-| [`@kineticui/core`](packages/core) | Design tokens (`styles.css`), `cn()`, hooks, `ThemeProvider` (`@kineticui/core/theme`) |
-| [`@kineticui/ui`](packages/ui) | 109 component files: forms, navigation, overlays, data display (tables, charts, Kanban, Gantt), AI (chat, tool calls), collaboration, media, mobile |
+| [`@kineticui/core`](packages/core) | Design tokens (`styles.css`), six theme presets, `createTheme()`, `cn()`, hooks, `ThemeProvider` (`@kineticui/core/theme`) |
+| [`@kineticui/ui`](packages/ui) | 150 component files: forms, editors, navigation, overlays, data display (tables, charts, Kanban, Gantt, maps), AI (chat, tool calls), collaboration, social, media, mobile, contact |
 | [`@kineticui/motion`](packages/motion) | 14 effects: Spotlight Card, Border Beam, Marquee, Typewriter, Text Scramble, Parallax, Confetti… |
-| [`@kineticui/blocks`](packages/blocks) | 47 ready-made blocks: app screens (auth, dashboard, checkout, AI workspace), marketing sections (heroes, pricing, footers), screens and widgets |
+| [`@kineticui/blocks`](packages/blocks) | 78 ready-made blocks: app screens (auth, dashboard, billing, admin, API keys), marketing pages (heroes, pricing, blog, docs, careers, case study), commerce screens and personal-site widgets |
 | [`@kineticui/icons`](packages/icons) | 348 original 24 px stroke icons as React components, plus `<Icon name>` and `iconNames` |
 | [`@kineticui/cli`](packages/cli) | `kinetic init`, `kinetic add <name>`, `kinetic list` |
 
@@ -142,14 +142,26 @@ After the first deploy, put your real URL in `DEFAULT_REGISTRY` in `packages/cli
 
 ## Publish to npm
 
-You need to be a member of the `kineticui` npm organisation.
+You need to be a member of the `kineticui` npm organisation. Releases are published by GitHub Actions when you push a version tag.
+
+**One-time setup**
+
+1. On npmjs.com, create a **Granular Access Token** with read and write access to the `@kineticui` scope (or a classic **Automation** token).
+2. In the GitHub repo, go to **Settings → Secrets and variables → Actions** and add it as `NPM_TOKEN`.
+
+**Each release**
 
 ```bash
-npm login
-npm run release      # builds and publishes all five packages with public access
+npm run version:set -- 0.2.0   # bumps all six packages and their @kineticui/* ranges
+# add a section to CHANGELOG.md, then:
+git commit -am "Release v0.2.0"
+git tag v0.2.0
+git push origin main --tags     # the Release workflow builds, tests and publishes
 ```
 
-Bump versions in each `packages/*/package.json` before every release.
+The workflow refuses to publish if the tag doesn't match the package versions. It publishes with npm provenance, so each package page links back to the commit that built it, then creates a GitHub release from the changelog.
+
+To publish from your machine instead: `npm login && npm run release`.
 
 ## License
 

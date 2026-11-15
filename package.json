@@ -18,7 +18,8 @@
     "build": "npm run build:packages && npm run registry && npm run build -w docs",
     "dev": "npm run build:packages && npm run registry && npm run dev -w docs",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "release": "npm run build:packages && npm publish -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli --access public"
+    "release": "npm run build:packages && npm publish -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli --access public",
+    "version:set": "node scripts/set-version.mjs"
   },
   "devDependencies": {
     "tsup": "^8.5.0",

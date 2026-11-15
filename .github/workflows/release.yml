@@ -1,0 +1,72 @@
+name: Release
+
+# Push a tag like v0.2.0 to publish every package to npm.
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build and pack only, don't publish"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write # create the GitHub release
+  id-token: write # npm provenance
+
+concurrency: release
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+
+      - name: Check tag matches package versions
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          for p in core icons motion ui blocks cli; do
+            v=$(node -p "require('./packages/$p/package.json').version")
+            if [ "$v" != "$tag" ]; then echo "::error::@kineticui/$p is $v but the tag is v$tag. Run npm run version:set -- $tag"; exit 1; fi
+          done
+
+      - run: npm run build:packages
+      - run: npm run registry
+      - run: npm run typecheck
+
+      - name: Pack (dry run)
+        run: for p in core icons motion ui blocks cli; do (cd packages/$p && npm pack --dry-run >/dev/null && echo "ok @kineticui/$p"); done
+
+      - name: Publish to npm
+        if: startsWith(github.ref, 'refs/tags/v') || inputs.dry_run == false
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NODE_AUTH_TOKEN" ]; then echo "::error::Add an NPM_TOKEN secret (Settings → Secrets and variables → Actions)"; exit 1; fi
+          # Dependencies first so installs never see a missing @kineticui/* version. Already-published versions are skipped.
+          for p in core icons motion ui blocks cli; do
+            name="@kineticui/$p"; v=$(node -p "require('./packages/$p/package.json').version")
+            if npm view "$name@$v" version >/dev/null 2>&1; then echo "skip $name@$v (already published)"; continue; fi
+            tagflag=""; case "$v" in *-*) tagflag="--tag next";; esac
+            npm publish -w "$name" --access public --provenance $tagflag
+          done
+
+      - name: GitHub release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          awk -v v="$v" '$0 ~ "^## \\[?"v"\\]?" {on=1; next} on && /^## / {exit} on {print}' CHANGELOG.md > notes.md
+          [ -s notes.md ] || echo "See CHANGELOG.md" > notes.md
+          prerelease=""; case "$v" in *-*) prerelease="--prerelease";; esac
+          gh release create "$GITHUB_REF_NAME" --title "v$v" --notes-file notes.md $prerelease

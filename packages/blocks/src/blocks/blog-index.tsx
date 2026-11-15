@@ -9,7 +9,7 @@ type Post = { title: string; excerpt: string; tag: string; author: string; color
 
 const posts: Post[] = [
   { title: "Designing motion that feels physical", excerpt: "How we tuned every spring so interfaces respond like real objects.", tag: "Engineering", author: "Lena Ortiz", color: "#f9a8d4", date: "Nov 12", read: 8, hue: "#C6F432" },
-  { title: "Kinetic UI 1.0 is here", excerpt: "212 components, 77 blocks, a CLI and a registry that works with shadcn.", tag: "Product", author: "Maya Kapoor", color: "#C6F432", date: "Nov 4", read: 4, hue: "#7dd3fc" },
+  { title: "Kinetic UI 1.0 is here", excerpt: "164 components, 78 blocks, a CLI and a registry that works with shadcn.", tag: "Product", author: "Maya Kapoor", color: "#C6F432", date: "Nov 4", read: 4, hue: "#7dd3fc" },
   { title: "Container queries changed how we build cards", excerpt: "Components that adapt to where they are placed, not the window.", tag: "Engineering", author: "Arjun Mehta", color: "#7dd3fc", date: "Oct 28", read: 6, hue: "#fcd34d" },
   { title: "Accessible drag and drop", excerpt: "Keyboard, screen reader and touch support for the Kanban board.", tag: "Accessibility", author: "Sam Okafor", color: "#fcd34d", date: "Oct 19", read: 7, hue: "#f9a8d4" },
   { title: "A dark theme that isn't just inverted", excerpt: "Building a surface ladder so elevation reads in the dark.", tag: "Design", author: "Lena Ortiz", color: "#f9a8d4", date: "Oct 10", read: 5, hue: "#a78bfa" },

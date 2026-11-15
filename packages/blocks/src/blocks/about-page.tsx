@@ -20,7 +20,7 @@ const story = [
   { year: "2023", title: "A side project", text: "Two friends frustrated by lifeless component libraries start sketching springs in CodePen." },
   { year: "2024", title: "First release", text: "40 components and a tweet that hit the front page of Hacker News." },
   { year: "2025", title: "Going full-time", text: "Seed round from people who build tools we love. Team of six." },
-  { year: "2026", title: "Kinetic UI 1.0", text: "212 components, 77 blocks, a CLI and a registry used by thousands of teams." },
+  { year: "2026", title: "Kinetic UI 1.0", text: "164 components, 78 blocks, a CLI and a registry used by thousands of teams." },
 ];
 const values = [["Feel first", "If it doesn't feel right, it isn't done."], ["Own your code", "Copy it, change it, it's yours."], ["Access for all", "Keyboard, screen reader and reduced motion, always."]];
 
@@ -37,7 +37,7 @@ export function AboutPage() {
         </div>
       </div>
       <div className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border bg-border md:grid-cols-4">
-        {[[48000, "+", "Developers"], [212, "", "Components"], [3200000, "", "Weekly downloads"], [99, "%", "Lighthouse a11y"]].map(([n, s, l]) => (
+        {[[48000, "+", "Developers"], [164, "", "Components"], [3200000, "", "Weekly downloads"], [99, "%", "Lighthouse a11y"]].map(([n, s, l]) => (
           <div key={l as string} className="flex flex-col gap-1 bg-surface p-6">
             <span className="font-display text-3xl font-semibold tracking-tight"><Count to={n as number} suffix={s as string} /></span>
             <span className="text-sm text-subtle">{l}</span>
