@@ -1,0 +1,160 @@
+/*
+ * Kinetic UI tokens for Tailwind CSS v4.
+ *
+ * In your app's global CSS:
+ *   @import "tailwindcss";
+ *   @import "@kineticui/core/styles.css";
+ *   @source "../node_modules/@kineticui";   (only if you use the npm packages)
+ *
+ * Dark is the default. Add class="light" on <html> for light mode and
+ * data-accent="blue|orange|rose|mint" to change the brand colour.
+ * <ThemeProvider> from @kineticui/core does both for you.
+ */
+
+@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+
+:root,
+.dark {
+  --kn-background: #0a0a0b;
+  --kn-surface: #111114;
+  --kn-surface-raised: #17171b;
+  --kn-surface-overlay: #1c1c21;
+  --kn-border: #26262c;
+  --kn-border-strong: #3a3a42;
+  --kn-foreground: #f4f4f5;
+  --kn-muted: #a1a1aa;
+  --kn-subtle: #8a8a93;
+  --kn-accent: #c6f432;
+  --kn-accent-foreground: #0a0a0b;
+  --kn-accent-soft: #1f2610;
+  --kn-accent-soft-foreground: #dcff6b;
+  --kn-success: #6ee7a0;
+  --kn-success-soft: #0e2017;
+  --kn-warning: #fbbf5a;
+  --kn-warning-soft: #241b09;
+  --kn-danger: #ff8a8a;
+  --kn-danger-soft: #230f11;
+  --kn-info: #9aa6ff;
+  --kn-info-soft: #12162a;
+  --kn-ring: rgb(198 244 50 / 0.35);
+  --kn-shadow: 0 24px 48px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}
+
+.light {
+  --kn-background: #fafaf9;
+  --kn-surface: #ffffff;
+  --kn-surface-raised: #f4f4f5;
+  --kn-surface-overlay: #ffffff;
+  --kn-border: #e4e4e7;
+  --kn-border-strong: #d4d4d8;
+  --kn-foreground: #18181b;
+  --kn-muted: #52525b;
+  --kn-subtle: #71717a;
+  --kn-accent: #4d7c0f;
+  --kn-accent-foreground: #ffffff;
+  --kn-accent-soft: #ecfccb;
+  --kn-accent-soft-foreground: #3f6212;
+  --kn-success: #047857;
+  --kn-success-soft: #d1fae5;
+  --kn-warning: #b45309;
+  --kn-warning-soft: #fef3c7;
+  --kn-danger: #b91c1c;
+  --kn-danger-soft: #fee2e2;
+  --kn-info: #3b4fe0;
+  --kn-info-soft: #e0e7ff;
+  --kn-ring: rgb(77 124 15 / 0.3);
+  --kn-shadow: 0 16px 32px rgb(0 0 0 / 0.08);
+  color-scheme: light;
+}
+
+/* Brand presets */
+[data-accent="blue"] { --kn-accent: #7c8cff; --kn-accent-soft: #12162a; --kn-accent-soft-foreground: #c7ceff; --kn-ring: rgb(124 140 255 / 0.35); }
+[data-accent="orange"] { --kn-accent: #f4a86a; --kn-accent-soft: #2a1c10; --kn-accent-soft-foreground: #fbd3b1; --kn-ring: rgb(244 168 106 / 0.35); }
+[data-accent="rose"] { --kn-accent: #f0a3d0; --kn-accent-soft: #2a1120; --kn-accent-soft-foreground: #f8d2e8; --kn-ring: rgb(240 163 208 / 0.35); }
+[data-accent="mint"] { --kn-accent: #6ee7a0; --kn-accent-soft: #0e2017; --kn-accent-soft-foreground: #a7f3c6; --kn-ring: rgb(110 231 160 / 0.35); }
+.light[data-accent="blue"], [data-accent="blue"] .light { --kn-accent: #3b4fe0; --kn-accent-foreground: #fff; --kn-accent-soft: #e0e7ff; --kn-accent-soft-foreground: #3730a3; }
+.light[data-accent="orange"], [data-accent="orange"] .light { --kn-accent: #c2410c; --kn-accent-foreground: #fff; --kn-accent-soft: #ffedd5; --kn-accent-soft-foreground: #9a3412; }
+.light[data-accent="rose"], [data-accent="rose"] .light { --kn-accent: #be185d; --kn-accent-foreground: #fff; --kn-accent-soft: #fce7f3; --kn-accent-soft-foreground: #9d174d; }
+.light[data-accent="mint"], [data-accent="mint"] .light { --kn-accent: #047857; --kn-accent-foreground: #fff; --kn-accent-soft: #d1fae5; --kn-accent-soft-foreground: #065f46; }
+
+@theme inline {
+  --color-background: var(--kn-background);
+  --color-surface: var(--kn-surface);
+  --color-surface-raised: var(--kn-surface-raised);
+  --color-surface-overlay: var(--kn-surface-overlay);
+  --color-border: var(--kn-border);
+  --color-border-strong: var(--kn-border-strong);
+  --color-foreground: var(--kn-foreground);
+  --color-muted: var(--kn-muted);
+  --color-subtle: var(--kn-subtle);
+  --color-accent: var(--kn-accent);
+  --color-accent-foreground: var(--kn-accent-foreground);
+  --color-accent-soft: var(--kn-accent-soft);
+  --color-accent-soft-foreground: var(--kn-accent-soft-foreground);
+  --color-success: var(--kn-success);
+  --color-success-soft: var(--kn-success-soft);
+  --color-warning: var(--kn-warning);
+  --color-warning-soft: var(--kn-warning-soft);
+  --color-danger: var(--kn-danger);
+  --color-danger-soft: var(--kn-danger-soft);
+  --color-info: var(--kn-info);
+  --color-info-soft: var(--kn-info-soft);
+  --color-ring: var(--kn-ring);
+  --shadow-overlay: var(--kn-shadow);
+  --radius-kn: 12px;
+  --ease-kn-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-kn-spring: cubic-bezier(0.2, 0.9, 0.3, 1.2);
+
+  --animate-kn-spin: kn-spin 0.8s linear infinite;
+  --animate-kn-pulse: kn-pulse 1.4s ease-in-out infinite;
+  --animate-kn-shimmer: kn-shimmer 1.6s linear infinite;
+  --animate-kn-marquee: kn-marquee var(--kn-marquee-duration, 30s) linear infinite;
+  --animate-kn-indeterminate: kn-indeterminate 1.4s ease-in-out infinite;
+  --animate-kn-shine: kn-shine 3s linear infinite;
+  --animate-kn-beam: kn-beam var(--kn-beam-duration, 4s) linear infinite;
+  --animate-kn-grid: kn-grid 3s linear infinite;
+  --animate-kn-caret: kn-caret 0.9s step-end infinite;
+
+  @keyframes kn-spin { to { transform: rotate(360deg); } }
+  @keyframes kn-pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @keyframes kn-shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  @keyframes kn-marquee { to { transform: translateX(-50%); } }
+  @keyframes kn-indeterminate { 0% { transform: translateX(-100%); } 100% { transform: translateX(280%); } }
+  @keyframes kn-shine { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  @keyframes kn-beam { to { transform: rotate(360deg); } }
+  @keyframes kn-grid { to { background-position: 0 40px, 0 40px; } }
+  @keyframes kn-caret { 50% { border-color: transparent; } }
+}
+
+/* Keyframes used through arbitrary animate-[…] classes */
+@keyframes kn-draw { from { stroke-dashoffset: 12; } to { stroke-dashoffset: 0; } }
+@keyframes kn-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes kn-pop { from { opacity: 0; transform: translateY(4px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes kn-dialog-in { from { opacity: 0; transform: translate(-50%, -46%) scale(0.96); } to { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+@keyframes kn-dialog-out { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(-50%, -48%) scale(0.97); } }
+@keyframes kn-slide-left { from { transform: translateX(100%); } to { transform: none; } }
+@keyframes kn-slide-right { from { transform: translateX(-100%); } to { transform: none; } }
+@keyframes kn-slide-up { from { transform: translateY(100%); } to { transform: none; } }
+@keyframes kn-stripes { to { background-position: 28px 0; } }
+@keyframes kn-accordion-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
+@keyframes kn-accordion-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
+@keyframes kn-toast-in { from { opacity: 0; transform: translateY(16px) scale(0.96); } to { opacity: 1; transform: none; } }
+
+@layer base {
+  * {
+    border-color: var(--kn-border);
+  }
+  body {
+    background-color: var(--kn-background);
+    color: var(--kn-foreground);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-kn-motion] {
+    animation: none !important;
+    transition: none !important;
+  }
+}

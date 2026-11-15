@@ -1,0 +1,60 @@
+{
+  "name": "@kineticui/ui",
+  "version": "0.1.0",
+  "description": "Kinetic UI components — motion-first, accessible React components for Next.js and Tailwind CSS v4.",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@kineticui/core": "^0.1.0",
+    "@kineticui/icons": "^0.1.0",
+    "class-variance-authority": "^0.7.1",
+    "cmdk": "^1.1.1",
+    "motion": "^12.23.0",
+    "radix-ui": "^1.4.3"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "keywords": [
+    "react",
+    "nextjs",
+    "tailwindcss",
+    "components",
+    "ui",
+    "motion",
+    "shadcn",
+    "design-system"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chaitanya-NK/kinetic-ui",
+    "directory": "packages/ui"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

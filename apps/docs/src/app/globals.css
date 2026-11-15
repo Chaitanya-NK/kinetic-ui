@@ -1,0 +1,26 @@
+@import "tailwindcss";
+@import "@kineticui/core/styles.css";
+
+/* Scan the component sources so their classes are generated. */
+@source "../../../../packages/ui/src";
+@source "../../../../packages/motion/src";
+
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Inter Variable", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--kn-accent);
+  color: var(--kn-accent-foreground);
+}

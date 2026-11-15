@@ -1,0 +1,31 @@
+{
+  "name": "@kineticui/cli",
+  "version": "0.1.0",
+  "description": "Kinetic UI CLI — `npx @kineticui/cli add dock` copies components into your project.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "kinetic": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chaitanya-NK/kinetic-ui",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
