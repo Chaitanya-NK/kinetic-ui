@@ -92,7 +92,7 @@ function ContrastRow({ label, fg, bg, min }: { label: string; fg: string; bg: st
   );
 }
 
-function Preview({ tokens, mode }: { tokens: ThemeTokens; mode: "dark" | "light" }) {
+export function ThemePreview({ tokens, mode }: { tokens: ThemeTokens; mode: "dark" | "light" }) {
   const [tab, setTab] = React.useState("overview");
   const [on, setOn] = React.useState(true);
   return (
@@ -277,7 +277,7 @@ export function ThemeEditor() {
         </aside>
 
         <div className="flex min-w-0 flex-col gap-6">
-          <Preview tokens={tokens} mode={mode} />
+          <ThemePreview tokens={tokens} mode={mode} />
           <div className="flex flex-col gap-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <span className="text-sm font-semibold">Export</span>

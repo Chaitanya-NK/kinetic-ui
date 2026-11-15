@@ -1,68 +1,56 @@
-import Link from "next/link";
-import { Button } from "@kineticui/ui";
-import { Command } from "@/components/code-block";
+import { iconNames } from "@kineticui/icons";
 import { HomeShowcase } from "@/components/home-showcase";
-import { HeroMotion } from "@/components/hero-motion";
-import { byCategory, entries } from "@/lib/site";
+import { Hero } from "@/components/home/hero";
+import { BlocksMarquee, CategoryTiles, FinalCta, IconsStrip, StatsBand, ThemesShowcase, TwoWays, type BlockCard, type CategoryTile } from "@/components/home/sections";
+import { blocks, byCategory, entries } from "@/lib/site";
+import { thumb } from "@/lib/thumbs";
+
+const featuredIcons = [
+  "sparkle", "bolt", "rocket", "palette", "layers", "code", "terminal", "command",
+  "search", "bell", "heart", "star", "calendar", "camera", "music", "map-pin",
+  "globe", "lock", "fingerprint", "shield-check", "cloud", "sun", "moon", "flame",
+  "leaf", "wand", "brain", "atom", "trophy", "gem", "crown", "gift",
+  "cart", "wallet", "chart", "pie-chart", "kanban", "git-branch", "database", "cpu",
+  "bot", "mic", "headphones", "video", "image", "send", "chat", "mail",
+];
+
+// Lead each marquee row with the most visual blocks.
+const featuredBlocks = [
+  "dashboard-shell", "pricing-table", "ai-workspace", "analytics-funnel", "features-bento", "project-board", "billing-page", "hero-terminal", "contact-page", "status-page",
+  "product-listing", "email-builder", "blog-index", "weather-widget", "music-player", "team-roles", "checkout-page", "order-tracking", "github-graph", "inbox-screen",
+];
 
 export default function Home() {
+  const counts = { components: entries.length, blocks: blocks.length, icons: iconNames.length, themes: 6 };
+
+  const cards: BlockCard[] = [...featuredBlocks, ...blocks.map((b) => b.name).filter((n) => !featuredBlocks.includes(n))]
+    .map((n) => blocks.find((b) => b.name === n))
+    .filter((b): b is (typeof blocks)[number] => !!b)
+    .map((b) => ({ name: b.name, title: b.title, src: thumb("b", b.name)! }))
+    .filter((b) => b.src)
+    .slice(0, 24);
+  const rows: [BlockCard[], BlockCard[]] = [cards.filter((_, i) => i % 2 === 0), cards.filter((_, i) => i % 2 === 1)];
+
+  const tiles: CategoryTile[] = byCategory().map((c) => ({
+    id: c.id,
+    label: c.label,
+    count: c.items.length,
+    href: `/components#${c.id}`,
+    names: c.items.map((i) => i.title),
+    thumbs: c.items.map((i) => thumb("c", i.name)).filter((s): s is string => !!s),
+  }));
+
   return (
     <>
-      <HeroMotion>
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-7 px-6 pb-20 pt-24 text-center sm:pt-32">
-          <Link
-            href="/components/dock"
-            className="flex items-center gap-2 rounded-full border border-border-strong bg-surface/70 py-1 pl-1 pr-3 text-sm text-muted backdrop-blur transition-colors hover:text-foreground"
-          >
-            <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-bold text-accent-foreground">NEW</span>
-            The Dock is here →
-          </Link>
-          <h1 className="font-display text-5xl font-semibold leading-[0.98] tracking-[-0.035em] sm:text-7xl">
-            Components
-            <br />
-            that move.
-          </h1>
-          <p className="max-w-xl text-lg leading-relaxed text-muted">
-            {entries.length} motion-first React components for Next.js and Tailwind v4. Install from npm, or copy the source with one
-            command — same code either way.
-          </p>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Button asChild size="lg">
-              <Link href="/components">Browse components</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/docs">Get started</Link>
-            </Button>
-          </div>
-          <div className="w-full max-w-md">
-            <Command command="npx @kineticui/cli add dock" />
-          </div>
-        </div>
-      </HeroMotion>
-
+      <Hero counts={counts} />
+      <StatsBand counts={counts} />
       <HomeShowcase />
-
-      <section className="mx-auto mt-24 max-w-7xl px-4 sm:px-6">
-        <div className="mb-8 flex flex-col gap-2">
-          <span className="font-mono text-xs tracking-widest text-accent">EVERYTHING INCLUDED</span>
-          <h2 className="font-display text-4xl font-semibold tracking-tight">Pick a category</h2>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {byCategory().map((c) => (
-            <Link
-              key={c.id}
-              href={`/components/${c.items[0]!.name}`}
-              className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-5 transition-colors hover:border-accent"
-            >
-              <span className="flex items-baseline justify-between">
-                <span className="font-display text-xl font-semibold">{c.label}</span>
-                <span className="font-mono text-xs text-subtle">{c.items.length}</span>
-              </span>
-              <span className="text-sm leading-relaxed text-muted">{c.items.map((i) => i.title).join(" · ")}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
+      <BlocksMarquee rows={rows} total={counts.blocks} />
+      <ThemesShowcase />
+      <TwoWays />
+      <IconsStrip names={featuredIcons} total={counts.icons} />
+      <CategoryTiles tiles={tiles} />
+      <FinalCta components={counts.components} />
     </>
   );
 }

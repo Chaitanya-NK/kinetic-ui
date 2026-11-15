@@ -149,14 +149,16 @@ const heat: Record<string, number> = {};
   }
 }
 
-const r3 = rng(9);
-const uptime = (bad: number) =>
-  Array.from({ length: 60 }, (_, i) => {
+// Seeded per call, so every render (server, browser, thumbnails) produces the same history.
+const uptime = (bad: number) => {
+  const r3 = rng(9 + Math.round(bad * 1000));
+  return Array.from({ length: 60 }, (_, i) => {
     const d = new Date(2026, 8, 16 + i);
     const v = r3();
     const status = v < bad ? "down" : v < bad * 3 ? "degraded" : "up";
     return { date: `${months[d.getMonth()]} ${d.getDate()}`, status, note: status === "down" ? "Elevated error rates for 23 min" : status === "degraded" ? "Increased latency in eu-west" : undefined } as const;
   });
+};
 
 function photo(a: string, b: string, filter: string) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450"><defs><linearGradient id="s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${a}"/><stop offset="1" stop-color="${b}"/></linearGradient>${filter ? `<filter id="f">${filter}</filter>` : ""}</defs><g${filter ? ' filter="url(#f)"' : ""}><rect width="800" height="450" fill="url(#s)"/><circle cx="560" cy="170" r="70" fill="#FFE6A8"/><path d="M0 330 L160 210 L280 290 L430 160 L600 300 L800 220 L800 450 L0 450Z" fill="#1d2a1a"/><path d="M0 380 L200 300 L420 360 L620 290 L800 350 L800 450 L0 450Z" fill="#0f1a10"/></g></svg>`;

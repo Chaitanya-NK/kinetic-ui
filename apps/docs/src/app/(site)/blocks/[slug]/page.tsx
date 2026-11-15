@@ -16,7 +16,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const b = getBlock(slug);
-  return b ? { title: b.title, description: b.description } : {};
+  return b ? { title: b.title, description: b.description, openGraph: { title: `${b.title} · Kinetic UI`, description: b.description }, twitter: { title: `${b.title} · Kinetic UI`, description: b.description } } : {};
 }
 
 export default async function BlockPage({ params }: { params: Promise<{ slug: string }> }) {

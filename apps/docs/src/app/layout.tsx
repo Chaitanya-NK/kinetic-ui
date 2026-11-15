@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: { default: `${site.name} — components that move`, template: `%s · ${site.name}` },
   description: site.description,
   metadataBase: new URL(site.url),
-  openGraph: { title: site.name, description: site.description, type: "website" },
+  openGraph: { title: site.name, description: site.description, type: "website", siteName: site.name, url: site.url },
+  twitter: { card: "summary_large_image", title: site.name, description: site.description },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

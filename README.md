@@ -120,7 +120,20 @@ npm run typecheck
 2. Export it from `packages/ui/src/index.ts`.
 3. Add a title, description and category in `registry.meta.json`.
 4. Add a live demo in `apps/docs/src/demos/index.tsx`.
-5. `npm run dev` — the registry item, docs page and npm export are all generated.
+5. `npm run dev` — the registry item, docs page, npm export and the props table (from your TypeScript types and JSDoc comments) are all generated.
+6. Optional: add keyboard notes in `apps/docs/src/lib/a11y.ts`.
+
+### Thumbnails
+
+Cards on the home page, the components index and the blocks index use static thumbnails in `apps/docs/public/thumbs`. After adding a component or block, or changing how one looks:
+
+```bash
+npm run build -w docs && npm run start -w docs        # terminal 1
+npm i --no-save playwright && npx playwright install chromium
+node scripts/gen-thumbs.mjs http://localhost:3000 my-thing   # terminal 2; omit slugs to redo all
+```
+
+Commit the new `.webp` files and `apps/docs/src/lib/thumbs.json`. Anything without a thumbnail still shows a text placeholder or a live preview.
 
 ### Add a new block
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { blocks, blocksByCategory } from "@/lib/site";
+import { thumb } from "@/lib/thumbs";
 
 export const metadata: Metadata = { title: "Blocks" };
 
@@ -24,7 +25,12 @@ export default function BlocksIndex() {
             {cat.items.map((b) => (
               <Link key={b.name} href={`/blocks/${b.name}`} className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent">
                 <div className="pointer-events-none relative aspect-[16/10] overflow-hidden border-b border-border bg-background" aria-hidden>
-                  <iframe src={`/preview/${b.name}`} title="" tabIndex={-1} loading="lazy" className="absolute left-0 top-0 h-[250%] w-[250%] origin-top-left scale-[0.4]" />
+                  {thumb("b", b.name) ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={thumb("b", b.name)!} alt="" loading="lazy" className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]" />
+                  ) : (
+                    <iframe src={`/preview/${b.name}`} title="" tabIndex={-1} loading="lazy" className="absolute left-0 top-0 h-[250%] w-[250%] origin-top-left scale-[0.4]" />
+                  )}
                 </div>
                 <div className="flex flex-col gap-1 p-4">
                   <span className="flex items-center justify-between font-medium">

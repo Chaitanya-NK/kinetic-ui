@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTheme, type ThemeAccent } from "@kineticui/core/theme";
 import { cn } from "@kineticui/core";
-import { Button, CommandPalette, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger, Kbd } from "@kineticui/ui";
+import { Button, CommandPalette, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger, Kbd, MobileMenu } from "@kineticui/ui";
 import { BoltIcon, CodeIcon, GridIcon, LayersIcon, HomeIcon, MoonIcon, SearchIcon, SunIcon } from "@kineticui/icons";
 import { useState } from "react";
 import { Logo } from "./logo";
@@ -71,7 +71,7 @@ export function SiteHeader() {
             Kinetic UI
             <span className="rounded-full border border-border-strong px-2 py-0.5 font-mono text-[10px] font-normal text-muted">v0.1</span>
           </Link>
-          <nav aria-label="Main" className="hidden gap-6 text-sm md:flex">
+          <nav aria-label="Main" className="hidden gap-5 text-sm md:flex lg:gap-6">
             {nav.map((n) => (
               <Link
                 key={n.href}
@@ -87,14 +87,14 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="hidden h-9 items-center gap-6 rounded-[10px] border border-border bg-surface px-3 text-sm text-subtle transition-colors hover:text-muted sm:flex"
+            className="hidden h-9 items-center gap-6 rounded-[10px] border border-border bg-surface px-3 text-sm text-subtle transition-colors hover:text-muted lg:flex"
           >
             <span className="flex items-center gap-2">
               <SearchIcon size={14} /> Search components
             </span>
             <Kbd>⌘K</Kbd>
           </button>
-          <Button variant="ghost" size="icon-sm" aria-label="Search" className="sm:hidden" onClick={() => setOpen(true)}>
+          <Button variant="ghost" size="icon-sm" aria-label="Search" className="lg:hidden" onClick={() => setOpen(true)}>
             <SearchIcon size={16} />
           </Button>
           <DropdownMenu>
@@ -120,11 +120,21 @@ export function SiteHeader() {
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button asChild variant="secondary" size="sm">
+          <Button asChild variant="secondary" size="sm" className="hidden sm:inline-flex">
             <a href={site.github} target="_blank" rel="noreferrer">
               GitHub
             </a>
           </Button>
+          <MobileMenu
+            className="md:hidden"
+            logo={<span className="flex items-center gap-2.5 font-display text-lg font-semibold"><Logo /> Kinetic UI</span>}
+            links={nav.map((n) => ({ ...n, active: pathname.startsWith(n.href) }))}
+            actions={
+              <Button asChild variant="secondary" className="w-full">
+                <a href={site.github} target="_blank" rel="noreferrer">GitHub</a>
+              </Button>
+            }
+          />
         </div>
       </div>
       <CommandPalette items={commands} open={open} onOpenChange={setOpen} placeholder="Search components, pages, actions…" />

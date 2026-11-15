@@ -18,7 +18,7 @@ export default function DocsPage() {
   return (
     <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[220px_minmax(0,1fr)]">
       <ComponentsSidebar />
-      <article className="flex max-w-3xl flex-col gap-6 leading-relaxed text-muted">
+      <article className="flex min-w-0 max-w-3xl flex-col gap-6 leading-relaxed text-muted">
         <span className="font-mono text-xs tracking-widest text-accent">GETTING STARTED</span>
         <h1 className="font-display text-5xl font-semibold tracking-tight text-foreground">Introduction</h1>
         <p className="text-lg">

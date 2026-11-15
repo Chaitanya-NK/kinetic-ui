@@ -3,9 +3,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { Badge, Breadcrumb } from "@kineticui/ui";
 import { fullEntries, getEntry } from "@/lib/registry";
-import { categories, registryUrl, site } from "@/lib/site";
+import { categories, entries, registryUrl, site } from "@/lib/site";
 import { InstallTabs, Preview } from "@/components/component-view";
 import { ComponentsSidebar } from "@/components/components-sidebar";
+import { Accessibility, ApiReference, Related } from "@/components/api-reference";
 
 export function generateStaticParams() {
   return fullEntries.map((e) => ({ slug: e.name }));
@@ -14,7 +15,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const entry = getEntry(slug);
-  return entry ? { title: entry.title, description: entry.description } : {};
+  return entry ? { title: entry.title, description: entry.description, openGraph: { title: `${entry.title} · Kinetic UI`, description: entry.description }, twitter: { title: `${entry.title} · Kinetic UI`, description: entry.description } } : {};
 }
 
 export default async function ComponentPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -27,6 +28,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
   const next = fullEntries[index + 1];
   const category = categories.find((c) => c.id === entry.categories[0]);
   const code = entry.files[0]?.content ?? "";
+  const related = entries.filter((e) => e.categories[0] === entry.categories[0] && e.name !== slug).slice(0, 4);
 
   return (
     <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[220px_minmax(0,1fr)]">
@@ -67,6 +69,10 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           ) : null}
         </section>
 
+        <ApiReference slug={slug} />
+
+        <Accessibility slug={slug} />
+
         <section className="flex flex-col gap-3">
           <h2 className="font-display text-2xl font-semibold tracking-tight">Exports</h2>
           <div className="flex flex-wrap gap-2">
@@ -79,6 +85,8 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
             <a href={`${site.github}/blob/main/${entry.source}`} className="text-accent hover:underline">{entry.source}</a>
           </p>
         </section>
+
+        <Related items={related} />
 
         <nav aria-label="Pager" className="mt-6 grid gap-4 sm:grid-cols-2">
           {prev ? (
