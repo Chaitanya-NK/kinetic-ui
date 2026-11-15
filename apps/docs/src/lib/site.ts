@@ -7,7 +7,7 @@ export const site = {
   github: "https://github.com/Chaitanya-NK/kinetic-ui",
   npmScope: "@kineticui",
   /** Public URL of the deployed docs site. Set NEXT_PUBLIC_SITE_URL on Vercel. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kinetic-ui.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kinetic-ui.chaitanya-nk.com",
 };
 
 export const registryUrl = `${site.url}/r`;

@@ -14,6 +14,6 @@ import { Marquee, NumberTicker, SpotlightCard } from "@kineticui/motion";
 
 Every effect respects `prefers-reduced-motion`.
 
-Docs: https://kinetic-ui.vercel.app
+Docs: https://kinetic-ui.chaitanya-nk.com
 
 Part of [Kinetic UI](https://github.com/Chaitanya-NK/kinetic-ui). MIT licensed.

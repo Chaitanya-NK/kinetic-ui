@@ -13,8 +13,8 @@ import { SearchIcon, Icon } from "@kineticui/icons";
 <Icon name="search" />
 ```
 
-Browse and copy icons at https://kinetic-ui.vercel.app/icons.
+Browse and copy icons at https://kinetic-ui.chaitanya-nk.com/icons.
 
-Docs: https://kinetic-ui.vercel.app
+Docs: https://kinetic-ui.chaitanya-nk.com
 
 Part of [Kinetic UI](https://github.com/Chaitanya-NK/kinetic-ui). MIT licensed.

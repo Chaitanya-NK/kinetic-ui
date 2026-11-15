@@ -93,7 +93,7 @@ export function AiWorkspace() {
                         <ToolCall name="search_docs" title="Read the changelog" status="success" icon={<SearchIcon />} meta="0.4s" />
                       </>
                     }
-                    after={m.id !== last.id || !streaming ? <Sources max={2} sources={[{ id: 1, title: "Kinetic 2.0 changelog", url: "https://kinetic-ui.vercel.app/changelog" }, { id: 2, title: "Release blog post", url: "https://kinetic-ui.vercel.app/blog/2-0" }]} /> : null}
+                    after={m.id !== last.id || !streaming ? <Sources max={2} sources={[{ id: 1, title: "Kinetic 2.0 changelog", url: "https://kinetic-ui.chaitanya-nk.com/changelog" }, { id: 2, title: "Release blog post", url: "https://kinetic-ui.chaitanya-nk.com/blog/2-0" }]} /> : null}
                     onRetry={() => setStreaming(true)}
                     onFeedback={() => {}}
                   />

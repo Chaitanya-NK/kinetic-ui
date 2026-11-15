@@ -126,7 +126,7 @@ function LogDemo() {
     { level: "info", source: "next", message: "Generating static pages (76/76)" },
     { level: "error", source: "edge", message: "Function /api/og exceeded 1MB bundle limit" },
     { level: "info", source: "deploy", message: "Uploading build outputs…" },
-    { level: "success", source: "deploy", message: "Deployed to kinetic-ui.vercel.app in 41s" },
+    { level: "success", source: "deploy", message: "Deployed to kinetic-ui.chaitanya-nk.com in 41s" },
   ];
   const [lines, setLines] = React.useState<LogLine[]>(() => msgs.slice(0, 3).map((m, i) => ({ ...m, time: `12:04:0${i}` })));
   React.useEffect(() => {

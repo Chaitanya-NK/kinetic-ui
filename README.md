@@ -133,12 +133,15 @@ Dependencies are detected automatically from your `import` lines.
 
 ## Deploy the docs + registry to Vercel
 
-1. Import the repo on [vercel.com/new](https://vercel.com/new).
-2. Set **Root Directory** to `apps/docs`. Framework: Next.js (auto-detected).
-3. Add the environment variable `NEXT_PUBLIC_SITE_URL` = your production URL (e.g. `https://kinetic-ui.vercel.app`).
-4. Deploy. The `prebuild` step builds the packages and the registry automatically.
+The site lives at **https://kinetic-ui.chaitanya-nk.com**. The CLI downloads components from `https://kinetic-ui.chaitanya-nk.com/r`, so keep that domain pointed at the deployment.
 
-After the first deploy, put your real URL in `DEFAULT_REGISTRY` in `packages/cli/src/index.ts` so the CLI fetches from your site.
+1. Import the repo on [vercel.com/new](https://vercel.com/new).
+2. Set **Root Directory** to `apps/docs`. Framework: Next.js (auto-detected). The `prebuild` step builds the packages and the registry automatically.
+3. Deploy, then in **Settings → Domains** add `kinetic-ui.chaitanya-nk.com`.
+4. At your DNS provider, add the record Vercel shows: a `CNAME` for `kinetic-ui` pointing to Vercel's target.
+5. Optional: set `NEXT_PUBLIC_SITE_URL` if you ever serve the site from a different domain. It defaults to the URL above.
+
+If the domain changes, update `DEFAULT_REGISTRY` in `packages/cli/src/index.ts` and `url` in `apps/docs/src/lib/site.ts`, then publish a new CLI version.
 
 ## Publish to npm
 

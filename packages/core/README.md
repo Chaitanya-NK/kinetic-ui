@@ -32,6 +32,6 @@ const css = themeToCss(createTheme({ mode: "dark", background: "#0b1020", foregr
 
 Also exports `cn()`, `contrast()`, `themeToStyle()` and hooks such as `useMounted()`.
 
-Docs: https://kinetic-ui.vercel.app
+Docs: https://kinetic-ui.chaitanya-nk.com
 
 Part of [Kinetic UI](https://github.com/Chaitanya-NK/kinetic-ui). MIT licensed.

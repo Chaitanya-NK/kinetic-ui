@@ -8,7 +8,7 @@ import { createInterface } from "node:readline/promises";
  * Default registry. Change this after you deploy the docs site (or set
  * KINETIC_REGISTRY / "registry" in kinetic.json / --registry).
  */
-const DEFAULT_REGISTRY = process.env.KINETIC_REGISTRY ?? "https://kinetic-ui.vercel.app/r";
+const DEFAULT_REGISTRY = process.env.KINETIC_REGISTRY ?? "https://kinetic-ui.chaitanya-nk.com/r";
 const CONFIG_FILE = "kinetic.json";
 const NAMESPACE = "@kineticui/";
 

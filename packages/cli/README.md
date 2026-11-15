@@ -8,10 +8,10 @@ npx @kineticui/cli add button dialog    # copy components and install their depe
 npx @kineticui/cli list                 # show everything available
 ```
 
-Components land in `components/kinetic/` and are yours to edit. The registry is shadcn-compatible, so `npx shadcn add https://kinetic-ui.vercel.app/r/button.json` also works.
+Components land in `components/kinetic/` and are yours to edit. The registry is shadcn-compatible, so `npx shadcn add https://kinetic-ui.chaitanya-nk.com/r/button.json` also works.
 
 Options: `--registry <url|dir>`, `--dir <path>`, `--yes`. Or set `KINETIC_REGISTRY`.
 
-Docs: https://kinetic-ui.vercel.app
+Docs: https://kinetic-ui.chaitanya-nk.com
 
 Part of [Kinetic UI](https://github.com/Chaitanya-NK/kinetic-ui). MIT licensed.

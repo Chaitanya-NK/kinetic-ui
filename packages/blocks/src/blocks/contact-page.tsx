@@ -11,7 +11,7 @@ const defaultContact: ContactInfo = {
   email: "maya@kinetic.dev",
   phone: "+91 98765 43210",
   location: "Bengaluru, India",
-  website: "https://kinetic-ui.vercel.app",
+  website: "https://kinetic-ui.chaitanya-nk.com",
   socials: [
     { url: "https://www.linkedin.com/in/maya-kapoor" },
     { url: "https://github.com/maya-kapoor" },

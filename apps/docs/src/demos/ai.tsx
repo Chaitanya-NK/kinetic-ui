@@ -414,10 +414,10 @@ export const aiDemos: Record<string, () => React.ReactNode> = {
   "qr-code": () => (
     <div className="flex flex-wrap items-center justify-center gap-6">
       <div className="rounded-2xl bg-white p-3 text-[#0b0c0e]">
-        <QrCode value="https://kinetic-ui.vercel.app" size={160} />
+        <QrCode value="https://kinetic-ui.chaitanya-nk.com" size={160} />
       </div>
       <div className="rounded-2xl border border-border bg-surface p-3 text-accent">
-        <QrCode value="https://kinetic-ui.vercel.app/components/qr-code" size={160} variant="dots" />
+        <QrCode value="https://kinetic-ui.chaitanya-nk.com/components/qr-code" size={160} variant="dots" />
       </div>
       <div className="rounded-2xl bg-white p-3 text-[#0b0c0e]">
         <QrCode

@@ -16,6 +16,6 @@ export default function Page() {
 
 Every block renders with sensible demo content and no required props. To customise one deeply, copy its source with `npx @kineticui/cli add pricing-table`.
 
-Docs: https://kinetic-ui.vercel.app
+Docs: https://kinetic-ui.chaitanya-nk.com
 
 Part of [Kinetic UI](https://github.com/Chaitanya-NK/kinetic-ui). MIT licensed.

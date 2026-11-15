@@ -23,7 +23,7 @@ export const demoContact: ContactInfo = {
   org: "Kinetic Labs",
   email: "maya@kinetic.dev",
   phone: "+91 98765 43210",
-  website: "https://kinetic-ui.vercel.app",
+  website: "https://kinetic-ui.chaitanya-nk.com",
   location: "Bengaluru, India",
   socials: [
     { url: "https://www.linkedin.com/in/maya-kapoor" },

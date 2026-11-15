@@ -21,6 +21,6 @@ import { Button, ShareSheet, Toaster, toast } from "@kineticui/ui";
 
 Forms, editors, navigation, overlays, data tables and charts, AI chat, collaboration, media, mobile gestures, contact and feedback components. Built on Radix primitives and Motion, with keyboard support and reduced-motion fallbacks.
 
-Docs: https://kinetic-ui.vercel.app
+Docs: https://kinetic-ui.chaitanya-nk.com
 
 Part of [Kinetic UI](https://github.com/Chaitanya-NK/kinetic-ui). MIT licensed.

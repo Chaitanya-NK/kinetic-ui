@@ -19,7 +19,7 @@ import { Button } from "@kineticui/ui";
 
 const md = `## Release notes
 
-Kinetic **2.5** ships *three* new editors and a [docs page](https://kinetic-ui.vercel.app).
+Kinetic **2.5** ships *three* new editors and a [docs page](https://kinetic-ui.chaitanya-nk.com).
 
 - [x] Rich text editor
 - [x] Markdown with live preview
