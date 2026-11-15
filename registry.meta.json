@@ -583,5 +583,35 @@
     "title": "QR Code",
     "category": "media",
     "description": "Dependency-free QR encoder with dots style and centre logo."
+  },
+  "text-scramble": {
+    "title": "Text Scramble",
+    "category": "effects",
+    "description": "Decoder-style reveal where random glyphs settle into text."
+  },
+  "parallax": {
+    "title": "Parallax",
+    "category": "effects",
+    "description": "Layers that move at different speeds as a section scrolls."
+  },
+  "swipe-actions": {
+    "title": "Swipe Actions",
+    "category": "mobile",
+    "description": "iOS-style swipeable rows with full-swipe to trigger."
+  },
+  "pull-to-refresh": {
+    "title": "Pull to Refresh",
+    "category": "mobile",
+    "description": "Pull down from the top to refresh, with a filling spinner."
+  },
+  "action-sheet": {
+    "title": "Action Sheet",
+    "category": "mobile",
+    "description": "Draggable bottom sheet of actions with cancel."
+  },
+  "swipe-card-stack": {
+    "title": "Swipe Card Stack",
+    "category": "mobile",
+    "description": "Drag or tap to like/pass through a stack, with undo."
   }
 }
