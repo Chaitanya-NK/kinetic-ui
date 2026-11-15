@@ -21,6 +21,7 @@ export const categories: { id: string; label: string }[] = [
   { id: "foundations", label: "Foundations" },
   { id: "forms", label: "Forms" },
   { id: "navigation", label: "Navigation" },
+  { id: "data", label: "Data display" },
   { id: "feedback", label: "Feedback" },
   { id: "overlay", label: "Overlay" },
   { id: "signature", label: "Signature" },

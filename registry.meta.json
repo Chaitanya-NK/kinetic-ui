@@ -363,5 +363,90 @@
     "title": "Cookie Consent",
     "category": "feedback",
     "description": "Accept / reject / per-category cookie preferences, remembered locally."
+  },
+  "data-table": {
+    "title": "Data Table",
+    "category": "data",
+    "description": "Sortable, searchable, paginated table with row selection and bulk actions."
+  },
+  "charts": {
+    "title": "Charts",
+    "category": "data",
+    "description": "Dependency-free SVG bar, line, area, donut, sparkline and funnel charts."
+  },
+  "stat-card": {
+    "title": "Stat Card",
+    "category": "data",
+    "description": "KPI tile with value, trend delta and optional sparkline."
+  },
+  "heatmap": {
+    "title": "Heatmap",
+    "category": "data",
+    "description": "GitHub-style contribution calendar with tooltips."
+  },
+  "timeline": {
+    "title": "Timeline",
+    "category": "data",
+    "description": "Vertical activity feed with tones, icons and rich content."
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "category": "data",
+    "description": "Ranked list with medals, movement and animated re-ordering."
+  },
+  "kanban": {
+    "title": "Kanban",
+    "category": "data",
+    "description": "Drag-and-drop board with WIP limits and keyboard moves."
+  },
+  "tree-view": {
+    "title": "Tree View",
+    "category": "data",
+    "description": "File-tree hierarchy with full keyboard navigation."
+  },
+  "json-viewer": {
+    "title": "JSON Viewer",
+    "category": "data",
+    "description": "Collapsible, syntax-coloured JSON with copy-path."
+  },
+  "diff-viewer": {
+    "title": "Diff Viewer",
+    "category": "data",
+    "description": "Unified and split code diff with +/- stats."
+  },
+  "log-viewer": {
+    "title": "Log Viewer",
+    "category": "data",
+    "description": "Terminal-style log stream with level filters, search and follow."
+  },
+  "gantt": {
+    "title": "Gantt",
+    "category": "data",
+    "description": "Project timeline with progress, milestones and a today marker."
+  },
+  "uptime-bars": {
+    "title": "Uptime Bars",
+    "category": "data",
+    "description": "Status-page uptime history with per-day tooltips."
+  },
+  "week-calendar": {
+    "title": "Week Calendar",
+    "category": "data",
+    "description": "Week agenda with hour grid, overlap layout and now-line."
+  },
+  "code-block": {
+    "title": "Code Block",
+    "category": "data",
+    "description": "File tabs, line numbers, highlighted lines and copy, with a tiny built-in highlighter."
+  },
+  "carousel": {
+    "title": "Carousel",
+    "category": "data",
+    "description": "Scroll-snap carousel with swipe, arrows, dots and autoplay."
+  },
+  "before-after": {
+    "title": "Before / After",
+    "category": "data",
+    "description": "Drag or arrow-key slider comparing two images."
   }
 }
