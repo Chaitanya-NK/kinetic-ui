@@ -79,6 +79,15 @@ export function Providers({ children }: { children: React.ReactNode }) {
 
 Accent presets: `lime`, `blue`, `orange`, `rose`, `mint`. Or override any `--kn-*` variable in CSS.
 
+Full theme presets: `midnight`, `sunset`, `paper`, `mono`, `forest`, `ocean`. Use `<ThemeProvider defaultTheme="midnight">` or `data-theme="paper"` on any element. Build your own on the docs site's **Themes** page, which exports CSS variables, or in code:
+
+```ts
+import { createTheme, themeToCss } from "@kineticui/core";
+const css = themeToCss(createTheme({ mode: "dark", background: "#0b1020", foreground: "#e6ebff", accent: "#ff5a1f" }));
+```
+
+The preset CSS in `packages/core/styles.css` is generated from `packages/core/src/themes.ts` by `scripts/gen-theme-css.mjs` during `npm run build:packages`.
+
 ## Repository layout
 
 ```

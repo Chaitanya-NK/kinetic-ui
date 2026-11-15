@@ -104,6 +104,24 @@ export function Providers({ children }) {
           <code className="font-mono text-foreground">orange</code>, <code className="font-mono text-foreground">rose</code>,{" "}
           <code className="font-mono text-foreground">mint</code> — try them from the colour dot in the header.
         </p>
+        <p>
+          Full themes change every surface, not just the accent: <code className="font-mono text-foreground">midnight</code>,{" "}
+          <code className="font-mono text-foreground">sunset</code>, <code className="font-mono text-foreground">paper</code>,{" "}
+          <code className="font-mono text-foreground">mono</code>, <code className="font-mono text-foreground">forest</code> and{" "}
+          <code className="font-mono text-foreground">ocean</code>. Set <code className="font-mono text-foreground">defaultTheme</code> on the provider or{" "}
+          <code className="font-mono text-foreground">data-theme</code> on any element, or build your own in the{" "}
+          <Link href="/themes" className="text-accent hover:underline">theme editor</Link>.
+        </p>
+        <CodeBlock
+          code={`<ThemeProvider defaultTheme="midnight">…</ThemeProvider>
+
+// or scope a theme to one section
+<section data-theme="paper">…</section>
+
+// or generate one in code
+import { createTheme, themeToCss } from "@kineticui/core";
+const css = themeToCss(createTheme({ mode: "dark", background: "#0b1020", foreground: "#e6ebff", accent: "#ff5a1f" }));`}
+        />
 
         <H2 id="motion">Motion &amp; accessibility</H2>
         <p>

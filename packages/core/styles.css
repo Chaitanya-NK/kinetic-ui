@@ -8,7 +8,8 @@
  *
  * Dark is the default. Add class="light" on <html> for light mode and
  * data-accent="blue|orange|rose|mint" to change the brand colour.
- * <ThemeProvider> from @kineticui/core does both for you.
+ * Full preset themes: data-theme="midnight|sunset|paper|mono|forest|ocean".
+ * <ThemeProvider> from @kineticui/core/theme handles all of these for you.
  */
 
 @custom-variant dark (&:where(.dark, .dark *));
@@ -78,6 +79,176 @@
 .light[data-accent="orange"], [data-accent="orange"] .light { --kn-accent: #c2410c; --kn-accent-foreground: #fff; --kn-accent-soft: #ffedd5; --kn-accent-soft-foreground: #9a3412; }
 .light[data-accent="rose"], [data-accent="rose"] .light { --kn-accent: #be185d; --kn-accent-foreground: #fff; --kn-accent-soft: #fce7f3; --kn-accent-soft-foreground: #9d174d; }
 .light[data-accent="mint"], [data-accent="mint"] .light { --kn-accent: #047857; --kn-accent-foreground: #fff; --kn-accent-soft: #d1fae5; --kn-accent-soft-foreground: #065f46; }
+
+/* @generated theme presets — edit packages/core/src/themes.ts, then npm run build:packages */
+/* Midnight: Deep navy with periwinkle accents. */
+[data-theme="midnight"] {
+  --kn-background: #070b16;
+  --kn-surface: #0e121d;
+  --kn-surface-raised: #141824;
+  --kn-surface-overlay: #1a1e2a;
+  --kn-border: #242834;
+  --kn-border-strong: #363a47;
+  --kn-foreground: #e6ebff;
+  --kn-muted: #9ca1b2;
+  --kn-subtle: #848898;
+  --kn-accent: #7c9cff;
+  --kn-accent-foreground: #070b16;
+  --kn-accent-soft: #151c32;
+  --kn-accent-soft-foreground: #a1b8ff;
+  --kn-success: #6ee7a0;
+  --kn-success-soft: #132527;
+  --kn-warning: #fbbf5a;
+  --kn-warning-soft: #24211e;
+  --kn-danger: #ff8a8a;
+  --kn-danger-soft: #251a24;
+  --kn-info: #9aa6ff;
+  --kn-info-soft: #191e32;
+  --kn-ring: rgb(124 156 255 / 0.35);
+  --kn-shadow: 0 24px 48px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}
+
+/* Sunset: Warm charcoal and coral. */
+[data-theme="sunset"] {
+  --kn-background: #140c0a;
+  --kn-surface: #1b1311;
+  --kn-surface-raised: #221a17;
+  --kn-surface-overlay: #281f1d;
+  --kn-border: #322927;
+  --kn-border-strong: #453b38;
+  --kn-foreground: #fbeee6;
+  --kn-muted: #afa39d;
+  --kn-subtle: #958b85;
+  --kn-accent: #ff8a5b;
+  --kn-accent-foreground: #140c0a;
+  --kn-accent-soft: #301b14;
+  --kn-accent-soft-foreground: #fead8c;
+  --kn-success: #6ee7a0;
+  --kn-success-soft: #1f261c;
+  --kn-warning: #fbbf5a;
+  --kn-warning-soft: #302114;
+  --kn-danger: #ff8a8a;
+  --kn-danger-soft: #301b19;
+  --kn-info: #9aa6ff;
+  --kn-info-soft: #241e27;
+  --kn-ring: rgb(255 138 91 / 0.35);
+  --kn-shadow: 0 24px 48px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}
+
+/* Paper: Warm off-white, ink and terracotta. */
+[data-theme="paper"] {
+  --kn-background: #f6f1e7;
+  --kn-surface: #fdfcf9;
+  --kn-surface-raised: #efeae0;
+  --kn-surface-overlay: #fefefd;
+  --kn-border: #e2ddd3;
+  --kn-border-strong: #d3cec5;
+  --kn-foreground: #2a2520;
+  --kn-muted: #67625c;
+  --kn-subtle: #69645e;
+  --kn-accent: #b4532a;
+  --kn-accent-foreground: #ffffff;
+  --kn-accent-soft: #eddbcd;
+  --kn-accent-soft-foreground: #8b4527;
+  --kn-success: #047857;
+  --kn-success-soft: #d4e0d3;
+  --kn-warning: #b45309;
+  --kn-warning-soft: #eddbc8;
+  --kn-danger: #b91c1c;
+  --kn-danger-soft: #edd3cb;
+  --kn-info: #3b4fe0;
+  --kn-info-soft: #dcdae6;
+  --kn-ring: rgb(180 83 42 / 0.3);
+  --kn-shadow: 0 16px 32px rgb(0 0 0 / 0.08);
+  color-scheme: light;
+}
+
+/* Mono: Pure greyscale, white accent. */
+[data-theme="mono"] {
+  --kn-background: #0a0a0a;
+  --kn-surface: #111111;
+  --kn-surface-raised: #181818;
+  --kn-surface-overlay: #1e1e1e;
+  --kn-border: #292929;
+  --kn-border-strong: #3c3c3c;
+  --kn-foreground: #fafafa;
+  --kn-muted: #ababab;
+  --kn-subtle: #909090;
+  --kn-accent: #fafafa;
+  --kn-accent-foreground: #0a0a0a;
+  --kn-accent-soft: #272727;
+  --kn-accent-soft-foreground: #fafafa;
+  --kn-success: #6ee7a0;
+  --kn-success-soft: #16251c;
+  --kn-warning: #fbbf5a;
+  --kn-warning-soft: #272014;
+  --kn-danger: #ff8a8a;
+  --kn-danger-soft: #271919;
+  --kn-info: #9aa6ff;
+  --kn-info-soft: #1b1d27;
+  --kn-ring: rgb(250 250 250 / 0.35);
+  --kn-shadow: 0 24px 48px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}
+
+/* Forest: Moss dark with fresh green. */
+[data-theme="forest"] {
+  --kn-background: #08110c;
+  --kn-surface: #0f1813;
+  --kn-surface-raised: #151f19;
+  --kn-surface-overlay: #1b241f;
+  --kn-border: #252e29;
+  --kn-border-strong: #37403b;
+  --kn-foreground: #e7f3ea;
+  --kn-muted: #9da8a1;
+  --kn-subtle: #859088;
+  --kn-accent: #5fd38d;
+  --kn-accent-foreground: #08110c;
+  --kn-accent-soft: #12281b;
+  --kn-accent-soft-foreground: #8fdeae;
+  --kn-success: #6ee7a0;
+  --kn-success-soft: #142b1e;
+  --kn-warning: #fbbf5a;
+  --kn-warning-soft: #252615;
+  --kn-danger: #ff8a8a;
+  --kn-danger-soft: #26201b;
+  --kn-info: #9aa6ff;
+  --kn-info-soft: #1a2329;
+  --kn-ring: rgb(95 211 141 / 0.35);
+  --kn-shadow: 0 24px 48px rgb(0 0 0 / 0.45);
+  color-scheme: dark;
+}
+
+/* Ocean: Airy light with deep teal. */
+[data-theme="ocean"] {
+  --kn-background: #f3f8fb;
+  --kn-surface: #fcfdfe;
+  --kn-surface-raised: #ebf1f4;
+  --kn-surface-overlay: #fefeff;
+  --kn-border: #dce3e7;
+  --kn-border-strong: #ccd4d8;
+  --kn-foreground: #0f2530;
+  --kn-muted: #53646d;
+  --kn-subtle: #56666f;
+  --kn-accent: #0e7490;
+  --kn-accent-foreground: #ffffff;
+  --kn-accent-soft: #d3e6ec;
+  --kn-accent-soft-foreground: #0e5c73;
+  --kn-success: #047857;
+  --kn-success-soft: #d2e6e4;
+  --kn-warning: #b45309;
+  --kn-warning-soft: #eae1d9;
+  --kn-danger: #b91c1c;
+  --kn-danger-soft: #ebd9dc;
+  --kn-info: #3b4fe0;
+  --kn-info-soft: #d9e0f7;
+  --kn-ring: rgb(14 116 144 / 0.3);
+  --kn-shadow: 0 16px 32px rgb(0 0 0 / 0.08);
+  color-scheme: light;
+}
+/* @end theme presets */
 
 @theme inline {
   --color-background: var(--kn-background);

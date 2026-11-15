@@ -38,8 +38,8 @@ export function IconGallery() {
         </label>
         <SegmentedControl className="ml-auto" value={copyAs} defaultValue="jsx" onValueChange={setCopyAs} options={[{ value: "jsx", label: "JSX" }, { value: "import", label: "Import" }, { value: "name", label: "Name" }]} />
       </div>
-      <div className="grid gap-6 lg:grid-cols-[1fr_300px]">
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(104px,1fr))] gap-2">
+      <div className="grid gap-6 lg:grid-cols-[1fr_300px] [&>*]:min-w-0">
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(88px,1fr))] sm:grid-cols-[repeat(auto-fill,minmax(104px,1fr))] gap-2">
           {shown.map((n) => (
             <button
               key={n}
