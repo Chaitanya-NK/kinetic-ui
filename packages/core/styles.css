@@ -141,6 +141,9 @@
 @keyframes kn-accordion-down { from { height: 0; } to { height: var(--radix-accordion-content-height); } }
 @keyframes kn-accordion-up { from { height: var(--radix-accordion-content-height); } to { height: 0; } }
 @keyframes kn-toast-in { from { opacity: 0; transform: translateY(16px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes kn-typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes kn-bell { 0%, 88%, 100% { transform: rotate(0); } 91% { transform: rotate(12deg); } 94% { transform: rotate(-10deg); } 97% { transform: rotate(6deg); } }
+@keyframes kn-wave { 0%, 100% { transform: scaleY(0.35); } 50% { transform: scaleY(1); } }
 
 @layer base {
   * {

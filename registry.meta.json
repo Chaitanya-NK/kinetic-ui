@@ -448,5 +448,140 @@
     "title": "Before / After",
     "category": "data",
     "description": "Drag or arrow-key slider comparing two images."
+  },
+  "prompt-box": {
+    "title": "Prompt Box",
+    "category": "ai",
+    "description": "Chat composer with auto-grow, attachments, suggestions and stop-while-streaming."
+  },
+  "chat-message": {
+    "title": "Chat Message",
+    "category": "ai",
+    "description": "User and assistant turns with streaming caret, markdown and copy/retry/feedback."
+  },
+  "thinking-block": {
+    "title": "Thinking Block",
+    "category": "ai",
+    "description": "Collapsible reasoning trace with live timer and shimmer."
+  },
+  "tool-call": {
+    "title": "Tool Call",
+    "category": "ai",
+    "description": "Agent tool invocation card with input, output and approve/deny."
+  },
+  "citations": {
+    "title": "Citations",
+    "category": "ai",
+    "description": "Inline numbered citations with hover previews and source chips."
+  },
+  "model-selector": {
+    "title": "Model Selector",
+    "category": "ai",
+    "description": "Model picker with speed and intelligence meters."
+  },
+  "voice-input": {
+    "title": "Voice Input",
+    "category": "ai",
+    "description": "Mic button with live waveform and speech-to-text."
+  },
+  "usage-meter": {
+    "title": "Usage Meter",
+    "category": "ai",
+    "description": "Plan usage bar with breakdown and limit warnings."
+  },
+  "agent-plan": {
+    "title": "Agent Plan",
+    "category": "ai",
+    "description": "Live checklist of an agent's steps with progress."
+  },
+  "live-cursors": {
+    "title": "Live Cursors",
+    "category": "collaboration",
+    "description": "Multiplayer cursors with spring motion, name tags and chat bubbles."
+  },
+  "presence": {
+    "title": "Presence",
+    "category": "collaboration",
+    "description": "Who's-here facepile with status, activity tooltips and overflow."
+  },
+  "typing-indicator": {
+    "title": "Typing Indicator",
+    "category": "collaboration",
+    "description": "Bouncing dots as a bubble or 'Maya is typing'."
+  },
+  "comment-pin": {
+    "title": "Comment Pins",
+    "category": "collaboration",
+    "description": "Figma-style pins: drop, reply in threads, resolve."
+  },
+  "version-history": {
+    "title": "Version History",
+    "category": "collaboration",
+    "description": "Named versions, restore and two-way compare."
+  },
+  "notification-center": {
+    "title": "Notification Center",
+    "category": "collaboration",
+    "description": "Bell inbox with unread badge, tabs, actions and dismiss."
+  },
+  "nps": {
+    "title": "NPS Survey",
+    "category": "social",
+    "description": "0\u201310 Net Promoter Score with follow-up and thank-you state."
+  },
+  "mood-picker": {
+    "title": "Mood Picker",
+    "category": "social",
+    "description": "Five drawn faces that animate and colour in when picked."
+  },
+  "feature-voting": {
+    "title": "Feature Voting",
+    "category": "social",
+    "description": "Upvotable roadmap requests with sort and status filter."
+  },
+  "changelog": {
+    "title": "Changelog",
+    "category": "social",
+    "description": "Release notes with versions, media and typed change lists."
+  },
+  "reviews": {
+    "title": "Reviews",
+    "category": "social",
+    "description": "Rating summary with distribution filter and review cards."
+  },
+  "audio-player": {
+    "title": "Audio Player",
+    "category": "media",
+    "description": "Waveform player with scrubbing, keyboard seek and speed."
+  },
+  "video-player": {
+    "title": "Video Player",
+    "category": "media",
+    "description": "Custom controls, chapters, buffer bar, PiP and fullscreen."
+  },
+  "audio-recorder": {
+    "title": "Audio Recorder",
+    "category": "media",
+    "description": "Voice notes with live waveform, pause, playback and download."
+  },
+  "avatar-uploader": {
+    "title": "Avatar Uploader",
+    "category": "media",
+    "description": "Click or drop to upload with a progress ring."
+  },
+  "image-cropper": {
+    "title": "Image Cropper",
+    "category": "media",
+    "description": "Pan-and-zoom cropper with round mask and export."
+  },
+  "masonry": {
+    "title": "Masonry",
+    "category": "media",
+    "description": "Ordered masonry grid with fade-in on scroll."
+  },
+  "qr-code": {
+    "title": "QR Code",
+    "category": "media",
+    "description": "Dependency-free QR encoder with dots style and centre logo."
   }
 }

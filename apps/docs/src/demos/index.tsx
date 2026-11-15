@@ -106,6 +106,7 @@ import {
 import { formDemos } from "./forms";
 import { navigationDemos } from "./navigation";
 import { dataDemos } from "./data";
+import { aiDemos } from "./ai";
 
 const team = [
   { alt: "Maya Kapoor", color: "#7C8CFF" },
@@ -201,6 +202,7 @@ export const demos: Record<string, () => React.ReactNode> = {
   ...formDemos,
   ...navigationDemos,
   ...dataDemos,
+  ...aiDemos,
   button: () => (
     <Stack className="items-center">
       <Row>
