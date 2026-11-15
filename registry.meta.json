@@ -661,5 +661,107 @@
     "category": "app",
     "description": "Team board with presence, search, views and drag-and-drop Kanban.",
     "height": 760
+  },
+  "hero-centered": {
+    "title": "Hero \u2014 Centered",
+    "category": "marketing",
+    "description": "Announcement pill, rotating headline word, magnetic CTAs, install command and social proof.",
+    "height": 740
+  },
+  "hero-split": {
+    "title": "Hero \u2014 Split",
+    "category": "marketing",
+    "description": "Copy and email capture beside a tilting live product card.",
+    "height": 740
+  },
+  "hero-gradient-mesh": {
+    "title": "Hero \u2014 Gradient Mesh",
+    "category": "marketing",
+    "description": "Shimmering headline over a slowly drifting blurred gradient mesh.",
+    "height": 720
+  },
+  "hero-product-shot": {
+    "title": "Hero \u2014 Product Shot",
+    "category": "marketing",
+    "description": "Large app screenshot in a browser frame that flattens as you scroll.",
+    "height": 1000
+  },
+  "hero-terminal": {
+    "title": "Hero \u2014 Terminal",
+    "category": "marketing",
+    "description": "Developer hero with an auto-typing terminal and install command.",
+    "height": 700
+  },
+  "hero-video": {
+    "title": "Hero \u2014 Video",
+    "category": "marketing",
+    "description": "Full-bleed cinematic hero with a background loop and a film dialog.",
+    "height": 720
+  },
+  "features-bento": {
+    "title": "Features \u2014 Bento",
+    "category": "marketing",
+    "description": "Bento grid of features with live mini-visuals and cursor spotlight.",
+    "height": 900
+  },
+  "pricing-table": {
+    "title": "Pricing",
+    "category": "marketing",
+    "description": "Three tiers, monthly/yearly toggle, animated prices and comparison table.",
+    "height": 1180
+  },
+  "testimonials-wall": {
+    "title": "Testimonials",
+    "category": "marketing",
+    "description": "Two counter-scrolling rows of testimonial cards.",
+    "height": 640
+  },
+  "faq-section": {
+    "title": "FAQ",
+    "category": "marketing",
+    "description": "Searchable accordion FAQ with a contact card.",
+    "height": 680
+  },
+  "cta-banner": {
+    "title": "Call to Action",
+    "category": "marketing",
+    "description": "Closing CTA in a glowing, beam-bordered panel.",
+    "height": 560
+  },
+  "logo-cloud": {
+    "title": "Logo Cloud",
+    "category": "marketing",
+    "description": "'Trusted by' wordmark marquee with faded edges.",
+    "height": 240
+  },
+  "newsletter-signup": {
+    "title": "Newsletter",
+    "category": "marketing",
+    "description": "Email capture card with validation and success state.",
+    "height": 520
+  },
+  "waitlist-section": {
+    "title": "Waitlist",
+    "category": "marketing",
+    "description": "Countdown, waitlist signup, place in line and referral link.",
+    "height": 700
+  },
+  "footer-simple": {
+    "title": "Footer \u2014 Simple",
+    "category": "marketing",
+    "description": "One-line footer with brand, links and copyright.",
+    "height": 200
+  },
+  "footer-columns": {
+    "title": "Footer \u2014 Columns",
+    "category": "marketing",
+    "description": "Newsletter, four link columns, socials, status, theme and language.",
+    "height": 520
+  },
+  "footer-big-cta": {
+    "title": "Footer \u2014 Big CTA",
+    "category": "marketing",
+    "description": "Statement footer with an oversized outlined brand word.",
+    "height": 640
   }
 }
