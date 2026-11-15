@@ -108,6 +108,7 @@ import { navigationDemos } from "./navigation";
 import { dataDemos } from "./data";
 import { aiDemos } from "./ai";
 import { mobileDemos } from "./mobile";
+import { contactDemos } from "./contact";
 
 const team = [
   { alt: "Maya Kapoor", color: "#7C8CFF" },
@@ -205,6 +206,7 @@ export const demos: Record<string, () => React.ReactNode> = {
   ...dataDemos,
   ...aiDemos,
   ...mobileDemos,
+  ...contactDemos,
   button: () => (
     <Stack className="items-center">
       <Row>
@@ -446,11 +448,37 @@ export const demos: Record<string, () => React.ReactNode> = {
     </DropdownMenu>
   ),
   toast: () => (
-    <Row>
-      <Button onClick={() => toast({ title: "Deployment ready", description: "web-app is live in 42s", tone: "success", action: { label: "Undo", onClick: () => toast("Rolled back") } })}>Success toast</Button>
-      <Button variant="outline" onClick={() => toast({ title: "Build failed", description: "Step 3 of 5", tone: "error" })}>Error</Button>
+    <div className="flex max-w-xl flex-wrap justify-center gap-2">
+      <Button onClick={() => toast.success("Deployment ready", { description: "web-app is live in 42s", action: { label: "Undo", onClick: () => toast("Rolled back") } })}>Success</Button>
+      <Button variant="outline" onClick={() => toast.error("Build failed", { description: "Step 3 of 5: type errors" })}>Error</Button>
+      <Button variant="outline" onClick={() => toast.warning("Storage almost full", { description: "92% of 100 GB used" })}>Warning</Button>
+      <Button variant="outline" onClick={() => toast.info("New version available")}>Info</Button>
+      <Button
+        variant="secondary"
+        onClick={() =>
+          void toast
+            .promise(new Promise<string>((res, rej) => setTimeout(() => (Math.random() > 0.3 ? res("invoice.pdf") : rej(new Error("Network error"))), 1600)), {
+              loading: "Uploading invoice…",
+              success: (f) => `${f} uploaded`,
+              error: (e) => `Upload failed: ${(e as Error).message}`,
+            })
+            .catch(() => {})
+        }
+      >
+        Promise
+      </Button>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          const id = toast.loading("Sending message…");
+          setTimeout(() => toast.success("Message sent", { id, description: "Maya will get it instantly" }), 1400);
+        }}
+      >
+        Loading → update
+      </Button>
       <Button variant="ghost" onClick={() => toast("Saved")}>Simple</Button>
-    </Row>
+      <Button variant="ghost" onClick={() => toast.dismiss()}>Dismiss all</Button>
+    </div>
   ),
   "otp-input": () => <OtpDemo />,
   accordion: () => (

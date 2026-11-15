@@ -5,6 +5,7 @@ export * from "./blocks/auth-card";
 export * from "./blocks/booking-widget";
 export * from "./blocks/cart-screen";
 export * from "./blocks/checkout-page";
+export * from "./blocks/contact-page";
 export * from "./blocks/cta-banner";
 export * from "./blocks/dashboard-shell";
 export * from "./blocks/error-404";

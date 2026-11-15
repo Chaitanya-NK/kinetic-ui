@@ -87,7 +87,7 @@
   "toast": {
     "title": "Toast",
     "category": "feedback",
-    "description": "Stacking toasts that expand on hover and swipe to dismiss."
+    "description": "Toasts with success/error/warning/info/loading tones, toast.promise, in-place updates, stacking, swipe and a pausable countdown bar."
   },
   "otp-input": {
     "title": "OTP Input",
@@ -895,5 +895,51 @@
     "category": "widgets",
     "description": "\u2318K palette that blends commands with streamed AI answers.",
     "height": 620
+  },
+  "terminal-contact": {
+    "title": "Terminal Contact",
+    "category": "contact",
+    "description": "Portfolio contact card as a macOS terminal: types itself out, then takes commands (help, open, vcard, message\u2026)."
+  },
+  "compose-form": {
+    "title": "Compose Form",
+    "category": "contact",
+    "description": "Email-client contact form: To/From/About rows, topic chips, attachments, counter and a bot-check slot."
+  },
+  "vcard": {
+    "title": "vCard & Contact Card",
+    "category": "contact",
+    "description": "Downloadable .vcf: buildVCard(), a Save-contact button and a flip card with a scan-to-save QR."
+  },
+  "mac-window": {
+    "title": "Mac Window",
+    "category": "contact",
+    "description": "macOS window chrome with traffic lights, light/dark/auto tones and a monospace mode."
+  },
+  "chat-contact": {
+    "title": "Chat Contact",
+    "category": "contact",
+    "description": "Conversational form that asks one question at a time, with typing dots and quick replies."
+  },
+  "contact-methods": {
+    "title": "Contact Methods",
+    "category": "contact",
+    "description": "Email, phone, WhatsApp, calendar and location cards with copy, local time and online status."
+  },
+  "social-icons": {
+    "title": "Social Icons",
+    "category": "contact",
+    "description": "Brand marks for LinkedIn, GitHub, X, Instagram and more, plus detectNetwork(url)."
+  },
+  "contact-widget": {
+    "title": "Contact Widget",
+    "category": "contact",
+    "description": "Floating 'Message me' launcher with quick links and a compact form."
+  },
+  "contact-page": {
+    "title": "Contact Page",
+    "category": "app",
+    "description": "Terminal contact card, contact methods and an email-style compose form side by side.",
+    "height": 1100
   }
 }

@@ -41,6 +41,7 @@ export const categories: { id: string; label: string }[] = [
   { id: "social", label: "Feedback & social" },
   { id: "media", label: "Media" },
   { id: "mobile", label: "Mobile" },
+  { id: "contact", label: "Contact" },
   { id: "feedback", label: "Feedback" },
   { id: "overlay", label: "Overlay" },
   { id: "signature", label: "Signature" },
