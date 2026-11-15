@@ -5,14 +5,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTheme, type ThemeAccent } from "@kineticui/core/theme";
 import { cn } from "@kineticui/core";
 import { Button, CommandPalette, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger, Kbd } from "@kineticui/ui";
-import { BoltIcon, CodeIcon, GridIcon, HomeIcon, MoonIcon, SearchIcon, SunIcon } from "@kineticui/icons";
+import { BoltIcon, CodeIcon, GridIcon, LayersIcon, HomeIcon, MoonIcon, SearchIcon, SunIcon } from "@kineticui/icons";
 import { useState } from "react";
 import { Logo } from "./logo";
-import { entries, site } from "@/lib/site";
+import { blocks, entries, site } from "@/lib/site";
 
 const nav = [
   { href: "/docs", label: "Docs" },
   { href: "/components", label: "Components" },
+  { href: "/blocks", label: "Blocks" },
 ];
 
 const accents: { id: ThemeAccent; hex: string }[] = [
@@ -40,6 +41,15 @@ export function SiteHeader() {
       keywords: [e.name, e.categories[0] ?? ""],
       icon: <CodeIcon />,
       onSelect: () => router.push(`/components/${e.name}`),
+    })),
+    { id: "all-blocks", label: "All blocks", group: "Pages", icon: <LayersIcon />, onSelect: () => router.push("/blocks") },
+    ...blocks.map((e) => ({
+      id: `block-${e.name}`,
+      label: e.title,
+      group: "Blocks",
+      keywords: [e.name, "block", e.categories[0] ?? ""],
+      icon: <LayersIcon />,
+      onSelect: () => router.push(`/blocks/${e.name}`),
     })),
     {
       id: "theme",

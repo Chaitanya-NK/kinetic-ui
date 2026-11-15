@@ -4,6 +4,7 @@
 /* Scan the component sources so their classes are generated. */
 @source "../../../../packages/ui/src";
 @source "../../../../packages/motion/src";
+@source "../../../../packages/blocks/src";
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;

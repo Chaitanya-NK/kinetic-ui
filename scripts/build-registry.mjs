@@ -22,13 +22,44 @@ const genDir = join(root, "apps/docs/src/generated");
 const meta = JSON.parse(readFileSync(join(root, "registry.meta.json"), "utf8"));
 
 const sources = [
-  { dir: "packages/ui/src/components", pkg: "@kineticui/ui" },
-  { dir: "packages/motion/src", pkg: "@kineticui/motion" },
+  { dir: "packages/ui/src/components", pkg: "@kineticui/ui", type: "registry:ui" },
+  { dir: "packages/motion/src", pkg: "@kineticui/motion", type: "registry:ui" },
+  { dir: "packages/blocks/src/blocks", pkg: "@kineticui/blocks", type: "registry:block" },
 ];
+
+/*
+ * Blocks import from "@kineticui/ui" / "@kineticui/motion" (that's how the npm
+ * package works). In the copy-paste registry every file sits in one folder, so
+ * those imports are rewritten to per-file relative imports, which also makes
+ * the CLI install the components a block needs.
+ */
+const exportOwner = {};
+for (const { dir, type } of sources) {
+  if (type !== "registry:ui") continue;
+  for (const file of readdirSync(join(root, dir))) {
+    if (!file.endsWith(".tsx")) continue;
+    const code = readFileSync(join(root, dir, file), "utf8");
+    for (const m of code.matchAll(/export\s+(?:declare\s+)?(?:const|function|type|interface|class)\s+(\w+)/g)) exportOwner[m[1]] = file.replace(/\.tsx$/, "");
+  }
+}
+function localizeImports(code) {
+  return code.replace(/import\s*(type\s*)?\{([^}]+)\}\s*from\s*["']@kineticui\/(?:ui|motion)["'];?/g, (_all, typeOnly, names) => {
+    const byFile = {};
+    for (const raw of names.split(",").map((n) => n.trim()).filter(Boolean)) {
+      const bare = raw.replace(/^type\s+/, "").split(/\s+as\s+/)[0];
+      const owner = exportOwner[bare];
+      if (!owner) throw new Error(`build-registry: no component exports "${bare}"`);
+      (byFile[owner] ??= []).push(raw);
+    }
+    return Object.entries(byFile)
+      .map(([f, list]) => `import ${typeOnly ? "type " : ""}{ ${list.join(", ")} } from "./${f}";`)
+      .join("\n");
+  });
+}
 
 // Pin dependency versions from the source package.json files.
 const versions = {};
-for (const p of ["packages/ui", "packages/motion"]) {
+for (const p of ["packages/ui", "packages/motion", "packages/blocks"]) {
   const pj = JSON.parse(readFileSync(join(root, p, "package.json"), "utf8"));
   Object.assign(versions, pj.dependencies);
 }
@@ -56,11 +87,16 @@ const index = [];
 const docs = [];
 const missingMeta = [];
 
-for (const { dir, pkg } of sources) {
+const seen = new Set();
+for (const { dir, pkg, type } of sources) {
+  if (!existsSync(join(root, dir))) continue;
   for (const file of readdirSync(join(root, dir)).sort()) {
     if (!file.endsWith(".tsx")) continue;
     const name = file.replace(/\.tsx$/, "");
-    const content = readFileSync(join(root, dir, file), "utf8");
+    if (seen.has(name)) throw new Error(`build-registry: duplicate item name "${name}"`);
+    seen.add(name);
+    const raw = readFileSync(join(root, dir, file), "utf8");
+    const content = type === "registry:block" ? localizeImports(raw) : raw;
     const m = meta[name];
     if (!m) missingMeta.push(name);
     const { registryDependencies, dependencies } = parseImports(content);
@@ -68,17 +104,17 @@ for (const { dir, pkg } of sources) {
     const item = {
       $schema: "https://ui.shadcn.com/schema/registry-item.json",
       name,
-      type: "registry:ui",
+      type,
       title: m?.title ?? name,
       description: m?.description ?? "",
       categories: [m?.category ?? "other"],
       dependencies,
       registryDependencies,
-      files: [{ path: `registry/kinetic/${file}`, type: "registry:ui", target: file, content }],
+      files: [{ path: `registry/kinetic/${file}`, type, target: file, content }],
     };
     writeFileSync(join(outDir, `${name}.json`), JSON.stringify(item, null, 2));
-    index.push({ name, title: item.title, description: item.description, categories: item.categories });
-    docs.push({ ...item, package: pkg, exports, source: `${dir}/${file}` });
+    index.push({ name, type, title: item.title, description: item.description, categories: item.categories, ...(m?.height ? { height: m.height } : {}) });
+    docs.push({ ...item, package: pkg, exports, source: `${dir}/${file}`, ...(m?.height ? { height: m.height } : {}) });
   }
 }
 

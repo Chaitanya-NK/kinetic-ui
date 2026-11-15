@@ -12,10 +12,24 @@ export const site = {
 
 export const registryUrl = `${site.url}/r`;
 
-export type IndexEntry = { name: string; title: string; description: string; categories: string[] };
+export type IndexEntry = { name: string; type: "registry:ui" | "registry:block"; title: string; description: string; categories: string[]; height?: number };
 
+const all = index as IndexEntry[];
 /** Light list of every component — safe to use in client components. */
-export const entries = index as IndexEntry[];
+export const entries = all.filter((e) => e.type !== "registry:block");
+/** Blocks: full sections and screens. */
+export const blocks = all.filter((e) => e.type === "registry:block");
+
+export const blockCategories: { id: string; label: string; description: string }[] = [
+  { id: "app", label: "Application", description: "Auth, onboarding, settings, dashboards and full app shells." },
+  { id: "marketing", label: "Marketing sections", description: "Heroes, features, pricing, testimonials, FAQ and footers." },
+  { id: "screens", label: "Screens", description: "Error pages, inbox, file manager, commerce and account flows." },
+  { id: "widgets", label: "Widgets", description: "Small mixed-component cards you can drop anywhere." },
+];
+
+export function blocksByCategory() {
+  return blockCategories.map((c) => ({ ...c, items: blocks.filter((b) => b.categories[0] === c.id) })).filter((c) => c.items.length);
+}
 
 export const categories: { id: string; label: string }[] = [
   { id: "foundations", label: "Foundations" },

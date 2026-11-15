@@ -613,5 +613,53 @@
     "title": "Swipe Card Stack",
     "category": "mobile",
     "description": "Drag or tap to like/pass through a stack, with undo."
+  },
+  "auth-card": {
+    "title": "Auth",
+    "category": "app",
+    "description": "Sign in / sign up with social providers, validation and animated mode switch.",
+    "height": 760
+  },
+  "onboarding-wizard": {
+    "title": "Onboarding Wizard",
+    "category": "app",
+    "description": "Three-step setup with sliding panels and a confetti finish.",
+    "height": 720
+  },
+  "settings-page": {
+    "title": "Settings Page",
+    "category": "app",
+    "description": "Section nav, profile, toggles, billing, danger zone and an unsaved-changes bar.",
+    "height": 860
+  },
+  "invite-team": {
+    "title": "Invite Team",
+    "category": "app",
+    "description": "Invite by email with roles, manage members, copy an invite link.",
+    "height": 720
+  },
+  "dashboard-shell": {
+    "title": "Dashboard",
+    "category": "app",
+    "description": "Sidebar app shell with KPIs, charts, notifications and recent orders.",
+    "height": 820
+  },
+  "checkout-page": {
+    "title": "Checkout",
+    "category": "app",
+    "description": "Contact, delivery and card payment with a live order summary and coupons.",
+    "height": 900
+  },
+  "ai-workspace": {
+    "title": "AI Workspace",
+    "category": "app",
+    "description": "Chat app with threads, streaming answers, reasoning, tool calls and usage.",
+    "height": 820
+  },
+  "project-board": {
+    "title": "Project Board",
+    "category": "app",
+    "description": "Team board with presence, search, views and drag-and-drop Kanban.",
+    "height": 760
   }
 }
