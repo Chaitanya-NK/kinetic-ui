@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/space-grotesk";
 import "@fontsource-variable/jetbrains-mono";
@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   openGraph: { title: site.name, description: site.description, type: "website", siteName: site.name, url: site.url },
   twitter: { card: "summary_large_image", title: site.name, description: site.description },
 };
+
+export const viewport: Viewport = { themeColor: "#0a0a0b", colorScheme: "dark light" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
