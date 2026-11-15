@@ -15,6 +15,8 @@ export type CookieConsentProps = {
   onChange?: (consent: ConsentState) => void;
   /** Fixed in the bottom-left corner (default) or inline. */
   position?: "fixed" | "inline";
+  /** card: corner card. bar: full-width bottom bar. modal: centred dialog with backdrop. */
+  variant?: "card" | "bar" | "modal";
   /** Force the banner open, e.g. from a "Cookie settings" link. */
   open?: boolean;
   className?: string;
@@ -49,6 +51,7 @@ export function CookieConsent({
   policyHref,
   onChange,
   position = "fixed",
+  variant = "card",
   open: forced,
   className,
 }: CookieConsentProps) {
@@ -88,10 +91,15 @@ export function CookieConsent({
   };
   const all = (on: boolean) => Object.fromEntries(categories.map((c) => [c.id, c.required ? true : on]));
 
+  const fixed = position === "fixed";
   return (
     <AnimatePresence>
+      {visible && variant === "modal" && fixed ? (
+        <motion.div key="backdrop" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-50 bg-black/60 backdrop-blur-[2px]" />
+      ) : null}
       {visible ? (
         <motion.div
+          key="panel"
           role="dialog"
           aria-label="Cookie preferences"
           initial={{ opacity: 0, y: 24 }}
@@ -99,8 +107,13 @@ export function CookieConsent({
           exit={{ opacity: 0, y: 24 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className={cn(
-            "w-[min(400px,calc(100vw-2rem))] rounded-2xl border border-border-strong bg-surface-raised p-5 text-sm shadow-overlay",
-            position === "fixed" && "fixed bottom-4 left-4 z-50",
+            "rounded-2xl border border-border-strong bg-surface-raised p-5 text-sm shadow-overlay",
+            variant === "card" && "w-[min(400px,calc(100vw-2rem))]",
+            variant === "card" && fixed && "fixed bottom-4 left-4 z-50",
+            variant === "bar" && "[&_button]:whitespace-nowrap flex w-full flex-col gap-4 md:flex-row md:flex-wrap md:items-center [&>h2]:md:hidden [&>p]:md:mt-0 [&>p]:md:flex-1 [&>div:last-child]:md:mt-0 [&>div:last-child]:md:w-auto [&>div:last-child>button:last-child]:md:w-auto",
+            variant === "bar" && fixed && "fixed inset-x-3 bottom-3 z-50 w-auto",
+            variant === "modal" && "w-[min(460px,calc(100vw-2rem))] p-7",
+            variant === "modal" && fixed && "fixed inset-0 z-50 m-auto h-fit",
             className,
           )}
         >

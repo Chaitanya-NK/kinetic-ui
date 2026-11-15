@@ -362,7 +362,7 @@
   "cookie-consent": {
     "title": "Cookie Consent",
     "category": "feedback",
-    "description": "Accept / reject / per-category cookie preferences, remembered locally."
+    "description": "Cookie banner as a corner card, bottom bar or modal, with per-category preferences."
   },
   "data-table": {
     "title": "Data Table",
@@ -986,5 +986,90 @@
     "title": "Font Picker",
     "category": "forms",
     "description": "Font chooser with categories, live preview text and optional Google Fonts loading."
+  },
+  "world-map": {
+    "title": "World Map",
+    "category": "data",
+    "description": "Dotted world map with pulsing markers, tooltips and animated arcs. No tiles needed."
+  },
+  "org-chart": {
+    "title": "Org Chart",
+    "category": "data",
+    "description": "Collapsible organisation tree with connectors and team counts."
+  },
+  "month-calendar": {
+    "title": "Month Calendar",
+    "category": "data",
+    "description": "Month grid with event chips, multi-day events, +N more and today ring."
+  },
+  "invoice-preview": {
+    "title": "Invoice Preview",
+    "category": "data",
+    "description": "Printable invoice with tax, status stamp and save-as-PDF."
+  },
+  "file-preview": {
+    "title": "File Preview",
+    "category": "data",
+    "description": "Previews images, PDF, video, audio, code and CSV with download."
+  },
+  "split-compare": {
+    "title": "Split Compare",
+    "category": "data",
+    "description": "Two resizable panes with a draggable divider and synced scroll."
+  },
+  "progress-steps": {
+    "title": "Progress Steps",
+    "category": "data",
+    "description": "Milestones with nested sub-tasks and per-step progress."
+  },
+  "onboarding-checklist": {
+    "title": "Onboarding Checklist",
+    "category": "feedback",
+    "description": "Get-started tasks with progress ring, CTAs and a reward state."
+  },
+  "rating-summary": {
+    "title": "Rating Summary",
+    "category": "feedback",
+    "description": "Average with partial stars, clickable distribution and aspect scores."
+  },
+  "whats-new": {
+    "title": "What's New",
+    "category": "feedback",
+    "description": "Release dialog with swipeable feature slides and seen-version memory."
+  },
+  "activity-feed": {
+    "title": "Activity Feed",
+    "category": "feedback",
+    "description": "Grouped activity stream with filters and live arrivals."
+  },
+  "top-loader": {
+    "title": "Top Loader",
+    "category": "feedback",
+    "description": "NProgress-style page bar driven by topLoader.start/done/track."
+  },
+  "skeletons": {
+    "title": "Skeleton Presets",
+    "category": "feedback",
+    "description": "Card, profile, list, table and dashboard loading placeholders."
+  },
+  "page-header": {
+    "title": "Page Header",
+    "category": "navigation",
+    "description": "Breadcrumbs, icon, title, badges, actions, meta and tabs."
+  },
+  "overflow-tabs": {
+    "title": "Overflow Tabs",
+    "category": "navigation",
+    "description": "Tabs that fold extras into a More menu as space shrinks."
+  },
+  "shortcut-overlay": {
+    "title": "Shortcut Overlay",
+    "category": "navigation",
+    "description": "Press ? for all shortcuts; useHotkeys supports combos and sequences."
+  },
+  "command-bar": {
+    "title": "Command Bar",
+    "category": "navigation",
+    "description": "Floating tool dock with sliding indicator and single-key shortcuts."
   }
 }

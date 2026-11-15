@@ -110,6 +110,7 @@ import { aiDemos } from "./ai";
 import { mobileDemos } from "./mobile";
 import { contactDemos } from "./contact";
 import { editorDemos } from "./editors";
+import { display2Demos } from "./display2";
 
 const team = [
   { alt: "Maya Kapoor", color: "#7C8CFF" },
@@ -209,6 +210,7 @@ export const demos: Record<string, () => React.ReactNode> = {
   ...mobileDemos,
   ...contactDemos,
   ...editorDemos,
+  ...display2Demos,
   button: () => (
     <Stack className="items-center">
       <Row>
