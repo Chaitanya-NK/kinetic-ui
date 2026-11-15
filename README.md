@@ -17,8 +17,9 @@ Both channels are built from the same files in `packages/`, so they never drift 
 | Package | What's inside |
 |---|---|
 | [`@kineticui/core`](packages/core) | Design tokens (`styles.css`), `cn()`, hooks, `ThemeProvider` (`@kineticui/core/theme`) |
-| [`@kineticui/ui`](packages/ui) | 26 component files: Button, Input, Dialog, Sheet, Tabs, Toast, Command Palette, Dock, OTP Input… |
-| [`@kineticui/motion`](packages/motion) | 12 effects: Spotlight Card, Border Beam, Marquee, Typewriter, Confetti, Tilt Card… |
+| [`@kineticui/ui`](packages/ui) | 109 component files: forms, navigation, overlays, data display (tables, charts, Kanban, Gantt), AI (chat, tool calls), collaboration, media, mobile |
+| [`@kineticui/motion`](packages/motion) | 14 effects: Spotlight Card, Border Beam, Marquee, Typewriter, Text Scramble, Parallax, Confetti… |
+| [`@kineticui/blocks`](packages/blocks) | 47 ready-made blocks: app screens (auth, dashboard, checkout, AI workspace), marketing sections (heroes, pricing, footers), screens and widgets |
 | [`@kineticui/icons`](packages/icons) | 70 original 24 px stroke icons as React components |
 | [`@kineticui/cli`](packages/cli) | `kinetic init`, `kinetic add <name>`, `kinetic list` |
 
@@ -35,6 +36,8 @@ npx @kineticui/cli add button dialog dock
 
 ```bash
 npm i @kineticui/ui @kineticui/core @kineticui/motion @kineticui/icons
+# optional: full sections and screens
+npm i @kineticui/blocks
 ```
 
 ```css
@@ -84,7 +87,8 @@ kinetic-ui/
 │   ├── core/       tokens, theme, cn(), hooks
 │   ├── icons/      icon set
 │   ├── motion/     effects        ─┐
-│   ├── ui/         components     ─┴─ single source for npm AND the registry
+│   ├── ui/         components     ─┤
+│   ├── blocks/     sections/screens─┴─ single source for npm AND the registry
 │   └── cli/        `kinetic` CLI
 ├── apps/docs/      Next.js docs site — also serves the registry at /r/*.json
 ├── scripts/build-registry.mjs     turns package sources into registry JSON
@@ -108,6 +112,13 @@ npm run typecheck
 3. Add a title, description and category in `registry.meta.json`.
 4. Add a live demo in `apps/docs/src/demos/index.tsx`.
 5. `npm run dev` — the registry item, docs page and npm export are all generated.
+
+### Add a new block
+
+1. Create `packages/blocks/src/blocks/my-block.tsx` exporting a component named after the file (`my-block` → `MyBlock`) that renders with no props.
+2. Import components from `@kineticui/ui` / `@kineticui/motion` as usual. The registry build rewrites those to per-file imports, so `kinetic add my-block` also installs everything it uses.
+3. Add it to `registry.meta.json` with a category of `app`, `marketing`, `screens` or `widgets` and a preview `height`.
+4. It appears at `/blocks/my-block` with a desktop/tablet/mobile preview.
 
 Dependencies are detected automatically from your `import` lines.
 

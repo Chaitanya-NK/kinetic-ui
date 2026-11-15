@@ -823,5 +823,77 @@
     "category": "screens",
     "description": "Email code, verification and a new password with live rules.",
     "height": 640
+  },
+  "pricing-calculator": {
+    "title": "Pricing Calculator",
+    "category": "widgets",
+    "description": "Seats and usage sliders, add-ons and billing period with a live total.",
+    "height": 640
+  },
+  "booking-widget": {
+    "title": "Booking",
+    "category": "widgets",
+    "description": "Calendly-style scheduler with date, time slots and a confirm form.",
+    "height": 660
+  },
+  "habit-tracker": {
+    "title": "Habit Tracker",
+    "category": "widgets",
+    "description": "Weekly check-in grid with streaks and a completion ring.",
+    "height": 540
+  },
+  "stock-widget": {
+    "title": "Stock Ticker",
+    "category": "widgets",
+    "description": "Price, range switcher, area chart, stats and watchlist toggle.",
+    "height": 600
+  },
+  "weather-widget": {
+    "title": "Weather",
+    "category": "widgets",
+    "description": "Current conditions, hourly curve and 6-day range bars.",
+    "height": 660
+  },
+  "music-player": {
+    "title": "Music Player",
+    "category": "widgets",
+    "description": "Spinning artwork, equaliser, scrubber, controls and up-next queue.",
+    "height": 780
+  },
+  "post-composer": {
+    "title": "Post Composer",
+    "category": "widgets",
+    "description": "Character ring, image attachments, audience and schedule.",
+    "height": 520
+  },
+  "trip-itinerary": {
+    "title": "Trip Itinerary",
+    "category": "widgets",
+    "description": "Day tabs, timed stops on a route, packing list and travellers.",
+    "height": 720
+  },
+  "subscription-manager": {
+    "title": "Subscriptions",
+    "category": "widgets",
+    "description": "Spend by category, pause toggles and cancel with confirmation.",
+    "height": 700
+  },
+  "order-summary": {
+    "title": "Order Summary",
+    "category": "widgets",
+    "description": "Stackable coupon codes, animated totals and a confetti pay button.",
+    "height": 620
+  },
+  "team-availability": {
+    "title": "Team Availability",
+    "category": "widgets",
+    "description": "Cross-timezone free/busy grid that finds the best shared slot.",
+    "height": 560
+  },
+  "ai-command-palette": {
+    "title": "AI Command Palette",
+    "category": "widgets",
+    "description": "\u2318K palette that blends commands with streamed AI answers.",
+    "height": 620
   }
 }

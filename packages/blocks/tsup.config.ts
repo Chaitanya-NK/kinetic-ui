@@ -6,6 +6,6 @@ export default defineConfig({
   dts: true,
   clean: true,
   sourcemap: true,
-  external: ["react", "react-dom", "motion", "@kineticui/core", "@kineticui/icons", "@kineticui/motion", "@kineticui/ui"],
+  external: ["react", "react-dom", "motion", "radix-ui", "@kineticui/core", "@kineticui/icons", "@kineticui/motion", "@kineticui/ui"],
   banner: { js: '"use client";' },
 });
