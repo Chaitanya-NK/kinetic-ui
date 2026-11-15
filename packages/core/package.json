@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/core",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Kinetic UI core: design tokens, theme provider, cn() and hooks.",
   "license": "MIT",
   "type": "module",
@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Chaitanya-NK/kinetic-ui",
+    "url": "git+https://github.com/Chaitanya-NK/kinetic-ui.git",
     "directory": "packages/core"
   },
   "publishConfig": {

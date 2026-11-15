@@ -228,9 +228,11 @@ async function list(cwd: string, flags: Flags) {
     const cat = it.categories?.[0] ?? "other";
     byCat.set(cat, [...(byCat.get(cat) ?? []), it]);
   }
+  // Size the name column to the longest name so descriptions always line up with a gap.
+  const width = Math.max(...index.items.map((it) => it.name.length)) + 2;
   for (const [cat, items] of byCat) {
     console.log(`\n${c.lime(cat.toUpperCase())}`);
-    for (const it of items) console.log(`  ${c.bold(it.name.padEnd(20))} ${c.dim(it.description ?? "")}`);
+    for (const it of items) console.log(`  ${c.bold(it.name.padEnd(width))}${c.dim(it.description ?? "")}`);
   }
   console.log();
 }

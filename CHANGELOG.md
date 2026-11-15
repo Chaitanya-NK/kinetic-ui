@@ -2,6 +2,13 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`) share one version number.
 
+## [0.1.1] — 2026-11-15
+
+### Fixed
+
+- `kinetic list`: the name column now fits the longest name, so long names like `notification-preferences` no longer run into their descriptions.
+- Package metadata: repository URLs use the canonical `git+https` form, so npm no longer rewrites them on publish.
+
 ## [0.1.0] — 2026-11-15
 
 First public release.
