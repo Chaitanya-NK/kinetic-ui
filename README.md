@@ -136,7 +136,7 @@ Dependencies are detected automatically from your `import` lines.
 The site lives at **https://kinetic-ui.chaitanya-nk.com**. The CLI downloads components from `https://kinetic-ui.chaitanya-nk.com/r`, so keep that domain pointed at the deployment.
 
 1. Import the repo on [vercel.com/new](https://vercel.com/new).
-2. Set **Root Directory** to `apps/docs`. Framework: Next.js (auto-detected). The `prebuild` step builds the packages and the registry automatically.
+2. Set **Root Directory** to `apps/docs`. Framework: Next.js (auto-detected). `apps/docs/vercel.json` installs the whole monorepo (`npm ci` at the root), and the `prebuild` step builds the packages and the registry.
 3. Deploy, then in **Settings → Domains** add `kinetic-ui.chaitanya-nk.com`.
 4. At your DNS provider, add the record Vercel shows: a `CNAME` for `kinetic-ui` pointing to Vercel's target.
 5. Optional: set `NEXT_PUBLIC_SITE_URL` if you ever serve the site from a different domain. It defaults to the URL above.
