@@ -34,7 +34,7 @@ import {
   toast,
   useStreamedText,
   type AppNotification,
-  type CommentThread,
+  type PinThread,
   type FeatureRequest,
   type ImageCropperHandle,
   type LiveCursor,
@@ -187,7 +187,7 @@ function CursorsDemo() {
 }
 
 function CommentsDemo() {
-  const [threads, setThreads] = React.useState<CommentThread[]>([
+  const [threads, setThreads] = React.useState<PinThread[]>([
     { id: "a", x: 0.28, y: 0.38, comments: [{ id: "1", author: "Maya Kapoor", color: "#7C8CFF", text: "Can we try a bolder headline?", time: "2h" }, { id: "2", author: "Rohan Joshi", color: "#F4A86A", text: "On it.", time: "1h" }] },
     { id: "b", x: 0.72, y: 0.66, comments: [{ id: "3", author: "Rosa Silva", color: "#F0A3D0", text: "This chart needs a legend.", time: "20m" }] },
   ]);

@@ -6,11 +6,11 @@ import { cn } from "@kineticui/core";
 import { CheckIcon } from "@kineticui/icons";
 
 export type PinComment = { id: string; author: string; color?: string; text: string; time?: string };
-export type CommentThread = { id: string; x: number; y: number; comments: PinComment[]; resolved?: boolean };
+export type PinThread = { id: string; x: number; y: number; comments: PinComment[]; resolved?: boolean };
 
 export type CommentLayerProps = {
-  threads: CommentThread[];
-  onThreadsChange: (threads: CommentThread[]) => void;
+  threads: PinThread[];
+  onThreadsChange: (threads: PinThread[]) => void;
   /** The current user, used for new comments. */
   me: { name: string; color?: string };
   /** When true, clicking empty space drops a new pin. */
@@ -21,7 +21,7 @@ export type CommentLayerProps = {
 
 const initials = (n: string) => n.split(/\s+/).map((p) => p[0]).slice(0, 2).join("").toUpperCase();
 
-function Pin({ thread, active, onClick }: { thread: CommentThread; active: boolean; onClick: () => void }) {
+function Pin({ thread, active, onClick }: { thread: PinThread; active: boolean; onClick: () => void }) {
   const first = thread.comments[0];
   return (
     <button
