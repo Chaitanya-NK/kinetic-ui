@@ -941,5 +941,50 @@
     "category": "app",
     "description": "Terminal contact card, contact methods and an email-style compose form side by side.",
     "height": 1100
+  },
+  "rich-text-editor": {
+    "title": "Rich Text Editor",
+    "category": "forms",
+    "description": "WYSIWYG editor with toolbar, shortcuts, plain-text paste and word count."
+  },
+  "markdown-editor": {
+    "title": "Markdown Editor",
+    "category": "forms",
+    "description": "Markdown with toolbar, shortcuts and a safe live preview (split or tabs). Exports <Markdown>."
+  },
+  "code-editor": {
+    "title": "Code Editor",
+    "category": "forms",
+    "description": "Highlighted code editing with line numbers, smart indent and auto-closing pairs."
+  },
+  "emoji-picker": {
+    "title": "Emoji Picker & Reactions",
+    "category": "forms",
+    "description": "Searchable emoji picker with recents, plus Slack-style reaction chips."
+  },
+  "time-range-slider": {
+    "title": "Time Range Slider",
+    "category": "forms",
+    "description": "Dual-thumb time picker with busy blocks, ticks and duration."
+  },
+  "address-autocomplete": {
+    "title": "Address Autocomplete",
+    "category": "forms",
+    "description": "Pluggable geocoder search with keyboard nav, highlights and current location."
+  },
+  "currency-input": {
+    "title": "Currency Input",
+    "category": "forms",
+    "description": "Formats money as you type per currency and locale, with presets and limits."
+  },
+  "gradient-picker": {
+    "title": "Gradient Picker",
+    "category": "forms",
+    "description": "Draggable stops, linear/radial/conic, angle dial, presets and copy CSS."
+  },
+  "font-picker": {
+    "title": "Font Picker",
+    "category": "forms",
+    "description": "Font chooser with categories, live preview text and optional Google Fonts loading."
   }
 }
