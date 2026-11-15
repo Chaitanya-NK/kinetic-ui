@@ -1106,5 +1106,185 @@
     "title": "Passkey Login",
     "category": "forms",
     "description": "Passwordless sign-in with passkey and a magic-link fallback."
+  },
+  "blog-post": {
+    "title": "Blog Post",
+    "category": "marketing",
+    "description": "Article with reading progress, sticky table of contents, code sample, likes and author card.",
+    "height": 1900
+  },
+  "blog-index": {
+    "title": "Blog Index",
+    "category": "marketing",
+    "description": "Featured post, tag filter with sliding pill, search and an animated card grid.",
+    "height": 1250
+  },
+  "docs-layout": {
+    "title": "Docs Layout",
+    "category": "marketing",
+    "description": "Docs sidebar with active indicator, breadcrumbs, code tabs, feedback and prev/next.",
+    "height": 900
+  },
+  "careers-page": {
+    "title": "Careers Page",
+    "category": "marketing",
+    "description": "Mission header, perks and a filterable list of expandable job rows.",
+    "height": 1300
+  },
+  "team-page": {
+    "title": "Team Page",
+    "category": "marketing",
+    "description": "Team grid of cards that flip in 3D to show bio and links.",
+    "height": 900
+  },
+  "about-page": {
+    "title": "About Page",
+    "category": "marketing",
+    "description": "Mission, animated counters, story timeline, values and hiring CTA.",
+    "height": 1700
+  },
+  "portfolio-gallery": {
+    "title": "Portfolio Gallery",
+    "category": "marketing",
+    "description": "Filterable masonry of projects that expand into a shared-layout detail view.",
+    "height": 1150
+  },
+  "case-study": {
+    "title": "Case Study",
+    "category": "marketing",
+    "description": "Parallax hero, challenge/approach/result, metric chart, pull quote and sticky facts.",
+    "height": 1800
+  },
+  "changelog-page": {
+    "title": "Changelog Page",
+    "category": "marketing",
+    "description": "Release cards with sticky versions, typed entries, filters and subscribe.",
+    "height": 1500
+  },
+  "roadmap-board": {
+    "title": "Roadmap Board",
+    "category": "marketing",
+    "description": "Public roadmap columns with upvotes that re-sort, progress and ETAs.",
+    "height": 760
+  },
+  "status-page": {
+    "title": "Status Page",
+    "category": "screens",
+    "description": "Overall status, active incident timeline and 60-day uptime per service.",
+    "height": 1050
+  },
+  "help-center": {
+    "title": "Help Center",
+    "category": "screens",
+    "description": "Hero search with live results, categories, popular articles, FAQ and support CTA.",
+    "height": 1350
+  },
+  "email-builder": {
+    "title": "Email Builder",
+    "category": "app",
+    "description": "Drag-to-reorder email blocks, inline editing, device preview and brand colour.",
+    "height": 780
+  },
+  "analytics-funnel": {
+    "title": "Analytics Funnel",
+    "category": "app",
+    "description": "Conversion funnel with drop-off, KPIs, step inspector and source split.",
+    "height": 820
+  },
+  "crm-contact": {
+    "title": "CRM Contact",
+    "category": "app",
+    "description": "Contact profile, clickable deal pipeline and an activity timeline with notes.",
+    "height": 820
+  },
+  "admin-users": {
+    "title": "Admin Users",
+    "category": "app",
+    "description": "User table with search, filters, inline role changes and a bulk action bar.",
+    "height": 680
+  },
+  "api-keys": {
+    "title": "API Keys",
+    "category": "app",
+    "description": "Masked keys, create dialog with scopes and env, one-time reveal and revoke.",
+    "height": 620
+  },
+  "billing-page": {
+    "title": "Billing Page",
+    "category": "app",
+    "description": "Plan usage, card, monthly/yearly plan switcher and invoices.",
+    "height": 1150
+  },
+  "team-roles": {
+    "title": "Team Roles",
+    "category": "app",
+    "description": "Roles × permissions matrix with locked owner, change highlights and save bar.",
+    "height": 900
+  },
+  "notification-preferences": {
+    "title": "Notification Preferences",
+    "category": "app",
+    "description": "Per-event channel toggles, channel masters, quiet hours and digest frequency.",
+    "height": 1000
+  },
+  "product-listing": {
+    "title": "Product Listing",
+    "category": "screens",
+    "description": "Shop grid with filters, price slider, sort, grid/list toggle, colour swatches and wishlist.",
+    "height": 960
+  },
+  "wishlist": {
+    "title": "Wishlist",
+    "category": "screens",
+    "description": "Saved items with price drops, stock alerts, move to cart and undoable remove.",
+    "height": 760
+  },
+  "order-history": {
+    "title": "Order History",
+    "category": "screens",
+    "description": "Expandable orders with items, tracking progress, invoice and buy-again.",
+    "height": 820
+  },
+  "returns-flow": {
+    "title": "Returns Flow",
+    "category": "screens",
+    "description": "Four-step return: items, reasons, refund and method, then a QR drop-off code.",
+    "height": 640
+  },
+  "resume-cv": {
+    "title": "Resume / CV",
+    "category": "marketing",
+    "description": "One-page résumé that prints cleanly to PDF.",
+    "height": 1250
+  },
+  "skills-grid": {
+    "title": "Skills Grid",
+    "category": "widgets",
+    "description": "Skill tiles with animated rings, group tabs and detail popovers.",
+    "height": 560
+  },
+  "experience-timeline": {
+    "title": "Experience Timeline",
+    "category": "marketing",
+    "description": "Alternating timeline whose spine fills as you scroll.",
+    "height": 1150
+  },
+  "now-widgets": {
+    "title": "Now Widgets",
+    "category": "widgets",
+    "description": "Currently listening, reading, building and location cards for a /now page.",
+    "height": 640
+  },
+  "github-graph": {
+    "title": "GitHub Graph",
+    "category": "widgets",
+    "description": "Contribution heatmap with range toggle, streaks and pinned repos.",
+    "height": 720
+  },
+  "peer-testimonials": {
+    "title": "Peer Testimonials",
+    "category": "widgets",
+    "description": "Swipeable stacked recommendation cards with keyboard and dots.",
+    "height": 560
   }
 }
