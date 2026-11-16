@@ -1,0 +1,13 @@
+{
+  "title": "AI Chatbot",
+  "description": "A full-screen chat app on the Vercel AI SDK: streaming replies, reasoning, tool calls with approvals, sources, model picker and a context meter, plus the API route.",
+  "category": "ai",
+  "dependencies": ["ai", "@ai-sdk/react"],
+  "files": [
+    { "src": "page.tsx", "target": "app/chat/page.tsx", "type": "registry:page" },
+    { "src": "chat-app.tsx", "target": "chat-app.tsx", "type": "registry:component" },
+    { "src": "route.ts", "target": "app/api/chat/route.ts", "type": "registry:file" }
+  ],
+  "preview": "preview.tsx",
+  "notes": "Set AI_GATEWAY_API_KEY (or your provider's key) in .env.local, then open /chat."
+}

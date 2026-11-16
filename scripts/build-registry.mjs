@@ -120,13 +120,88 @@ for (const { dir, pkg, type } of sources) {
   }
 }
 
+/*
+ * Templates (templates/<name>/template.json) are multi-file starters. Their sources use npm imports so the docs
+ * site can render them; for the registry those become "@/components/kinetic/<file>" (pages) or "./<file>"
+ * (files that land in the components folder), and every component they use becomes a registry dependency.
+ */
+const blockOwner = {};
+for (const file of readdirSync(join(root, "packages/blocks/src/blocks"))) {
+  if (!file.endsWith(".tsx")) continue;
+  const code = readFileSync(join(root, "packages/blocks/src/blocks", file), "utf8");
+  for (const m of code.matchAll(/export\s+(?:const|function|type|interface)\s+(\w+)/g)) blockOwner[m[1]] = file.replace(/\.tsx$/, "");
+}
+const templates = [];
+const tplRoot = join(root, "templates");
+if (existsSync(tplRoot)) {
+  for (const name of readdirSync(tplRoot).sort()) {
+    const tplFile = join(tplRoot, name, "template.json");
+    if (!existsSync(tplFile)) continue;
+    if (seen.has(name)) throw new Error(`build-registry: template "${name}" clashes with a component or block`);
+    const tpl = JSON.parse(readFileSync(tplFile, "utf8"));
+    const localComponents = Object.fromEntries(tpl.files.filter((f) => f.type === "registry:component").map((f) => [f.src.replace(/\.tsx?$/, ""), f.target.replace(/\.tsx?$/, "")]));
+    const uses = new Set();
+    const npmDeps = new Set(tpl.dependencies ?? []);
+    const files = tpl.files.map((f) => {
+      const inComponents = f.type === "registry:component";
+      const to = (owner) => (inComponents ? `./${owner}` : `@/components/kinetic/${owner}`);
+      let content = readFileSync(join(tplRoot, name, f.src), "utf8");
+      content = content.replace(/import\s*(type\s*)?\{([^}]+)\}\s*from\s*["']@kineticui\/(ui|motion|blocks)["'];?/g, (_all, typeOnly, names) => {
+        const byFile = {};
+        for (const raw of names.split(",").map((n) => n.trim()).filter(Boolean)) {
+          const bare = raw.replace(/^type\s+/, "").split(/\s+as\s+/)[0];
+          const owner = exportOwner[bare] ?? blockOwner[bare];
+          if (!owner) throw new Error(`build-registry: template ${name} imports unknown "${bare}"`);
+          uses.add(owner);
+          (byFile[owner] ??= []).push(raw);
+        }
+        return Object.entries(byFile).map(([o, list]) => `import ${typeOnly ? "type " : ""}{ ${list.join(", ")} } from "${to(o)}";`).join("\n");
+      });
+      // Imports between template files that land in the components folder.
+      content = content.replace(/from\s+["']\.\/([\w-]+)["']/g, (all, local) => (localComponents[local] ? `from "${to(localComponents[local])}"` : all));
+      for (const spec of [...content.matchAll(/from\s+["']([^"'./@][^"']*|@[^/"']+\/[^"']+)["']/g)].map((m) => m[1])) {
+        const pkg = spec.startsWith("@") ? spec.split("/").slice(0, 2).join("/") : spec.split("/")[0];
+        if (["react", "react-dom", "next"].includes(pkg)) continue;
+        npmDeps.add(versions[pkg] ? `${pkg}@${versions[pkg]}` : pkg);
+      }
+      return { path: `templates/${name}/${f.src}`, type: f.type, target: f.target, content };
+    });
+    const item = {
+      $schema: "https://ui.shadcn.com/schema/registry-item.json",
+      name,
+      type: "registry:item",
+      title: tpl.title,
+      description: tpl.description,
+      categories: ["template", tpl.category],
+      dependencies: [...npmDeps],
+      registryDependencies: [...uses].sort().map((u) => `@kineticui/${u}`),
+      files,
+      meta: { template: true, category: tpl.category, ...(tpl.notes ? { notes: tpl.notes } : {}) },
+    };
+    writeFileSync(join(outDir, `${name}.json`), JSON.stringify(item, null, 2));
+    index.push({ name, type: "registry:item", title: tpl.title, description: tpl.description, categories: item.categories });
+    templates.push({
+      name,
+      title: tpl.title,
+      description: tpl.description,
+      category: tpl.category,
+      notes: tpl.notes ?? null,
+      uses: [...uses].sort(),
+      // Only packages the components don't already bring in (e.g. the AI SDK).
+      dependencies: item.dependencies.filter((d) => !versions[d.startsWith("@") ? "@" + d.slice(1).split("@")[0] : d.split("@")[0]]),
+      files: files.map(({ type, target, content }) => ({ type, target, content })),
+    });
+  }
+}
+writeFileSync(join(genDir, "templates.json"), JSON.stringify(templates, null, 2));
+
 writeFileSync(
   join(outDir, "index.json"),
   JSON.stringify({ name: "kineticui", homepage: "https://github.com/Chaitanya-NK/kinetic-ui", items: index }, null, 2),
 );
 writeFileSync(join(genDir, "registry.json"), JSON.stringify(docs, null, 2));
 // Lightweight list (no source code) for client-side navigation and search.
-writeFileSync(join(genDir, "index.json"), JSON.stringify(index, null, 2));
+writeFileSync(join(genDir, "index.json"), JSON.stringify(index.filter((i) => i.type !== "registry:item"), null, 2));
 
-console.log(`✓ Registry: ${index.length} items → apps/docs/public/r`);
+console.log(`✓ Registry: ${index.length} items (${templates.length} templates) → apps/docs/public/r`);
 if (missingMeta.length) console.warn(`! No metadata in registry.meta.json for: ${missingMeta.join(", ")}`);

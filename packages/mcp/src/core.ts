@@ -8,11 +8,11 @@ export type IndexItem = { name: string; type: string; title: string; description
 export type RegistryItem = IndexItem & {
   dependencies: string[];
   registryDependencies: string[];
-  files: { path: string; content: string; target?: string }[];
+  files: { path: string; content: string; target?: string; type?: string }[];
   /** Present on the docs site's own data. */
   exports?: string[];
   package?: string;
-  meta?: { package?: string; exports?: string[] };
+  meta?: { package?: string; exports?: string[]; template?: boolean; notes?: string };
 };
 
 export type Source = {
@@ -32,7 +32,7 @@ const SUPPORTED = ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"];
 const INSTRUCTIONS = `Kinetic UI is a motion-first React component library (Tailwind v4, Radix, motion/react) in the shadcn style.
 Use search_components to find components or blocks, get_component for source and install commands, and get_setup once per project.
 Prefer installing with the Kinetic CLI or shadcn so the source lands in the user's project; use the npm packages when the user wants upgrades from npm.
-Blocks are full sections (pricing, dashboards, auth). Components live in @kineticui/ui, effects in @kineticui/motion.`;
+Blocks are full sections (pricing, dashboards, auth). Templates are whole pages or apps (landing page, portfolio, dashboard, AI chatbot, docs site) installed with the Kinetic CLI. Components live in @kineticui/ui, effects in @kineticui/motion.`;
 
 const tools = [
   {
@@ -43,7 +43,7 @@ const tools = [
       type: "object",
       properties: {
         query: { type: "string", description: "What the user wants to build." },
-        type: { type: "string", enum: ["all", "component", "block"], description: "Limit to components or full-page blocks." },
+        type: { type: "string", enum: ["all", "component", "block", "template"], description: "Limit to components, full-page blocks or multi-page starter templates." },
         limit: { type: "number", description: "Max results (default 10)." },
       },
       required: ["query"],
@@ -57,7 +57,7 @@ const tools = [
     inputSchema: {
       type: "object",
       properties: {
-        type: { type: "string", enum: ["all", "component", "block"] },
+        type: { type: "string", enum: ["all", "component", "block", "template"] },
         category: { type: "string", description: "Category name. Omit to list categories with counts." },
       },
     },
@@ -119,7 +119,7 @@ function score(q: string, it: IndexItem) {
   return s;
 }
 
-const kindOf = (it: IndexItem) => (it.type === "registry:block" ? "block" : "component");
+const kindOf = (it: IndexItem) => (it.type === "registry:block" ? "block" : it.type === "registry:item" ? "template" : "component");
 const pkgOf = (it: RegistryItem) => it.package ?? it.meta?.package ?? (it.type === "registry:block" ? "@kineticui/blocks" : it.files[0]?.path.includes("motion") ? "@kineticui/motion" : "@kineticui/ui");
 const exportsOf = (it: RegistryItem) => it.exports ?? it.meta?.exports ?? [...(it.files[0]?.content ?? "").matchAll(/export\s+(?:const|function)\s+([A-Z]\w*)/g)].map((m) => m[1]!);
 
@@ -149,7 +149,7 @@ export function createKineticServer(source: Source) {
       if (!hits.length) return text(`No Kinetic UI items matched "${q}". Try list_components to browse categories.`);
       return text(
         `Top matches for "${q}":\n\n` +
-          hits.map(([, i]) => `- **${i.name}** (${kindOf(i)}, ${i.categories.join(", ")}): ${i.description}`).join("\n") +
+          hits.map(([, i]) => `- **${i.name}** (${[kindOf(i), ...i.categories.filter((c) => c !== kindOf(i))].join(", ")}): ${i.description}`).join("\n") +
           `\n\nCall get_component with a name for source and install steps.`,
       );
     }
@@ -172,6 +172,23 @@ export function createKineticServer(source: Source) {
       if (!it) {
         const close = (await source.index()).map((i) => [score(n.replace(/-/g, " "), i), i.name] as const).filter(([s]) => s > 0).sort((a, b) => b[0] - a[0]).slice(0, 5).map(([, x]) => x);
         return { ...text(`No component named "${n}".${close.length ? ` Did you mean: ${close.join(", ")}?` : ""}`), isError: true };
+      }
+      if (it.type === "registry:item") {
+        const pages = it.files.filter((f) => f.type !== "registry:component").map((f) => f.target ?? f.path);
+        const replacesHome = pages.includes("app/page.tsx");
+        return text(
+          [
+            `# ${it.title} (template)`,
+            it.description,
+            `Preview: ${site}/templates/${it.name}`,
+            `## Install\n\n\`\`\`bash\nnpx @kineticui/cli add ${it.name}${replacesHome ? " --overwrite" : ""}\n\`\`\`${replacesHome ? "\n\n--overwrite replaces app/page.tsx; omit it to keep existing files." : ""}`,
+            `Creates: ${pages.join(", ")}`,
+            `Uses: ${it.registryDependencies.map((d) => d.replace("@kineticui/", "")).join(", ")}`,
+            it.dependencies.length ? `Extra npm packages: ${it.dependencies.join(", ")}` : "",
+            it.meta?.notes ? `After installing: ${it.meta.notes}` : "",
+            args.includeSource === false ? "" : it.files.map((f) => `## ${f.target}\n\n\`\`\`tsx\n${f.content}\n\`\`\``).join("\n\n"),
+          ].filter(Boolean).join("\n\n"),
+        );
       }
       const exps = exportsOf(it);
       const pkg = pkgOf(it);

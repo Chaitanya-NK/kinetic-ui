@@ -1,0 +1,6 @@
+{
+  "title": "Developer Portfolio",
+  "description": "A personal site for designers and engineers: animated intro with orbiting skills, selected work, experience timeline, skills, peer testimonials and a contact section.",
+  "category": "marketing",
+  "files": [{ "src": "page.tsx", "target": "app/page.tsx", "type": "registry:page" }]
+}

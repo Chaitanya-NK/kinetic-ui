@@ -1,0 +1,12 @@
+{
+  "title": "Docs Site",
+  "description": "A documentation site: docs layout with sidebar and table of contents, a help center with search, and a changelog, under one shared navbar.",
+  "category": "marketing",
+  "files": [
+    { "src": "site-nav.tsx", "target": "site-nav.tsx", "type": "registry:component" },
+    { "src": "docs.tsx", "target": "app/docs/page.tsx", "type": "registry:page" },
+    { "src": "help.tsx", "target": "app/help/page.tsx", "type": "registry:page" },
+    { "src": "changelog.tsx", "target": "app/changelog/page.tsx", "type": "registry:page" }
+  ],
+  "preview": "preview.tsx"
+}

@@ -1,6 +1,6 @@
 import { parseArgs } from "node:util";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve, sep } from "node:path";
 import { spawnSync } from "node:child_process";
 import { createInterface } from "node:readline/promises";
 
@@ -27,7 +27,30 @@ type RegistryItem = {
   dependencies?: string[];
   registryDependencies?: string[];
   files: RegistryFile[];
+  meta?: { template?: boolean; notes?: string };
 };
+
+/** Pages and loose files (templates) are written relative to the project root; everything else goes in the components folder. */
+const ROOT_TYPES = new Set(["registry:page", "registry:file"]);
+
+function targetFor(cwd: string, dir: string, file: RegistryFile) {
+  const name = file.target ?? file.path.split("/").pop()!;
+  if (!ROOT_TYPES.has(file.type)) return join(cwd, dir, name);
+  // create-next-app with --src-dir puts the app router under src/app.
+  const rooted = name.replace(/^~\//, "");
+  if (/^(app|pages)\//.test(rooted) && !existsSync(join(cwd, rooted.split("/")[0]!)) && existsSync(join(cwd, "src"))) return join(cwd, "src", rooted);
+  return join(cwd, rooted);
+}
+
+/** Templates import components as "@/components/kinetic/x". Point that at the configured folder. */
+function fixImports(content: string, cwd: string, dir: string, target: string) {
+  if (!content.includes("@/components/kinetic/")) return content;
+  const normal = dir.replace(/\\/g, "/").replace(/\/$/, "");
+  if (normal === "components/kinetic" || normal === "src/components/kinetic") return content; // the default "@/*" alias already matches
+  let rel = relative(dirname(target), join(cwd, dir)).split(sep).join("/");
+  if (!rel.startsWith(".")) rel = `./${rel}`;
+  return content.replaceAll("@/components/kinetic/", `${rel}/`);
+}
 
 const c = {
   dim: (s: string) => `\x1b[2m${s}\x1b[22m`,
@@ -43,7 +66,7 @@ ${c.lime("◆ kinetic")} ${c.dim("— motion-first components for Next.js + Tail
 
 ${c.bold("Usage")}
   npx @kineticui/cli init                Set up tokens and kinetic.json
-  npx @kineticui/cli add <name...>       Copy components into your project
+  npx @kineticui/cli add <name...>       Copy components, blocks or templates into your project
   npx @kineticui/cli list                Show every available component
 
 ${c.bold("Options")}
@@ -58,6 +81,7 @@ ${c.bold("Options")}
 ${c.bold("Examples")}
   npx @kineticui/cli add button dialog dock
   npx @kineticui/cli add spotlight-card --overwrite
+  npx @kineticui/cli add saas-landing --overwrite   ${c.dim("# replaces app/page.tsx")}
 `;
 
 function readConfig(cwd: string): Config | null {
@@ -189,7 +213,7 @@ async function add(cwd: string, names: string[], flags: Flags) {
   for (const item of items) {
     for (const d of item.dependencies ?? []) deps.add(d);
     for (const file of item.files) {
-      const target = join(cwd, dir, file.target ?? file.path.split("/").pop()!);
+      const target = targetFor(cwd, dir, file);
       if (existsSync(target) && !flags.overwrite) {
         console.log(`${c.dim("•")} ${c.dim("skip")} ${target.replace(cwd + "/", "")} ${c.dim("(exists, use --overwrite)")}`);
         skipped++;
@@ -197,7 +221,7 @@ async function add(cwd: string, names: string[], flags: Flags) {
       }
       if (!flags.dryRun) {
         mkdirSync(dirname(target), { recursive: true });
-        writeFileSync(target, file.content);
+        writeFileSync(target, fixImports(file.content, cwd, dir, target));
       }
       console.log(`${c.green("✓")} ${target.replace(cwd + "/", "")}`);
       written++;
@@ -211,9 +235,16 @@ async function add(cwd: string, names: string[], flags: Flags) {
     if (!byName.has(name) || spec.includes("@", 1)) byName.set(name, spec);
   }
   if (flags.install) install(cwd, [...byName.values()], flags.dryRun);
+  const requested = new Set(names.map(normalise));
   console.log(
-    `\n${c.lime("◆")} Added ${items.map((i) => c.bold(i.name)).join(", ")} ${c.dim(`(${written} written, ${skipped} skipped)`)}`,
+    `\n${c.lime("◆")} Added ${items.filter((i) => requested.has(i.name)).map((i) => c.bold(i.name)).join(", ")} ${c.dim(`(${items.length} items, ${written} files written, ${skipped} skipped)`)}`,
   );
+  for (const t of items.filter((i) => i.meta?.template && requested.has(i.name))) {
+    const pages = t.files.filter((f) => f.type === "registry:page").map((f) => f.target);
+    console.log(`${c.lime("◆")} ${t.title ?? t.name} pages: ${pages.map((p) => c.bold(p ?? "")).join(", ")}`);
+    if (skipped && t.files.some((f) => f.target === "app/page.tsx")) console.log(c.yellow(`  app/page.tsx already existed. Re-run with --overwrite to replace it.`));
+    if (t.meta?.notes) console.log(`  ${t.meta.notes}`);
+  }
 }
 
 async function list(cwd: string, flags: Flags) {

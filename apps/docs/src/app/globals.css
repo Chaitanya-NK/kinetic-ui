@@ -5,6 +5,7 @@
 @source "../../../../packages/ui/src";
 @source "../../../../packages/motion/src";
 @source "../../../../packages/blocks/src";
+@source "../../../../templates";
 
 @theme {
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;

@@ -1,0 +1,43 @@
+{
+  "title": "SaaS Dashboard",
+  "description": "A multi-page app shell: overview dashboard, users table, team roles, billing and settings, linked by a shared top navigation.",
+  "category": "app",
+  "files": [
+    {
+      "src": "dashboard-frame.tsx",
+      "target": "dashboard-frame.tsx",
+      "type": "registry:component"
+    },
+    {
+      "src": "layout.tsx",
+      "target": "app/dashboard/layout.tsx",
+      "type": "registry:page"
+    },
+    {
+      "src": "page.tsx",
+      "target": "app/dashboard/page.tsx",
+      "type": "registry:page"
+    },
+    {
+      "src": "users.tsx",
+      "target": "app/dashboard/users/page.tsx",
+      "type": "registry:page"
+    },
+    {
+      "src": "team.tsx",
+      "target": "app/dashboard/team/page.tsx",
+      "type": "registry:page"
+    },
+    {
+      "src": "billing.tsx",
+      "target": "app/dashboard/billing/page.tsx",
+      "type": "registry:page"
+    },
+    {
+      "src": "settings.tsx",
+      "target": "app/dashboard/settings/page.tsx",
+      "type": "registry:page"
+    }
+  ],
+  "preview": "preview.tsx"
+}

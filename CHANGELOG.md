@@ -10,6 +10,8 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 - AI: `AIChat` and `MessageParts` for the Vercel AI SDK (pass `useChat()` in; no runtime dependency on the SDK), `useMockChat`, `Conversation` with stick-to-bottom scrolling, `MessageBranch`, `WebPreview`, `ArtifactPanel` and `ContextMeter`.
 - Motion: `AnimatedBeam` / `BeamNode`, `Globe` (canvas, built-in land map), `PhoneMockup` / `LaptopMockup` / `TabletMockup` / `BrowserMockup`, `AuroraBackground`, `Particles`, `Meteors`, `GradientText`, `BlurText`, `OrbitingCircles` and `ScrollShowcase`.
 - Charts: `RadarChart`, `ScatterChart` (bubbles, trend lines), `Gauge`, `Treemap` (drilldown), `CandlestickChart` (volume, moving averages) and `BarList`. `charts` now also exports `ChartTooltip`, `useChartSize` and `defaultFormat`.
+- Templates: `saas-landing`, `portfolio`, `saas-dashboard`, `ai-chatbot` and `docs-site`, installed with `kinetic add <name>` and previewed at `/templates`.
+- CLI: installs template pages at the project root (or `src/app`) and points their imports at your components folder.
 - `@kineticui/mcp`: MCP server for AI coding tools (`npx -y @kineticui/mcp`), also hosted at `/mcp` on the docs site. Tools: search, list, get component, install command and setup.
 - Docs: usage snippets on component pages, an AI tools page, `llms.txt`, `llms-full.txt` and per-item Markdown at `/md/<name>.md`. Registry items now carry `meta.package` and `meta.exports`.
 

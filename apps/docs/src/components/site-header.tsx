@@ -14,6 +14,7 @@ const nav = [
   { href: "/docs", label: "Docs" },
   { href: "/components", label: "Components" },
   { href: "/blocks", label: "Blocks" },
+  { href: "/templates", label: "Templates" },
   { href: "/icons", label: "Icons" },
   { href: "/themes", label: "Themes" },
 ];
@@ -45,6 +46,8 @@ export function SiteHeader() {
       onSelect: () => router.push(`/components/${e.name}`),
     })),
     { id: "all-blocks", label: "All blocks", group: "Pages", icon: <LayersIcon />, onSelect: () => router.push("/blocks") },
+    { id: "templates", label: "Templates", group: "Pages", icon: <LayersIcon />, onSelect: () => router.push("/templates") },
+    { id: "ai-tools", label: "AI tools & MCP", group: "Pages", icon: <BoltIcon />, onSelect: () => router.push("/docs/ai") },
     ...blocks.map((e) => ({
       id: `block-${e.name}`,
       label: e.title,
@@ -66,12 +69,12 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
         <div className="flex items-center gap-8">
-          <Link href="/" className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-tight">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5 whitespace-nowrap font-display text-lg font-semibold tracking-tight">
             <Logo />
             Kinetic UI
             <span className="rounded-full border border-border-strong px-2 py-0.5 font-mono text-[10px] font-normal text-muted">v0.1</span>
           </Link>
-          <nav aria-label="Main" className="hidden gap-5 text-sm md:flex lg:gap-6">
+          <nav aria-label="Main" className="hidden gap-5 whitespace-nowrap text-sm lg:flex xl:gap-6">
             {nav.map((n) => (
               <Link
                 key={n.href}
@@ -87,14 +90,14 @@ export function SiteHeader() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="hidden h-9 items-center gap-6 rounded-[10px] border border-border bg-surface px-3 text-sm text-subtle transition-colors hover:text-muted lg:flex"
+            className="hidden h-9 items-center gap-6 rounded-[10px] border border-border bg-surface px-3 text-sm text-subtle transition-colors hover:text-muted xl:flex"
           >
             <span className="flex items-center gap-2">
               <SearchIcon size={14} /> Search components
             </span>
             <Kbd>⌘K</Kbd>
           </button>
-          <Button variant="ghost" size="icon-sm" aria-label="Search" className="lg:hidden" onClick={() => setOpen(true)}>
+          <Button variant="ghost" size="icon-sm" aria-label="Search" className="xl:hidden" onClick={() => setOpen(true)}>
             <SearchIcon size={16} />
           </Button>
           <DropdownMenu>
@@ -126,7 +129,7 @@ export function SiteHeader() {
             </a>
           </Button>
           <MobileMenu
-            className="md:hidden"
+            className="lg:hidden"
             logo={<span className="flex items-center gap-2.5 font-display text-lg font-semibold"><Logo /> Kinetic UI</span>}
             links={nav.map((n) => ({ ...n, active: pathname.startsWith(n.href) }))}
             actions={

@@ -14,6 +14,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const pub = join(root, "apps/docs/public");
 const site = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://kinetic-ui.chaitanya-nk.com").replace(/\/$/, "");
 const registry = JSON.parse(readFileSync(join(root, "apps/docs/src/generated/registry.json"), "utf8"));
+const templates = existsSync(join(root, "apps/docs/src/generated/templates.json")) ? JSON.parse(readFileSync(join(root, "apps/docs/src/generated/templates.json"), "utf8")) : [];
 const props = JSON.parse(readFileSync(join(root, "apps/docs/src/generated/props.json"), "utf8"));
 let usage = {};
 try {
@@ -54,6 +55,10 @@ const index = [
   "## Blocks",
   "",
   ...blocks.map((r) => `- [${r.title}](${site}/md/${r.name}.md): ${r.description}`),
+  "",
+  "## Templates",
+  "",
+  ...templates.map((t) => `- [${t.title}](${site}/templates/${t.name}): ${t.description} Install: \`npx @kineticui/cli add ${t.name}\``),
   "",
 ].join("\n");
 

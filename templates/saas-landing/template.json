@@ -1,0 +1,6 @@
+{
+  "title": "SaaS Landing Page",
+  "description": "A complete product landing page: floating navbar, gradient hero, logo cloud, feature bento, scroll-in product shot, testimonials, pricing, FAQ and a big footer CTA.",
+  "category": "marketing",
+  "files": [{ "src": "page.tsx", "target": "app/page.tsx", "type": "registry:page" }]
+}

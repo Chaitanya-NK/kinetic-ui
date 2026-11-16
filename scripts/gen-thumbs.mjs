@@ -4,7 +4,7 @@
 //   npm i --no-save playwright && npx playwright install chromium   (once)
 //   node scripts/gen-thumbs.mjs [http://localhost:3000] [slug ...]
 //
-// Writes apps/docs/public/thumbs/{c,b}/<slug>.webp and apps/docs/src/lib/thumbs.json.
+// Writes apps/docs/public/thumbs/{c,b,t}/<slug>.webp and apps/docs/src/lib/thumbs.json.
 // Run it again after adding or visually changing a component or block.
 import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -24,12 +24,15 @@ try {
 
 const index = JSON.parse(readFileSync(`${root}apps/docs/src/generated/index.json`, "utf8"));
 const out = `${root}apps/docs/public/thumbs`;
-for (const d of ["c", "b"]) mkdirSync(`${out}/${d}`, { recursive: true });
+for (const d of ["c", "b", "t"]) mkdirSync(`${out}/${d}`, { recursive: true });
 
-const jobs = index
+const templateList = existsSync(`${root}apps/docs/src/generated/templates.json`) ? JSON.parse(readFileSync(`${root}apps/docs/src/generated/templates.json`, "utf8")) : [];
+const jobs = [...index, ...templateList.map((t) => ({ name: t.name, type: "template" }))]
   .filter((e) => !only.size || only.has(e.name))
   .map((e) =>
-    e.type === "registry:block"
+    e.type === "template"
+      ? { name: e.name, dir: "t", url: `${base}/template-preview/${e.name}`, viewport: { width: 1440, height: 900 } }
+      : e.type === "registry:block"
       ? { name: e.name, dir: "b", url: `${base}/preview/${e.name}`, viewport: { width: 1440, height: 900 } }
       : { name: e.name, dir: "c", url: `${base}/demo/${e.name}`, viewport: { width: 1000, height: 625 } },
   );
@@ -72,5 +75,5 @@ await browser.close();
 
 // Manifest of slugs that have a thumbnail, so the site can fall back gracefully.
 const list = (d) => (existsSync(`${out}/${d}`) ? readdirSync(`${out}/${d}`).filter((f) => f.endsWith(".webp")).map((f) => f.slice(0, -5)).sort() : []);
-writeFileSync(`${root}apps/docs/src/lib/thumbs.json`, `${JSON.stringify({ components: list("c"), blocks: list("b") }, null, 2)}\n`);
+writeFileSync(`${root}apps/docs/src/lib/thumbs.json`, `${JSON.stringify({ components: list("c"), blocks: list("b"), templates: list("t") }, null, 2)}\n`);
 console.log(`\n✓ ${done} thumbnails → apps/docs/public/thumbs`);

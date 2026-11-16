@@ -1,4 +1,5 @@
 import registry from "@/generated/registry.json";
+import templateData from "@/generated/templates.json";
 import { createKineticServer, type IndexItem, type JsonRpcMessage, type RegistryItem } from "@kineticui/mcp/core";
 import { site } from "@/lib/site";
 import { usage } from "@/lib/usage";
@@ -8,7 +9,18 @@ import { usage } from "@/lib/usage";
  * Every request is answered with a plain JSON response, which the spec allows instead of SSE.
  */
 
-const items = registry as unknown as RegistryItem[];
+const templateItems: RegistryItem[] = (templateData as { name: string; title: string; description: string; category: string; notes: string | null; uses: string[]; dependencies: string[]; files: { type: string; target: string; content: string }[] }[]).map((t) => ({
+  name: t.name,
+  type: "registry:item",
+  title: t.title,
+  description: t.description,
+  categories: ["template", t.category],
+  dependencies: t.dependencies,
+  registryDependencies: t.uses.map((u) => `@kineticui/${u}`),
+  files: t.files.map((f) => ({ path: f.target, target: f.target, type: f.type, content: f.content })),
+  meta: { template: true, ...(t.notes ? { notes: t.notes } : {}) },
+}));
+const items = [...(registry as unknown as RegistryItem[]), ...templateItems];
 const byName = new Map(items.map((i) => [i.name, i]));
 const server = createKineticServer({
   siteUrl: site.url,

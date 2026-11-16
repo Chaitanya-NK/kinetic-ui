@@ -17,11 +17,12 @@ Both channels are built from the same files in `packages/`, so they never drift 
 | Package | What's inside |
 |---|---|
 | [`@kineticui/core`](packages/core) | Design tokens (`styles.css`), six theme presets, `createTheme()`, `cn()`, hooks, `ThemeProvider` (`@kineticui/core/theme`) |
-| [`@kineticui/ui`](packages/ui) | 150 component files: forms, editors, navigation, overlays, data display (tables, charts, Kanban, Gantt, maps), AI (chat, tool calls), collaboration, social, media, mobile, contact |
-| [`@kineticui/motion`](packages/motion) | 14 effects: Spotlight Card, Border Beam, Marquee, Typewriter, Text Scramble, Parallax, Confetti… |
+| [`@kineticui/ui`](packages/ui) | 170 component files: forms (plus a React Hook Form layer at `@kineticui/ui/form`), editors, navigation, overlays, data display (virtualised tables, 12 chart types, Kanban, Gantt, maps), AI (Vercel AI SDK chat, artifacts, web preview), collaboration, social, media, mobile, contact |
+| [`@kineticui/motion`](packages/motion) | 24 effects: Globe, Animated Beam, device mockups, Aurora, Particles, Scroll Showcase, Spotlight Card, Marquee, Text Scramble, Confetti… |
 | [`@kineticui/blocks`](packages/blocks) | 78 ready-made blocks: app screens (auth, dashboard, billing, admin, API keys), marketing pages (heroes, pricing, blog, docs, careers, case study), commerce screens and personal-site widgets |
 | [`@kineticui/icons`](packages/icons) | 348 original 24 px stroke icons as React components, plus `<Icon name>` and `iconNames` |
-| [`@kineticui/cli`](packages/cli) | `kinetic init`, `kinetic add <name>`, `kinetic list` |
+| [`@kineticui/cli`](packages/cli) | `kinetic init`, `kinetic add <name>` (components, blocks and templates), `kinetic list` |
+| [`@kineticui/mcp`](packages/mcp) | MCP server so Claude, Cursor and VS Code can search and install components (also hosted at `/mcp`) |
 
 ## Use it in your app
 
@@ -30,6 +31,12 @@ Both channels are built from the same files in `packages/`, so they never drift 
 ```bash
 npx @kineticui/cli init          # adds tokens to globals.css, writes kinetic.json
 npx @kineticui/cli add button dialog dock
+```
+
+Or start from a whole page or app ([templates](https://kinetic-ui.chaitanya-nk.com/templates)):
+
+```bash
+npx @kineticui/cli add saas-landing --overwrite   # also: portfolio, saas-dashboard, ai-chatbot, docs-site
 ```
 
 ### Option B — npm
@@ -98,8 +105,10 @@ kinetic-ui/
 │   ├── motion/     effects        ─┐
 │   ├── ui/         components     ─┤
 │   ├── blocks/     sections/screens─┴─ single source for npm AND the registry
-│   └── cli/        `kinetic` CLI
-├── apps/docs/      Next.js docs site — also serves the registry at /r/*.json
+│   ├── cli/        `kinetic` CLI
+│   └── mcp/        MCP server (stdio + core reused by the docs' /mcp endpoint)
+├── templates/      starter templates: pages built from blocks, installed with `kinetic add`
+├── apps/docs/      Next.js docs site — serves the registry at /r/*.json, /mcp and llms.txt
 ├── scripts/build-registry.mjs     turns package sources into registry JSON
 └── registry.meta.json             titles, descriptions and categories
 ```
@@ -143,6 +152,13 @@ Commit the new `.webp` files and `apps/docs/src/lib/thumbs.json`. Anything witho
 4. It appears at `/blocks/my-block` with a desktop/tablet/mobile preview.
 
 Dependencies are detected automatically from your `import` lines.
+
+### Add a new template
+
+1. Create `templates/my-template/` with the page files, written with normal `@kineticui/*` imports, and a `template.json` listing each file's `src`, `target` (for example `app/page.tsx`) and `type` (`registry:page`, `registry:file` for routes, or `registry:component` for helpers that go in the components folder).
+2. If a page needs routing or an API to render, add a `preview.tsx` that shows the same UI without them and set `"preview"` in `template.json`.
+3. Register the preview in `apps/docs/src/templates/previews.tsx`.
+4. `npm run dev`: it appears at `/templates/my-template` and installs with `npx @kineticui/cli add my-template`.
 
 ## Deploy the docs + registry to Vercel
 
