@@ -2,6 +2,12 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`) share one version number.
 
+## [Unreleased]
+
+### Added
+- `@kineticui/ui/form`: `Form`, `FormField`, `FormSubmit`, `FormErrorSummary` built on React Hook Form (optional peer dependency); works with zod, valibot or any resolver.
+- `SortableList` with keyboard reordering, `ResizablePanelGroup` / `ResizablePanel` / `ResizableHandle`, `VirtualList` and `VirtualTable`, `ButtonGroup`, `Menubar`, `ScrollArea`, `Collapsible` and `TreeSelect`.
+
 ## [0.1.1] — 2026-11-15
 
 ### Fixed

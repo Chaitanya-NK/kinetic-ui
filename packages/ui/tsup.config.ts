@@ -1,7 +1,7 @@
 import { defineConfig } from "tsup";
 
 export default defineConfig({
-  entry: ["src/index.ts"],
+  entry: ["src/index.ts", "src/form.ts"],
   format: ["esm"],
   dts: true,
   clean: true,
@@ -15,6 +15,7 @@ export default defineConfig({
     "class-variance-authority",
     "@kineticui/core",
     "@kineticui/icons",
+    "react-hook-form",
   ],
   banner: { js: '"use client";' },
 });

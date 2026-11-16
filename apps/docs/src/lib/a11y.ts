@@ -7,6 +7,15 @@ export type A11yNote = { primitive?: string; keys?: [string, string][]; note?: s
 const radix = (primitive: string, keys: [string, string][], note?: string): A11yNote => ({ primitive, keys, note });
 
 export const a11y: Record<string, A11yNote> = {
+  form: { keys: [["Enter", "Submit from any field"]], note: "Each field gets a linked label, aria-invalid and aria-describedby pointing at its error or hint. Errors are announced with role=alert and focus moves to the first invalid field on submit." },
+  "sortable-list": { keys: [["Space / Enter", "Lift or drop the focused item"], ["↑ / ↓", "Move a lifted item"], ["Esc", "Cancel and restore the order"]], note: "Every move is announced through a live region." },
+  resizable: { keys: [["← / → or ↑ / ↓", "Resize by 2%"], ["Shift + arrows", "Resize by 10%"], ["Enter", "Collapse or expand a collapsible panel"], ["Home / End", "Minimum / maximum"]], note: "Handles are role=separator with aria-valuenow. Double-click resets the layout." },
+  "virtual-list": { keys: [["Tab", "Focus the list or a row"], ["Enter", "Activate the focused table row"]], note: "Rows carry aria-setsize / aria-posinset (list) and aria-rowindex (table) so screen readers know the full size." },
+  "button-group": { note: "Rendered as role=group; each child keeps its own semantics. Give icon-only buttons an aria-label." },
+  menubar: radix("Menubar", [["← / →", "Move between menus"], ["↓ / Enter", "Open a menu"], ["→ / ←", "Open / close a submenu"], ["Esc", "Close"]]),
+  "scroll-area": radix("ScrollArea", [["Tab", "Focus the viewport"], ["Arrows / Page keys", "Scroll natively"]]),
+  collapsible: { keys: [["Enter / Space", "Toggle"]], note: "The trigger sets aria-expanded and aria-controls." },
+  "tree-select": { primitive: "Popover", keys: [["↓ / ↑", "Move between options"], ["→ / ←", "Expand / collapse a group"], ["Enter", "Toggle the highlighted option"], ["Type", "Filter the tree"], ["Esc", "Close"]] },
   accordion: radix("Accordion", [["Enter / Space", "Toggle the focused section"], ["↓ / ↑", "Move between headers"], ["Home / End", "First / last header"]]),
   dialog: radix("Dialog", [["Esc", "Close"], ["Tab", "Focus stays inside while open"]], "Focus returns to the trigger on close."),
   "alert-dialog": radix("AlertDialog", [["Esc", "Cancel"], ["Tab", "Focus stays inside while open"]], "Opens with focus on the least destructive action."),

@@ -24,6 +24,7 @@ const meta = JSON.parse(readFileSync(join(root, "registry.meta.json"), "utf8"));
 const sources = [
   { dir: "packages/ui/src/components", pkg: "@kineticui/ui", type: "registry:ui" },
   { dir: "packages/motion/src", pkg: "@kineticui/motion", type: "registry:ui" },
+  { dir: "packages/ui/src/addons", pkg: "@kineticui/ui/form", type: "registry:ui" },
   { dir: "packages/blocks/src/blocks", pkg: "@kineticui/blocks", type: "registry:block" },
 ];
 
@@ -61,7 +62,7 @@ function localizeImports(code) {
 const versions = {};
 for (const p of ["packages/ui", "packages/motion", "packages/blocks"]) {
   const pj = JSON.parse(readFileSync(join(root, p, "package.json"), "utf8"));
-  Object.assign(versions, pj.dependencies);
+  Object.assign(versions, pj.dependencies, pj.peerDependencies);
 }
 const IGNORE = new Set(["react", "react-dom"]);
 

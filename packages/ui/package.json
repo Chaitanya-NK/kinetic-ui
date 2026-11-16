@@ -11,6 +11,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./form": {
+      "types": "./dist/form.d.ts",
+      "import": "./dist/form.js"
     }
   },
   "files": [
@@ -33,13 +37,17 @@
   },
   "peerDependencies": {
     "react": ">=18",
-    "react-dom": ">=18"
+    "react-dom": ">=18",
+    "react-hook-form": "^7.55.0"
   },
   "devDependencies": {
+    "@hookform/resolvers": "^7.0.6",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "react-hook-form": "^7.92.0",
+    "zod": "^4.6.7"
   },
   "keywords": [
     "react",
@@ -60,5 +68,10 @@
     "access": "public"
   },
   "homepage": "https://kinetic-ui.chaitanya-nk.com",
-  "bugs": "https://github.com/Chaitanya-NK/kinetic-ui/issues"
+  "bugs": "https://github.com/Chaitanya-NK/kinetic-ui/issues",
+  "peerDependenciesMeta": {
+    "react-hook-form": {
+      "optional": true
+    }
+  }
 }
