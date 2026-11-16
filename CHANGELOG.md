@@ -1,12 +1,17 @@
 # Changelog
 
-All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`) share one version number.
+All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`) share one version number.
 
 ## [Unreleased]
 
 ### Added
 - `@kineticui/ui/form`: `Form`, `FormField`, `FormSubmit`, `FormErrorSummary` built on React Hook Form (optional peer dependency); works with zod, valibot or any resolver.
 - `SortableList` with keyboard reordering, `ResizablePanelGroup` / `ResizablePanel` / `ResizableHandle`, `VirtualList` and `VirtualTable`, `ButtonGroup`, `Menubar`, `ScrollArea`, `Collapsible` and `TreeSelect`.
+- AI: `AIChat` and `MessageParts` for the Vercel AI SDK (pass `useChat()` in; no runtime dependency on the SDK), `useMockChat`, `Conversation` with stick-to-bottom scrolling, `MessageBranch`, `WebPreview`, `ArtifactPanel` and `ContextMeter`.
+- Motion: `AnimatedBeam` / `BeamNode`, `Globe` (canvas, built-in land map), `PhoneMockup` / `LaptopMockup` / `TabletMockup` / `BrowserMockup`, `AuroraBackground`, `Particles`, `Meteors`, `GradientText`, `BlurText`, `OrbitingCircles` and `ScrollShowcase`.
+- Charts: `RadarChart`, `ScatterChart` (bubbles, trend lines), `Gauge`, `Treemap` (drilldown), `CandlestickChart` (volume, moving averages) and `BarList`. `charts` now also exports `ChartTooltip`, `useChartSize` and `defaultFormat`.
+- `@kineticui/mcp`: MCP server for AI coding tools (`npx -y @kineticui/mcp`), also hosted at `/mcp` on the docs site. Tools: search, list, get component, install command and setup.
+- Docs: usage snippets on component pages, an AI tools page, `llms.txt`, `llms-full.txt` and per-item Markdown at `/md/<name>.md`. Registry items now carry `meta.package` and `meta.exports`.
 
 ## [0.1.1] — 2026-11-15
 
