@@ -17,6 +17,24 @@ html {
   scroll-behavior: smooth;
 }
 
+/*
+ * Large monitors: grow the whole interface instead of leaving a narrow column in the middle.
+ * Everything sized in rem (type, spacing, max-widths) scales with the root font size, so new layout
+ * should prefer rem over px. --kn-ui-scale holds the same ratio for anything that has to stay in px.
+ */
+@media (min-width: 1800px) {
+  html { font-size: 17px; --kn-ui-scale: 1.0625; }
+}
+@media (min-width: 2100px) {
+  html { font-size: 18.5px; --kn-ui-scale: 1.156; }
+}
+@media (min-width: 2400px) {
+  html { font-size: 20px; --kn-ui-scale: 1.25; }
+}
+@media (min-width: 3200px) {
+  html { font-size: 24px; --kn-ui-scale: 1.5; }
+}
+
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;

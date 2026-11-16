@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useMotionValue, useSpring, useTransform, type 
 import { AvatarStack, Badge, Button, Sparkline, Switch, TypingIndicator } from "@kineticui/ui";
 import { BorderBeam, GridBackground } from "@kineticui/motion";
 import { ArrowRightIcon, CheckIcon, GitBranchIcon, SparkleIcon } from "@kineticui/icons";
+import { site } from "@/lib/site";
 import { CopyButton } from "@/components/code-block";
 
 const installs = [
@@ -93,11 +94,11 @@ function LiveStack() {
         my.set(((e.clientY - r.top) / r.height - 0.5) * 2);
       }}
       onPointerLeave={() => { mx.set(0); my.set(0); }}
-      className="relative h-[460px] w-[540px] select-none [&_*]:pointer-events-none"
+      className="relative h-[28.75rem] w-[33.75rem] select-none [&_*]:pointer-events-none"
     >
-      <div className="absolute inset-10 rounded-full bg-accent/15 blur-[90px]" />
+      <div className="absolute inset-10 rounded-full bg-accent/15 blur-[5.625rem]" />
 
-      <Float px={px} py={py} depth={14} delay={0.15} className="left-0 top-6 w-[260px]">
+      <Float px={px} py={py} depth={14} delay={0.15} className="left-0 top-6 w-[16.25rem]">
         <div className="flex flex-col gap-2 p-4">
           <span className="text-xs text-subtle">Revenue</span>
           <div className="flex items-end justify-between gap-3">
@@ -108,8 +109,8 @@ function LiveStack() {
         </div>
       </Float>
 
-      <Float px={px} py={py} depth={22} delay={0.3} className="right-0 top-0 w-[250px]">
-        <div className="relative h-[68px] overflow-hidden">
+      <Float px={px} py={py} depth={22} delay={0.3} className="right-0 top-0 w-[15.625rem]">
+        <div className="relative h-[4.25rem] overflow-hidden">
           <AnimatePresence mode="popLayout" initial={false}>
             <motion.div key={toast} initial={{ y: -40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: 30, opacity: 0, scale: 0.95 }} transition={{ type: "spring", stiffness: 380, damping: 28 }} className="absolute inset-0 flex items-center gap-3 px-4">
               <span className={`flex size-8 shrink-0 items-center justify-center rounded-full text-background ${cur.tone}`}><CheckIcon size={15} strokeWidth={3} /></span>
@@ -122,7 +123,7 @@ function LiveStack() {
         </div>
       </Float>
 
-      <Float px={px} py={py} depth={30} delay={0.45} className="left-[18%] top-[168px] w-[330px]">
+      <Float px={px} py={py} depth={30} delay={0.45} className="left-[18%] top-[10.5rem] w-[20.625rem]">
         <div className="flex flex-col gap-3 p-4">
           <div className="flex items-center gap-2 text-xs text-subtle"><SparkleIcon size={13} className="text-accent" /> Assistant</div>
           <p className="text-sm leading-relaxed">Added a spring to the drawer. It now follows your finger and settles where you let go.</p>
@@ -131,14 +132,14 @@ function LiveStack() {
               {typing ? (
                 <motion.div key="t" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}><TypingIndicator names={["Lena"]} /></motion.div>
               ) : (
-                <motion.span key="s" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5 font-mono text-[11px] text-subtle"><GitBranchIcon size={12} /> feat/drawer-spring · 2 files</motion.span>
+                <motion.span key="s" initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }} className="flex items-center gap-1.5 font-mono text-[0.6875rem] text-subtle"><GitBranchIcon size={12} /> feat/drawer-spring · 2 files</motion.span>
               )}
             </AnimatePresence>
           </div>
         </div>
       </Float>
 
-      <Float px={px} py={py} depth={18} delay={0.6} className="bottom-6 left-0 w-[230px]">
+      <Float px={px} py={py} depth={18} delay={0.6} className="bottom-6 left-0 w-[14.375rem]">
         <div className="flex items-center gap-3 p-4">
           <div className="flex flex-1 flex-col">
             <span className="text-sm font-medium">Email alerts</span>
@@ -148,7 +149,7 @@ function LiveStack() {
         </div>
       </Float>
 
-      <Float px={px} py={py} depth={26} delay={0.75} className="bottom-0 right-2 w-[250px]">
+      <Float px={px} py={py} depth={26} delay={0.75} className="bottom-0 right-2 w-[15.625rem]">
         <div className="relative overflow-hidden rounded-2xl p-4">
           <BorderBeam />
           <div className="flex items-center justify-between">
@@ -166,17 +167,17 @@ function LiveStack() {
   );
 }
 
-export function Hero({ counts }: { counts: { components: number; blocks: number; icons: number } }) {
+export function Hero({ counts }: { counts: { components: number; blocks: number; icons: number; templates: number } }) {
   return (
     <section className="relative overflow-hidden border-b border-border">
       <GridBackground />
-      <div className="pointer-events-none absolute -top-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[32rem] w-[56rem] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
       <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-4 pb-20 pt-16 sm:px-6 sm:pt-24 lg:grid-cols-[1.05fr_1fr] lg:pb-28">
         <div className="flex flex-col items-center gap-7 text-center lg:items-start lg:text-left">
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <Link href="/docs" className="group flex items-center gap-2 rounded-full border border-border-strong bg-surface/70 py-1 pl-1 pr-3 text-sm text-muted backdrop-blur transition-colors hover:text-foreground">
-              <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-bold text-accent-foreground">v0.1</span>
-              {counts.components} components · {counts.blocks} blocks, free and open source
+              <span className="rounded-full bg-accent px-2 py-0.5 text-xs font-bold text-accent-foreground">v{site.version}</span>
+              {counts.components} components · {counts.blocks} blocks · {counts.templates} templates, free and open source
               <ArrowRightIcon size={13} className="transition-transform group-hover:translate-x-0.5" />
             </Link>
           </motion.div>
@@ -210,7 +211,7 @@ export function Hero({ counts }: { counts: { components: number; blocks: number;
           </motion.div>
         </div>
         {/* Laid out at desktop size, then scaled as one piece on small screens so the cards never collide. */}
-        <div className="relative mx-auto h-[310px] w-full max-w-[540px] sm:h-[460px]">
+        <div className="relative mx-auto h-[310px] w-full max-w-[540px] sm:h-[28.75rem] sm:max-w-[33.75rem]">
           <div className="absolute left-1/2 top-0 origin-top -translate-x-1/2 scale-[0.66] sm:scale-100">
             <LiveStack />
           </div>

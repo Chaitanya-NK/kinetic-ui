@@ -25,8 +25,9 @@ for (const p of packages) {
 const mcpCore = `${root}packages/mcp/src/core.ts`;
 writeFileSync(mcpCore, readFileSync(mcpCore, "utf8").replace(/(const SERVER = \{[^}]*version: ")[^"]+(")/, `$1${version}$2`));
 
-const header = `${root}apps/docs/src/components/site-header.tsx`;
+// The docs show "v<major>.<minor>" in the header and on the homepage.
+const siteFile = `${root}apps/docs/src/lib/site.ts`;
 const [major, minor] = version.split(".");
-writeFileSync(header, readFileSync(header, "utf8").replace(/>v\d+\.\d+(\.\d+)?(-[\w.]+)?</, `>v${major}.${minor}<`));
+writeFileSync(siteFile, readFileSync(siteFile, "utf8").replace(/version: "[^"]*"/, `version: "${major}.${minor}"`));
 
 console.log(`✓ Set ${packages.length} packages to ${version}. Run npm install to refresh the lockfile, then update CHANGELOG.md.`);

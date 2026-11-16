@@ -22,17 +22,18 @@ function Reveal({ children, className, delay = 0 }: { children: React.ReactNode;
   );
 }
 
-export function StatsBand({ counts }: { counts: { components: number; blocks: number; icons: number; themes: number } }) {
+export function StatsBand({ counts }: { counts: { components: number; blocks: number; icons: number; themes: number; templates: number } }) {
   const items = [
     [counts.components, "components", "Forms, editors, data, AI, media and more"],
     [counts.blocks, "blocks", "Dashboards, pricing, blogs and full app screens"],
+    [counts.templates, "templates", "Whole sites and apps in one command"],
     [counts.icons, "icons", "Original 24 px strokes on one grid"],
     [counts.themes, "themes", "Plus a live editor that exports CSS"],
   ] as const;
   const stack = ["React 19", "Next.js 16", "Tailwind CSS v4", "Radix", "Motion", "TypeScript"];
   return (
     <section className="border-b border-border bg-surface/40">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-px bg-border lg:grid-cols-5 [&>*:last-child]:col-span-2 lg:[&>*:last-child]:col-span-1">
         {items.map(([n, label, hint]) => (
           <div key={label} className="flex flex-col gap-1 bg-background px-6 py-8 sm:px-8">
             <span className="font-display text-4xl font-semibold tracking-tight sm:text-5xl"><NumberTicker value={n} /></span>
@@ -66,7 +67,7 @@ export function BlocksMarquee({ rows, total }: { rows: [BlockCard[], BlockCard[]
         {rows.map((row, i) => (
           <Marquee key={i} reverse={i === 1} duration={i ? 70 : 60} pauseOnHover gap="1.25rem">
             {row.map((b) => (
-              <Link key={b.name} href={`/blocks/${b.name}`} className="group flex w-[360px] shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-accent sm:w-[420px]">
+              <Link key={b.name} href={`/blocks/${b.name}`} className="group flex w-[22.5rem] shrink-0 flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors hover:border-accent sm:w-[26.25rem]">
                 <div className="aspect-[16/10] overflow-hidden bg-background">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={b.src} alt="" loading="lazy" className="size-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.04]" />
@@ -86,6 +87,52 @@ export function BlocksMarquee({ rows, total }: { rows: [BlockCard[], BlockCard[]
 
 const presetOrder: ThemePreset[] = ["midnight", "sunset", "paper", "forest", "ocean", "mono"];
 const kineticDark: ThemeSeed = { mode: "dark", background: "#0a0a0b", foreground: "#f4f4f5", accent: "#c6f432" };
+
+export type TemplateCard = { name: string; title: string; description: string; src: string | null; pages: number };
+
+/** Homepage section: the starter templates, landing page featured large. */
+export function TemplatesShowcase({ items }: { items: TemplateCard[] }) {
+  const [lead, ...rest] = items;
+  if (!lead) return null;
+  const card = (t: TemplateCard, big = false) => (
+    <Link
+      key={t.name}
+      href={`/templates/${t.name}`}
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-border bg-surface transition-[border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-accent"
+    >
+      <div className={`relative overflow-hidden border-b border-border bg-background ${big ? "aspect-[16/10] lg:aspect-auto lg:flex-1" : "aspect-[16/10]"}`}>
+        {t.src ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={t.src} alt="" loading="lazy" className="absolute inset-0 size-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.03]" />
+        ) : null}
+      </div>
+      <div className="flex flex-col gap-1 p-5">
+        <span className="flex items-center justify-between font-display text-lg font-semibold tracking-tight">
+          {t.title}
+          <ArrowRightIcon size={16} className="text-subtle transition-transform group-hover:translate-x-0.5 group-hover:text-accent" />
+        </span>
+        {big ? <span className="text-sm text-muted">{t.description}</span> : null}
+        <span className="truncate font-mono text-xs text-subtle">npx @kineticui/cli add {t.name}</span>
+      </div>
+    </Link>
+  );
+  return (
+    <section className="mx-auto mt-28 flex max-w-7xl flex-col gap-10 px-4 sm:px-6">
+      <Reveal className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div className="flex flex-col gap-2">
+          <Kicker>{items.length} TEMPLATES</Kicker>
+          <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">A whole site. <span className="text-accent">One command.</span></h2>
+          <p className="max-w-xl text-muted">Landing page, portfolio, dashboard, AI chatbot and docs site, assembled from the blocks. Install one and change the copy.</p>
+        </div>
+        <Button asChild variant="outline"><Link href="/templates">All templates <ArrowRightIcon size={15} /></Link></Button>
+      </Reveal>
+      <div className="grid gap-5 lg:grid-cols-2">
+        <div className="lg:row-span-2">{card(lead, true)}</div>
+        <div className="grid gap-5 sm:grid-cols-2 lg:col-span-1 lg:row-span-2">{rest.slice(0, 4).map((t) => card(t))}</div>
+      </div>
+    </section>
+  );
+}
 
 export function ThemesShowcase() {
   const [id, setId] = React.useState<ThemePreset | "kinetic">("midnight");
@@ -268,7 +315,7 @@ export function FinalCta({ components }: { components: number }) {
     <section className="mx-auto my-28 max-w-7xl px-4 sm:px-6">
       <div className="relative overflow-hidden rounded-[32px] border border-border bg-surface px-6 py-16 text-center sm:px-12">
         <BorderBeam duration={8} />
-        <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[700px] -translate-x-1/2 rounded-full bg-accent/15 blur-[100px]" />
+        <div className="pointer-events-none absolute -top-32 left-1/2 h-72 w-[44rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[100px]" />
         <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-6">
           <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">Build something that <span className="text-accent">moves.</span></h2>
           <p className="text-lg text-muted">{components} components, free and MIT licensed. Two commands to your first one.</p>

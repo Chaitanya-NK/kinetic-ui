@@ -1,7 +1,8 @@
+import { templates } from "@/lib/templates";
 import { iconNames } from "@kineticui/icons";
 import { HomeShowcase } from "@/components/home-showcase";
 import { Hero } from "@/components/home/hero";
-import { BlocksMarquee, CategoryTiles, FinalCta, IconsStrip, StatsBand, ThemesShowcase, TwoWays, type BlockCard, type CategoryTile } from "@/components/home/sections";
+import { BlocksMarquee, CategoryTiles, FinalCta, IconsStrip, StatsBand, TemplatesShowcase, ThemesShowcase, TwoWays, type BlockCard, type CategoryTile } from "@/components/home/sections";
 import { blocks, byCategory, entries } from "@/lib/site";
 import { thumb } from "@/lib/thumbs";
 
@@ -21,7 +22,7 @@ const featuredBlocks = [
 ];
 
 export default function Home() {
-  const counts = { components: entries.length, blocks: blocks.length, icons: iconNames.length, themes: 6 };
+  const counts = { components: entries.length, blocks: blocks.length, icons: iconNames.length, themes: 6, templates: templates.length };
 
   const cards: BlockCard[] = [...featuredBlocks, ...blocks.map((b) => b.name).filter((n) => !featuredBlocks.includes(n))]
     .map((n) => blocks.find((b) => b.name === n))
@@ -46,6 +47,9 @@ export default function Home() {
       <StatsBand counts={counts} />
       <HomeShowcase />
       <BlocksMarquee rows={rows} total={counts.blocks} />
+      <TemplatesShowcase
+        items={templates.map((t) => ({ name: t.name, title: t.title, description: t.description, src: thumb("t", t.name), pages: t.files.filter((f) => f.type === "registry:page").length }))}
+      />
       <ThemesShowcase />
       <TwoWays />
       <IconsStrip names={featuredIcons} total={counts.icons} />
