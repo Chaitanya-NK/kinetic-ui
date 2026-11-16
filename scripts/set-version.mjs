@@ -21,6 +21,10 @@ for (const p of packages) {
   writeFileSync(file, `${JSON.stringify(pkg, null, 2)}\n`);
 }
 
+// The MCP server reports its version to clients.
+const mcpCore = `${root}packages/mcp/src/core.ts`;
+writeFileSync(mcpCore, readFileSync(mcpCore, "utf8").replace(/(const SERVER = \{[^}]*version: ")[^"]+(")/, `$1${version}$2`));
+
 const header = `${root}apps/docs/src/components/site-header.tsx`;
 const [major, minor] = version.split(".");
 writeFileSync(header, readFileSync(header, "utf8").replace(/>v\d+\.\d+(\.\d+)?(-[\w.]+)?</, `>v${major}.${minor}<`));
