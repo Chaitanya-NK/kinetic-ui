@@ -7,6 +7,12 @@ export type A11yNote = { primitive?: string; keys?: [string, string][]; note?: s
 const radix = (primitive: string, keys: [string, string][], note?: string): A11yNote => ({ primitive, keys, note });
 
 export const a11y: Record<string, A11yNote> = {
+  "ai-chat": { keys: [["Enter", "Send"], ["Shift + Enter", "New line"]], note: "Messages sit in a role=log live region; tool approvals are regular buttons and errors use role=alert." },
+  conversation: { keys: [["Tab", "Focus the log to scroll with arrow keys"]], note: "role=log with aria-live=polite so new messages are announced. The jump button is labelled." },
+  "message-branch": { keys: [["Tab", "Reach the previous / next buttons"]], note: "The version counter is a live region." },
+  "web-preview": { keys: [["Enter", "Load the typed address"]], note: "Device widths are a labelled radio group; the console toggle sets aria-expanded." },
+  "artifact-panel": { keys: [["Esc", "Exit full screen, then close"]], note: "Preview and Code are tabs with aria-selected." },
+  "context-meter": radix("Popover", [["Enter / Space", "Open the breakdown"], ["Esc", "Close"]], "The trigger announces the percentage used."),
   form: { keys: [["Enter", "Submit from any field"]], note: "Each field gets a linked label, aria-invalid and aria-describedby pointing at its error or hint. Errors are announced with role=alert and focus moves to the first invalid field on submit." },
   "sortable-list": { keys: [["Space / Enter", "Lift or drop the focused item"], ["↑ / ↓", "Move a lifted item"], ["Esc", "Cancel and restore the order"]], note: "Every move is announced through a live region." },
   resizable: { keys: [["← / → or ↑ / ↓", "Resize by 2%"], ["Shift + arrows", "Resize by 10%"], ["Enter", "Collapse or expand a collapsible panel"], ["Home / End", "Minimum / maximum"]], note: "Handles are role=separator with aria-valuenow. Double-click resets the layout." },

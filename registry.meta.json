@@ -1336,5 +1336,39 @@
     "category": "forms",
     "description": "Hierarchical picker with search highlighting, tri-state parent checkboxes and animated chips.",
     "height": 420
+  },
+  "ai-chat": {
+    "title": "AI Chat",
+    "category": "ai",
+    "description": "Complete chat for the Vercel AI SDK: pass useChat() in and get streaming text, reasoning, tool calls with approvals, sources, stop, retry and errors. Includes MessageParts and a mock hook.",
+    "height": 640
+  },
+  "conversation": {
+    "title": "Conversation",
+    "category": "ai",
+    "description": "Chat scroll container that follows the stream, lets go when you scroll up and shows a jump-to-latest pill with a new-message count.",
+    "height": 500
+  },
+  "message-branch": {
+    "title": "Message Branch",
+    "category": "ai",
+    "description": "Flip between regenerated answers or edited prompts with a directional blur slide and a 2 / 3 switcher."
+  },
+  "web-preview": {
+    "title": "Web Preview",
+    "category": "ai",
+    "description": "Browser frame for generated apps: address bar, history, device widths, reload, loading skeleton and a console drawer.",
+    "height": 620
+  },
+  "artifact-panel": {
+    "title": "Artifact Panel",
+    "category": "ai",
+    "description": "Side canvas for generated code and documents with preview and code tabs, version history, copy, download and full screen.",
+    "height": 560
+  },
+  "context-meter": {
+    "title": "Context Meter",
+    "category": "ai",
+    "description": "Ring that shows how full the context window is, with token breakdown, estimated cost and a compact action."
   }
 }

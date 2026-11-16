@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { Badge, Breadcrumb } from "@kineticui/ui";
+import { Badge, Breadcrumb, CodeBlock } from "@kineticui/ui";
+import { usage } from "@/lib/usage";
 import { fullEntries, getEntry } from "@/lib/registry";
 import { categories, entries, registryUrl, site } from "@/lib/site";
 import { InstallTabs, Preview } from "@/components/component-view";
@@ -68,6 +69,19 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
             </p>
           ) : null}
         </section>
+
+        {usage[slug] ? (
+          <section className="flex flex-col gap-4">
+            <h2 className="font-display text-2xl font-semibold tracking-tight">Usage</h2>
+            {usage[slug]!.map((u, i) => (
+              <div key={i} className="flex flex-col gap-2">
+                {u.title ? <h3 className="font-medium">{u.title}</h3> : null}
+                {u.note ? <p className="text-sm text-muted">{u.note}</p> : null}
+                <CodeBlock files={{ name: u.title?.match(/\(([^)]+)\)/)?.[1] ?? "example.tsx", code: u.code }} maxHeight={520} />
+              </div>
+            ))}
+          </section>
+        ) : null}
 
         <ApiReference slug={slug} />
 
