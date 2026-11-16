@@ -1370,5 +1370,61 @@
     "title": "Context Meter",
     "category": "ai",
     "description": "Ring that shows how full the context window is, with token breakdown, estimated cost and a compact action."
+  },
+  "animated-beam": {
+    "title": "Animated Beam",
+    "category": "effects",
+    "description": "Curved light beams between elements, for showing data flowing between services, logos or people.",
+    "height": 380
+  },
+  "globe": {
+    "title": "Globe",
+    "category": "effects",
+    "description": "Dotted world globe on canvas with pulsing markers, travelling arcs and drag to spin. No map libraries.",
+    "height": 480
+  },
+  "device-mockup": {
+    "title": "Device Mockups",
+    "category": "marketing",
+    "description": "Phone, laptop, tablet and browser frames for screenshots or live UI.",
+    "height": 1200
+  },
+  "aurora-background": {
+    "title": "Aurora Background",
+    "category": "effects",
+    "description": "Slow northern-lights glow for heroes. CSS only and theme-aware.",
+    "height": 380
+  },
+  "particles": {
+    "title": "Particles",
+    "category": "effects",
+    "description": "Drifting, twinkling particle field that parts around the pointer, with an optional constellation mode."
+  },
+  "meteors": {
+    "title": "Meteors",
+    "category": "effects",
+    "description": "Shooting stars streaking across a card or hero, SSR-safe."
+  },
+  "gradient-text": {
+    "title": "Gradient Text",
+    "category": "effects",
+    "description": "Text filled with a slowly flowing gradient in any colours."
+  },
+  "blur-text": {
+    "title": "Blur Text",
+    "category": "effects",
+    "description": "Headline that resolves from a blur word by word or letter by letter as it scrolls into view."
+  },
+  "orbiting-circles": {
+    "title": "Orbiting Circles",
+    "category": "effects",
+    "description": "Icons orbiting a centre logo on dashed rings, in either direction. CSS only.",
+    "height": 420
+  },
+  "scroll-showcase": {
+    "title": "Scroll Showcase",
+    "category": "marketing",
+    "description": "Product screenshot that swings from tilted to flat as it scrolls into view, with a rising title.",
+    "height": 600
   }
 }

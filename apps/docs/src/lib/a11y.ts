@@ -7,6 +7,11 @@ export type A11yNote = { primitive?: string; keys?: [string, string][]; note?: s
 const radix = (primitive: string, keys: [string, string][], note?: string): A11yNote => ({ primitive, keys, note });
 
 export const a11y: Record<string, A11yNote> = {
+  globe: { note: "Canvas with role=img and an aria-label listing the marker labels. Rotation stops for reduced motion and pauses off screen." },
+  "animated-beam": { note: "Decorative (aria-hidden); the nodes carry the meaning, so label them." },
+  particles: { note: "Decorative (aria-hidden). Particles freeze when reduced motion is on and the loop pauses off screen." },
+  "blur-text": { note: "The full sentence is the element's aria-label so screen readers read it once, not word by word." },
+  "scroll-showcase": { note: "The tilt is skipped entirely when reduced motion is on." },
   "ai-chat": { keys: [["Enter", "Send"], ["Shift + Enter", "New line"]], note: "Messages sit in a role=log live region; tool approvals are regular buttons and errors use role=alert." },
   conversation: { keys: [["Tab", "Focus the log to scroll with arrow keys"]], note: "role=log with aria-live=polite so new messages are announced. The jump button is labelled." },
   "message-branch": { keys: [["Tab", "Reach the previous / next buttons"]], note: "The version counter is a live region." },
