@@ -9,7 +9,7 @@ if (!/^\d+\.\d+\.\d+(-[\w.]+)?$/.test(version ?? "")) {
   process.exit(1);
 }
 const root = fileURLToPath(new URL("..", import.meta.url));
-const packages = ["core", "icons", "motion", "ui", "blocks", "cli"];
+const packages = ["core", "icons", "motion", "ui", "blocks", "cli", "mcp"];
 
 for (const p of packages) {
   const file = `${root}packages/${p}/package.json`;

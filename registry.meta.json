@@ -112,7 +112,7 @@
   "command-palette": {
     "title": "Command Palette",
     "category": "signature",
-    "description": "\u2318K palette with fuzzy search, groups and shortcuts."
+    "description": "⌘K palette with fuzzy search, groups and shortcuts."
   },
   "dock": {
     "title": "Dock",
@@ -127,7 +127,7 @@
   "number-input": {
     "title": "Number Input",
     "category": "forms",
-    "description": "\u2212/+ stepper with arrow-key support and clamping."
+    "description": "−/+ stepper with arrow-key support and clamping."
   },
   "spotlight-card": {
     "title": "Spotlight Card",
@@ -527,7 +527,7 @@
   "nps": {
     "title": "NPS Survey",
     "category": "social",
-    "description": "0\u201310 Net Promoter Score with follow-up and thank-you state."
+    "description": "0–10 Net Promoter Score with follow-up and thank-you state."
   },
   "mood-picker": {
     "title": "Mood Picker",
@@ -663,43 +663,43 @@
     "height": 760
   },
   "hero-centered": {
-    "title": "Hero \u2014 Centered",
+    "title": "Hero — Centered",
     "category": "marketing",
     "description": "Announcement pill, rotating headline word, magnetic CTAs, install command and social proof.",
     "height": 740
   },
   "hero-split": {
-    "title": "Hero \u2014 Split",
+    "title": "Hero — Split",
     "category": "marketing",
     "description": "Copy and email capture beside a tilting live product card.",
     "height": 740
   },
   "hero-gradient-mesh": {
-    "title": "Hero \u2014 Gradient Mesh",
+    "title": "Hero — Gradient Mesh",
     "category": "marketing",
     "description": "Shimmering headline over a slowly drifting blurred gradient mesh.",
     "height": 720
   },
   "hero-product-shot": {
-    "title": "Hero \u2014 Product Shot",
+    "title": "Hero — Product Shot",
     "category": "marketing",
     "description": "Large app screenshot in a browser frame that flattens as you scroll.",
     "height": 1000
   },
   "hero-terminal": {
-    "title": "Hero \u2014 Terminal",
+    "title": "Hero — Terminal",
     "category": "marketing",
     "description": "Developer hero with an auto-typing terminal and install command.",
     "height": 700
   },
   "hero-video": {
-    "title": "Hero \u2014 Video",
+    "title": "Hero — Video",
     "category": "marketing",
     "description": "Full-bleed cinematic hero with a background loop and a film dialog.",
     "height": 720
   },
   "features-bento": {
-    "title": "Features \u2014 Bento",
+    "title": "Features — Bento",
     "category": "marketing",
     "description": "Bento grid of features with live mini-visuals and cursor spotlight.",
     "height": 900
@@ -747,19 +747,19 @@
     "height": 700
   },
   "footer-simple": {
-    "title": "Footer \u2014 Simple",
+    "title": "Footer — Simple",
     "category": "marketing",
     "description": "One-line footer with brand, links and copyright.",
     "height": 200
   },
   "footer-columns": {
-    "title": "Footer \u2014 Columns",
+    "title": "Footer — Columns",
     "category": "marketing",
     "description": "Newsletter, four link columns, socials, status, theme and language.",
     "height": 520
   },
   "footer-big-cta": {
-    "title": "Footer \u2014 Big CTA",
+    "title": "Footer — Big CTA",
     "category": "marketing",
     "description": "Statement footer with an oversized outlined brand word.",
     "height": 640
@@ -893,13 +893,13 @@
   "ai-command-palette": {
     "title": "AI Command Palette",
     "category": "widgets",
-    "description": "\u2318K palette that blends commands with streamed AI answers.",
+    "description": "⌘K palette that blends commands with streamed AI answers.",
     "height": 620
   },
   "terminal-contact": {
     "title": "Terminal Contact",
     "category": "contact",
-    "description": "Portfolio contact card as a macOS terminal: types itself out, then takes commands (help, open, vcard, message\u2026)."
+    "description": "Portfolio contact card as a macOS terminal: types itself out, then takes commands (help, open, vcard, message…)."
   },
   "compose-form": {
     "title": "Compose Form",
@@ -1218,7 +1218,7 @@
   "team-roles": {
     "title": "Team Roles",
     "category": "app",
-    "description": "Roles \u00d7 permissions matrix with locked owner, change highlights and save bar.",
+    "description": "Roles × permissions matrix with locked owner, change highlights and save bar.",
     "height": 900
   },
   "notification-preferences": {
@@ -1254,7 +1254,7 @@
   "resume-cv": {
     "title": "Resume / CV",
     "category": "marketing",
-    "description": "One-page r\u00e9sum\u00e9 that prints cleanly to PDF.",
+    "description": "One-page résumé that prints cleanly to PDF.",
     "height": 1250
   },
   "skills-grid": {

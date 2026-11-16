@@ -1,0 +1,43 @@
+{
+  "name": "@kineticui/mcp",
+  "version": "0.1.1",
+  "description": "MCP server for Kinetic UI: lets Claude, Cursor, VS Code and other AI tools search, read and install Kinetic components.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "kinetic-mcp": "./dist/index.js"
+  },
+  "exports": {
+    ".": "./dist/index.js",
+    "./core": {
+      "types": "./dist/core.d.ts",
+      "import": "./dist/core.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": ["mcp", "model-context-protocol", "react", "components", "kinetic-ui", "shadcn"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chaitanya-NK/kinetic-ui.git",
+    "directory": "packages/mcp"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://kinetic-ui.chaitanya-nk.com/docs/mcp",
+  "bugs": "https://github.com/Chaitanya-NK/kinetic-ui/issues"
+}

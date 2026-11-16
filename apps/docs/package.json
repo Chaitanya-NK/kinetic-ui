@@ -17,6 +17,7 @@
     "@kineticui/blocks": "*",
     "@kineticui/core": "*",
     "@kineticui/icons": "*",
+    "@kineticui/mcp": "*",
     "@kineticui/motion": "*",
     "@kineticui/ui": "*",
     "next": "^16.0.0",

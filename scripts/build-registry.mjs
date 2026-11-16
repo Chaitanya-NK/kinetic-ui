@@ -112,6 +112,7 @@ for (const { dir, pkg, type } of sources) {
       dependencies,
       registryDependencies,
       files: [{ path: `registry/kinetic/${file}`, type, target: file, content }],
+      meta: { package: pkg, exports },
     };
     writeFileSync(join(outDir, `${name}.json`), JSON.stringify(item, null, 2));
     index.push({ name, type, title: item.title, description: item.description, categories: item.categories, ...(m?.height ? { height: m.height } : {}) });

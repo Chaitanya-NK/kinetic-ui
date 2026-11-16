@@ -1,7 +1,7 @@
 {
   "name": "kinetic-ui-monorepo",
   "private": true,
-  "description": "Kinetic UI \u2014 motion-first React components. npm packages + copy-paste registry from one source.",
+  "description": "Kinetic UI — motion-first React components. npm packages + copy-paste registry from one source.",
   "license": "MIT",
   "workspaces": [
     "packages/core",
@@ -10,15 +10,16 @@
     "packages/ui",
     "packages/blocks",
     "packages/cli",
+    "packages/mcp",
     "apps/docs"
   ],
   "scripts": {
-    "build:packages": "node scripts/gen-index.mjs && npm run build -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli && node scripts/gen-theme-css.mjs",
-    "registry": "node scripts/build-registry.mjs && node scripts/gen-props.mjs",
+    "build:packages": "node scripts/gen-index.mjs && npm run build -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli -w @kineticui/mcp && node scripts/gen-theme-css.mjs",
+    "registry": "node scripts/build-registry.mjs && node scripts/gen-props.mjs && node --no-warnings scripts/gen-llms.mjs",
     "build": "npm run build:packages && npm run registry && npm run build -w docs",
     "dev": "npm run build:packages && npm run registry && npm run dev -w docs",
     "typecheck": "npm run typecheck --workspaces --if-present",
-    "release": "npm run build:packages && npm publish -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli --access public",
+    "release": "npm run build:packages && npm publish -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli -w @kineticui/mcp --access public",
     "version:set": "node scripts/set-version.mjs"
   },
   "devDependencies": {
