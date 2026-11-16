@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/ui",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Kinetic UI components — motion-first, accessible React components for Next.js and Tailwind CSS v4.",
   "license": "MIT",
   "type": "module",
@@ -28,8 +28,8 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@kineticui/core": "^0.1.1",
-    "@kineticui/icons": "^0.1.1",
+    "@kineticui/core": "^0.2.0",
+    "@kineticui/icons": "^0.2.0",
     "class-variance-authority": "^0.7.1",
     "cmdk": "^1.1.1",
     "motion": "^12.23.0",

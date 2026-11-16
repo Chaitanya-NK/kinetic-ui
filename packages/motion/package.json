@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/motion",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Kinetic UI effects: spotlight, border beam, marquee, typewriter, confetti and more.",
   "license": "MIT",
   "type": "module",
@@ -24,7 +24,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@kineticui/core": "^0.1.1",
+    "@kineticui/core": "^0.2.0",
     "motion": "^12.23.0"
   },
   "peerDependencies": {

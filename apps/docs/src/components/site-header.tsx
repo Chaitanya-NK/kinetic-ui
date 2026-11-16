@@ -72,7 +72,7 @@ export function SiteHeader() {
           <Link href="/" className="flex shrink-0 items-center gap-2.5 whitespace-nowrap font-display text-lg font-semibold tracking-tight">
             <Logo />
             Kinetic UI
-            <span className="rounded-full border border-border-strong px-2 py-0.5 font-mono text-[10px] font-normal text-muted">v0.1</span>
+            <span className="rounded-full border border-border-strong px-2 py-0.5 font-mono text-[10px] font-normal text-muted">v0.2</span>
           </Link>
           <nav aria-label="Main" className="hidden gap-5 whitespace-nowrap text-sm lg:flex xl:gap-6">
             {nav.map((n) => (

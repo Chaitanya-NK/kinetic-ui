@@ -2,7 +2,7 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`) share one version number.
 
-## [Unreleased]
+## [0.2.0] — 2026-11-16
 
 ### Added
 - `@kineticui/ui/form`: `Form`, `FormField`, `FormSubmit`, `FormErrorSummary` built on React Hook Form (optional peer dependency); works with zod, valibot or any resolver.

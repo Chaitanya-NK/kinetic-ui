@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/mcp",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "MCP server for Kinetic UI: lets Claude, Cursor, VS Code and other AI tools search, read and install Kinetic components.",
   "license": "MIT",
   "type": "module",
@@ -29,7 +29,14 @@
   "engines": {
     "node": ">=20"
   },
-  "keywords": ["mcp", "model-context-protocol", "react", "components", "kinetic-ui", "shadcn"],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "react",
+    "components",
+    "kinetic-ui",
+    "shadcn"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Chaitanya-NK/kinetic-ui.git",
