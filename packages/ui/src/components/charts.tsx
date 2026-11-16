@@ -15,9 +15,10 @@ function niceMax(v: number) {
   return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p;
 }
 
-const defaultFormat = (v: number) => (Math.abs(v) >= 1000 ? `${+(v / 1000).toFixed(1)}k` : String(+v.toFixed(2)));
+export const defaultFormat = (v: number) => (Math.abs(v) >= 1000 ? `${+(v / 1000).toFixed(1)}k` : String(+v.toFixed(2)));
 
-function useSize<T extends HTMLElement>() {
+/** Measures an element's width for responsive charts. */
+export function useChartSize<T extends HTMLElement>() {
   const ref = React.useRef<T>(null);
   const [w, setW] = React.useState(600);
   React.useLayoutEffect(() => {
@@ -31,9 +32,10 @@ function useSize<T extends HTMLElement>() {
   return [ref, w] as const;
 }
 
-type Tip = { x: number; y: number; label: string; rows: { name: string; value: string; color: string }[] } | null;
+export type ChartTip = { x: number; y: number; label: string; rows: { name: string; value: string; color: string }[] } | null;
 
-function Tooltip({ tip }: { tip: Tip }) {
+/** Shared hover tooltip for charts. */
+export function ChartTooltip({ tip }: { tip: ChartTip }) {
   if (!tip) return null;
   return (
     <div
@@ -119,8 +121,8 @@ export function BarChart<T extends Record<string, unknown>>({
   showLegend = true,
   className,
 }: CartesianProps<T> & { stacked?: boolean }) {
-  const [ref, w] = useSize<HTMLDivElement>();
-  const [tip, setTip] = React.useState<Tip>(null);
+  const [ref, w] = useChartSize<HTMLDivElement>();
+  const [tip, setTip] = React.useState<ChartTip>(null);
   const totals = data.map((d) => (stacked ? series.reduce((a, s) => a + Number(d[s.key] ?? 0), 0) : Math.max(...series.map((s) => Number(d[s.key] ?? 0)))));
   const max = niceMax(Math.max(...totals, 0));
   const innerW = w - PAD.left - PAD.right;
@@ -177,7 +179,7 @@ export function BarChart<T extends Record<string, unknown>>({
           );
         })}
       </svg>
-      <Tooltip tip={tip} />
+      <ChartTooltip tip={tip} />
     </div>
   );
 }
@@ -207,7 +209,7 @@ export function LineChart<T extends Record<string, unknown>>({
   showLegend = true,
   className,
 }: CartesianProps<T> & { area?: boolean; curved?: boolean }) {
-  const [ref, w] = useSize<HTMLDivElement>();
+  const [ref, w] = useChartSize<HTMLDivElement>();
   const [hover, setHover] = React.useState<number | null>(null);
   const id = React.useId().replace(/:/g, "");
   const max = niceMax(Math.max(...data.flatMap((d) => series.map((s) => Number(d[s.key] ?? 0))), 0));
@@ -222,7 +224,7 @@ export function LineChart<T extends Record<string, unknown>>({
     setHover(Math.max(0, Math.min(data.length - 1, Math.round((x / innerW) * (data.length - 1)))));
   };
 
-  const tip: Tip =
+  const tip: ChartTip =
     hover === null
       ? null
       : {
@@ -265,7 +267,7 @@ export function LineChart<T extends Record<string, unknown>>({
           </g>
         ) : null}
       </svg>
-      <Tooltip tip={tip} />
+      <ChartTooltip tip={tip} />
     </div>
   );
 }

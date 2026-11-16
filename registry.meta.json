@@ -372,7 +372,7 @@
   "charts": {
     "title": "Charts",
     "category": "data",
-    "description": "Dependency-free SVG bar, line, area, donut, sparkline and funnel charts."
+    "description": "Dependency-free SVG bar, line, area, donut, sparkline and funnel charts, plus the shared tooltip and size helpers."
   },
   "stat-card": {
     "title": "Stat Card",
@@ -1426,5 +1426,40 @@
     "category": "marketing",
     "description": "Product screenshot that swings from tilted to flat as it scrolls into view, with a rising title.",
     "height": 600
+  },
+  "radar-chart": {
+    "title": "Radar Chart",
+    "category": "data",
+    "description": "Spider chart for comparing series across dimensions, with springy polygons and legend highlighting.",
+    "height": 420
+  },
+  "scatter-chart": {
+    "title": "Scatter Chart",
+    "category": "data",
+    "description": "Scatter and bubble chart with least-squares trend lines, crosshair and tooltips.",
+    "height": 380
+  },
+  "gauge": {
+    "title": "Gauge",
+    "category": "data",
+    "description": "Speedometer gauge with coloured zones, a springy needle, counting value and zone label.",
+    "height": 380
+  },
+  "treemap": {
+    "title": "Treemap",
+    "category": "data",
+    "description": "Squarified treemap with hover focus and click-to-zoom drilldown with breadcrumbs.",
+    "height": 460
+  },
+  "candlestick-chart": {
+    "title": "Candlestick Chart",
+    "category": "data",
+    "description": "OHLC candles with volume, moving averages, crosshair price readout and a last-price tag.",
+    "height": 460
+  },
+  "bar-list": {
+    "title": "Bar List",
+    "category": "data",
+    "description": "Ranked horizontal bars with labels inside: top pages, referrers, countries. Show-all toggle and shares."
   }
 }

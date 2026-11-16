@@ -7,6 +7,9 @@ export type A11yNote = { primitive?: string; keys?: [string, string][]; note?: s
 const radix = (primitive: string, keys: [string, string][], note?: string): A11yNote => ({ primitive, keys, note });
 
 export const a11y: Record<string, A11yNote> = {
+  gauge: { note: "role=meter with aria-valuenow, min and max." },
+  treemap: { keys: [["Tab", "Move between tiles"], ["Enter", "Zoom into a group"]], note: "Each tile is a labelled button with its value and share; the breadcrumb is a nav." },
+  "bar-list": { note: "Rows with href render as links and with onItemClick as buttons, so they're reachable by keyboard." },
   globe: { note: "Canvas with role=img and an aria-label listing the marker labels. Rotation stops for reduced motion and pauses off screen." },
   "animated-beam": { note: "Decorative (aria-hidden); the nodes carry the meaning, so label them." },
   particles: { note: "Decorative (aria-hidden). Particles freeze when reduced motion is on and the loop pauses off screen." },
