@@ -7,6 +7,9 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 ### Added
 - Signature components: `DynamicIsland` (with `islandMusic`, `islandTimer`, `islandUpload`, `islandCall` and `islandThinking` presets), `MorphSurface` (a pill that morphs into a panel and back), `useThemeRipple` / `ThemeRippleButton` (theme changes spread out from the pointer using View Transitions), and UI sounds (`SoundProvider`, `useSound`, `playSound`, `SoundToggle`: synthesised with WebAudio, no audio files, off by default).
 - Playful components: `HoloCard` (holographic foil with rainbow, sparkle and line patterns), `Ticket` (perforated QR stub you drag to tear off), `GravityBox` / `GravityPill` (tags that tumble and stack with physics; drag and throw), `Stories` / `StoryPlayer` / `StoryRing` (story rings and a player with tap, hold-to-pause and a cube turn between people) and `ReceiptPrinter` (a receipt that prints line by line, totals worked out, then tears off). New Playful category in the docs.
+- `NodeEditor`: a node-graph editor with draggable nodes, bezier wires from outputs to inputs (pick a wire up from an input to move it), pan, Ctrl/pinch zoom, fit to view, a draggable minimap, keyboard moves and deletes, and running/done/error states with animated wires.
+- `VoiceOrb` and `useMicrophoneLevel`: an orb for voice assistants with idle, listening, thinking and speaking states that follows the microphone level.
+- `SankeyChart`: flows across stages with automatic column layout, gradient or source-coloured bands, and hover tracing.
 - Effects: `LiquidGlass` (refracting glass using an SVG displacement map in Chromium, with a frosted fallback elsewhere) and `KineticType` (variable-font weight, lens and wave effects that follow the pointer).
 
 ### Changed

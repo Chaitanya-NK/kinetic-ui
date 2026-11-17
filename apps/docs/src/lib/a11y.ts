@@ -11,6 +11,12 @@ export const a11y: Record<string, A11yNote> = {
   "morph-surface": { keys: [["Enter / Space", "Open the panel"], ["Esc", "Close and return focus to the button"]], note: "The open panel is a labelled dialog and focus moves to its first field. The success state is a role=status message." },
   "theme-ripple": { note: "The ripple is skipped for reduced motion and in browsers without View Transitions; the theme still changes instantly." },
   "ui-sounds": { note: "Sounds are off until the person turns them on, and the choice is remembered. Never rely on sound alone to convey information." },
+  "node-editor": {
+    keys: [["Arrows", "Move the selected node (Shift for bigger steps)"], ["Delete", "Remove the selected node or wire"], ["+ / -", "Zoom"], ["0", "Fit to view"], ["Esc", "Clear selection"]],
+    note: "The canvas is a focusable application region with a summary label. Ports are labelled, and zoom controls are buttons.",
+  },
+  "voice-orb": { note: "A live region announces state changes. With onClick it's a labelled button; motion slows down for reduced motion." },
+  "sankey-chart": { note: "Every band has a title with its source, target and value, so the flows are readable without hovering." },
   "holo-card": { note: "The foil is decorative and aria-hidden. Tilt is turned off for reduced motion." },
   ticket: { keys: [["Enter / Space", "Tear off the stub"]], note: "The stub is a button when tearable, so tearing doesn't depend on dragging." },
   "gravity-box": { note: "Items stay in the DOM in order, so screen readers read them as a list. With reduced motion they sit in a plain wrapped row." },

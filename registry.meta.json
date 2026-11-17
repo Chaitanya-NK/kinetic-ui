@@ -1526,5 +1526,23 @@
     "category": "playful",
     "description": "A thermal receipt that prints line by line out of a slot, totals worked out for you, then tears off.",
     "height": 720
+  },
+  "node-editor": {
+    "title": "Node Editor",
+    "category": "data",
+    "description": "A node-graph editor: drag nodes, wire outputs to inputs with bezier cables, pan, zoom, minimap and live run states. Great for AI and automation workflows.",
+    "height": 620
+  },
+  "voice-orb": {
+    "title": "Voice Orb",
+    "category": "ai",
+    "description": "A living orb for voice assistants that breathes when idle, follows the microphone, swirls while thinking and pulses with speech.",
+    "height": 480
+  },
+  "sankey-chart": {
+    "title": "Sankey Chart",
+    "category": "data",
+    "description": "A flow diagram where values split and merge across stages. Hover a node or band to trace its path.",
+    "height": 480
   }
 }

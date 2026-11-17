@@ -1,5 +1,37 @@
 /** Real-world usage snippets shown on component pages, for components that wire into other libraries. */
 export const usage: Record<string, { title?: string; note?: string; code: string }[]> = {
+  "node-editor": [
+    {
+      code: `const [nodes, setNodes] = useState<EditorNode[]>([
+  { id: "in", x: 0, y: 0, title: "Webhook", outputs: [{ id: "body" }] },
+  { id: "llm", x: 300, y: 0, title: "Summarise", inputs: [{ id: "text" }], outputs: [{ id: "summary" }] },
+]);
+const [edges, setEdges] = useState<EditorEdge[]>([]);
+
+<NodeEditor
+  nodes={nodes}
+  onNodesChange={setNodes}
+  edges={edges}
+  onEdgesChange={setEdges}   // save the graph wherever you like
+  isValidConnection={(from, to) => from.node !== to.node}
+/>`,
+    },
+  ],
+  "voice-orb": [
+    {
+      code: `const mic = useMicrophoneLevel();
+const [state, setState] = useState<VoiceOrbState>("idle");
+
+<VoiceOrb
+  state={state}
+  level={mic.active ? mic.level : undefined}  // read every frame, no re-renders
+  onClick={async () => {
+    if (mic.active) { mic.stop(); setState("thinking"); }
+    else { await mic.start(); setState("listening"); }
+  }}
+/>`,
+    },
+  ],
   stories: [
     {
       code: `const stories: Story[] = [
