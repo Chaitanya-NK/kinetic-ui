@@ -2,6 +2,11 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`) share one version number.
 
+## [Unreleased]
+
+### Added
+- CLI: `kinetic diff` shows what changed upstream since you added a component, and `kinetic update` pulls fixes in with a three-way merge that keeps your edits. Lines changed on both sides get git-style conflict markers. `add` and `update` now keep install records in `.kinetic/` (commit it). New "Updating components" docs page.
+
 ## [0.3.0] — 2026-11-17
 
 ### Added

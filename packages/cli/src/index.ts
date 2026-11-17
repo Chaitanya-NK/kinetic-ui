@@ -1,8 +1,10 @@
 import { parseArgs } from "node:util";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { spawnSync } from "node:child_process";
 import { createInterface } from "node:readline/promises";
+import { merge3, unifiedDiff } from "./merge";
 
 /**
  * Default registry. Change this after you deploy the docs site (or set
@@ -52,6 +54,50 @@ function fixImports(content: string, cwd: string, dir: string, target: string) {
   return content.replaceAll("@/components/kinetic/", `${rel}/`);
 }
 
+/* ------------------------------------------------------------------ lockfile
+ * .kinetic/lock.json records what `add` wrote, and .kinetic/base/ keeps a copy of each file exactly
+ * as it was installed. That copy is the common ancestor that lets `update` merge upstream changes
+ * into files you've edited. Commit the .kinetic folder with the rest of your code.
+ */
+
+const LOCK_DIR = ".kinetic";
+type LockFile = { version: 1; items: Record<string, { files: string[]; updatedAt: string }> };
+
+const sha = (s: string) => createHash("sha256").update(s).digest("hex").slice(0, 16);
+const rel = (cwd: string, p: string) => relative(cwd, p).split(sep).join("/");
+
+function readLock(cwd: string): LockFile {
+  const p = join(cwd, LOCK_DIR, "lock.json");
+  if (!existsSync(p)) return { version: 1, items: {} };
+  return JSON.parse(readFileSync(p, "utf8")) as LockFile;
+}
+
+function writeLock(cwd: string, lock: LockFile) {
+  mkdirSync(join(cwd, LOCK_DIR), { recursive: true });
+  const sorted = Object.fromEntries(Object.entries(lock.items).sort(([a], [b]) => a.localeCompare(b)));
+  writeFileSync(join(cwd, LOCK_DIR, "lock.json"), JSON.stringify({ version: 1, items: sorted }, null, 2) + "\n");
+}
+
+const basePath = (cwd: string, file: string) => join(cwd, LOCK_DIR, "base", file);
+function readBase(cwd: string, file: string) {
+  const p = basePath(cwd, file);
+  return existsSync(p) ? readFileSync(p, "utf8") : null;
+}
+function writeBase(cwd: string, file: string, content: string) {
+  const p = basePath(cwd, file);
+  mkdirSync(dirname(p), { recursive: true });
+  writeFileSync(p, content);
+}
+
+function record(cwd: string, lock: LockFile, item: string, files: { file: string; content: string }[]) {
+  const prev = new Set(lock.items[item]?.files ?? []);
+  for (const f of files) {
+    writeBase(cwd, f.file, f.content);
+    prev.add(f.file);
+  }
+  lock.items[item] = { files: [...prev].sort(), updatedAt: new Date().toISOString() };
+}
+
 const c = {
   dim: (s: string) => `\x1b[2m${s}\x1b[22m`,
   bold: (s: string) => `\x1b[1m${s}\x1b[22m`,
@@ -68,11 +114,15 @@ ${c.bold("Usage")}
   npx @kineticui/cli init                Set up tokens and kinetic.json
   npx @kineticui/cli add <name...>       Copy components, blocks or templates into your project
   npx @kineticui/cli list                Show every available component
+  npx @kineticui/cli diff [name...]      See what changed upstream since you added a component
+  npx @kineticui/cli update [name...]    Pull upstream fixes in, keeping your own edits
 
 ${c.bold("Options")}
   --registry <url|dir>   Registry base URL or local folder
   --dir <path>           Where components are written (default components/kinetic)
   --overwrite            Replace files that already exist
+  --force                update: replace files you edited when there's no record to merge from
+  --summary              diff: list changed files without printing the diff
   --dry-run              Show what would happen without writing
   --no-install           Skip installing npm dependencies
   -y, --yes              Accept defaults without prompting
@@ -82,6 +132,8 @@ ${c.bold("Examples")}
   npx @kineticui/cli add button dialog dock
   npx @kineticui/cli add spotlight-card --overwrite
   npx @kineticui/cli add saas-landing --overwrite   ${c.dim("# replaces app/page.tsx")}
+  npx @kineticui/cli diff                           ${c.dim("# everything you've installed")}
+  npx @kineticui/cli update button dock
 `;
 
 function readConfig(cwd: string): Config | null {
@@ -207,34 +259,36 @@ async function add(cwd: string, names: string[], flags: Flags) {
 
   const items = await resolveItems(registry, names);
   const deps = new Set<string>(["@kineticui/core"]);
+  const lock = readLock(cwd);
   let written = 0;
   let skipped = 0;
 
   for (const item of items) {
     for (const d of item.dependencies ?? []) deps.add(d);
+    const done: { file: string; content: string }[] = [];
     for (const file of item.files) {
       const target = targetFor(cwd, dir, file);
+      const content = fixImports(file.content, cwd, dir, target);
       if (existsSync(target) && !flags.overwrite) {
-        console.log(`${c.dim("•")} ${c.dim("skip")} ${target.replace(cwd + "/", "")} ${c.dim("(exists, use --overwrite)")}`);
+        // Already there and identical: still worth tracking so diff/update can follow it.
+        if (readFileSync(target, "utf8") === content) done.push({ file: rel(cwd, target), content });
+        console.log(`${c.dim("•")} ${c.dim("skip")} ${rel(cwd, target)} ${c.dim("(exists, use --overwrite)")}`);
         skipped++;
         continue;
       }
       if (!flags.dryRun) {
         mkdirSync(dirname(target), { recursive: true });
-        writeFileSync(target, fixImports(file.content, cwd, dir, target));
+        writeFileSync(target, content);
       }
-      console.log(`${c.green("✓")} ${target.replace(cwd + "/", "")}`);
+      done.push({ file: rel(cwd, target), content });
+      console.log(`${c.green("✓")} ${rel(cwd, target)}`);
       written++;
     }
+    if (done.length) record(cwd, lock, item.name, done);
   }
+  if (!flags.dryRun) writeLock(cwd, lock);
 
-  // De-duplicate by package name, keeping the version-pinned spec when there is one.
-  const byName = new Map<string, string>();
-  for (const spec of deps) {
-    const name = spec.startsWith("@") ? "@" + spec.slice(1).split("@")[0] : spec.split("@")[0]!;
-    if (!byName.has(name) || spec.includes("@", 1)) byName.set(name, spec);
-  }
-  if (flags.install) install(cwd, [...byName.values()], flags.dryRun);
+  if (flags.install) install(cwd, dedupe(deps), flags.dryRun);
   const requested = new Set(names.map(normalise));
   console.log(
     `\n${c.lime("◆")} Added ${items.filter((i) => requested.has(i.name)).map((i) => c.bold(i.name)).join(", ")} ${c.dim(`(${items.length} items, ${written} files written, ${skipped} skipped)`)}`,
@@ -244,6 +298,170 @@ async function add(cwd: string, names: string[], flags: Flags) {
     console.log(`${c.lime("◆")} ${t.title ?? t.name} pages: ${pages.map((p) => c.bold(p ?? "")).join(", ")}`);
     if (skipped && t.files.some((f) => f.target === "app/page.tsx")) console.log(c.yellow(`  app/page.tsx already existed. Re-run with --overwrite to replace it.`));
     if (t.meta?.notes) console.log(`  ${t.meta.notes}`);
+  }
+}
+
+/** De-duplicate npm specs by package name, keeping the version-pinned spec when there is one. */
+function dedupe(deps: Iterable<string>) {
+  const byName = new Map<string, string>();
+  for (const spec of deps) {
+    const name = spec.startsWith("@") ? "@" + spec.slice(1).split("@")[0] : spec.split("@")[0]!;
+    if (!byName.has(name) || spec.includes("@", 1)) byName.set(name, spec);
+  }
+  return [...byName.values()];
+}
+
+function projectConfig(cwd: string, flags: Flags) {
+  const config = readConfig(cwd) ?? {
+    registry: DEFAULT_REGISTRY,
+    componentsDir: existsSync(join(cwd, "src")) ? "src/components/kinetic" : "components/kinetic",
+  };
+  return { registry: flags.registry ?? config.registry, dir: flags.dir ?? config.componentsDir };
+}
+
+/**
+ * Which items to check. Named ones if given; otherwise everything in the lockfile, plus anything in
+ * the components folder that matches a registry name (for projects set up before the lockfile).
+ */
+async function installedItems(cwd: string, registry: string, dir: string, names: string[]) {
+  if (names.length) return names.map(normalise);
+  const lock = readLock(cwd);
+  const found = new Set(Object.keys(lock.items));
+  const index = await fetchJson<{ items: { name: string }[] }>(registry, "index.json");
+  for (const { name } of index.items) {
+    if (["tsx", "ts"].some((ext) => existsSync(join(cwd, dir, `${name}.${ext}`)))) found.add(name);
+  }
+  return [...found].sort();
+}
+
+type FileState = "same" | "upstream" | "local" | "both" | "untracked" | "new";
+type FileCheck = { item: string; file: string; target: string; state: FileState; local: string | null; base: string | null; upstream: string };
+
+async function check(cwd: string, flags: Flags, names: string[]) {
+  const { registry, dir } = projectConfig(cwd, flags);
+  const wanted = await installedItems(cwd, registry, dir, names);
+  if (!wanted.length) throw new Error("Nothing installed yet. Add something with `kinetic add <name>`.");
+  const out: { item: RegistryItem; files: FileCheck[] }[] = [];
+  for (const name of wanted) {
+    const item = await fetchJson<RegistryItem>(registry, `${name}.json`);
+    const files: FileCheck[] = item.files.map((f) => {
+      const target = targetFor(cwd, dir, f);
+      const file = rel(cwd, target);
+      const upstream = fixImports(f.content, cwd, dir, target);
+      const local = existsSync(target) ? readFileSync(target, "utf8") : null;
+      const base = readBase(cwd, file);
+      let state: FileState;
+      if (local === null) state = "new";
+      else if (local === upstream) state = "same";
+      else if (base === null) state = "untracked";
+      else if (base === local) state = "upstream";
+      else if (base === upstream) state = "local";
+      else state = "both";
+      return { item: name, file, target, state, local, base, upstream };
+    });
+    out.push({ item, files });
+  }
+  return out;
+}
+
+const label: Record<FileState, string> = {
+  same: c.dim("up to date"),
+  upstream: c.lime("update available"),
+  local: c.dim("only your edits"),
+  both: c.yellow("update available, you edited it too"),
+  untracked: c.yellow("differs from upstream (no install record)"),
+  new: c.lime("new file upstream"),
+};
+
+function printDiff(from: string, to: string) {
+  for (const h of unifiedDiff(from, to)) {
+    console.log(c.dim(h.header));
+    for (const l of h.lines) console.log(l.kind === "+" ? c.green(`+${l.text}`) : l.kind === "-" ? c.red(`-${l.text}`) : c.dim(` ${l.text}`));
+  }
+}
+
+async function diff(cwd: string, names: string[], flags: Flags) {
+  const results = await check(cwd, flags, names);
+  let pending = 0;
+  for (const { item, files } of results) {
+    const changed = files.filter((f) => f.state !== "same" && f.state !== "local");
+    console.log(`\n${c.bold(item.name)} ${changed.length ? "" : c.dim("up to date")}`);
+    for (const f of files) {
+      const markers = f.local?.includes("\n<<<<<<< ") || f.local?.startsWith("<<<<<<< ");
+      if (markers) console.log(`  ${f.file}  ${c.red("has unresolved merge conflicts")}`);
+      if (f.state === "same" || (markers && f.state === "local")) continue;
+      console.log(`  ${f.file}  ${label[f.state]}`);
+      if (flags.summary || f.state === "local") continue;
+      // Show what upstream changed: base → upstream when we know the base, else your file → upstream.
+      const from = f.base ?? f.local ?? "";
+      if (f.state === "untracked") console.log(c.dim("  (comparing your file with upstream; your own edits show as removed lines)"));
+      printDiff(from, f.upstream);
+    }
+    pending += changed.length;
+  }
+  console.log(
+    pending
+      ? `\n${c.lime("◆")} ${pending} file${pending === 1 ? "" : "s"} can be updated. Run ${c.bold(`kinetic update${names.length ? " " + names.join(" ") : ""}`)}`
+      : `\n${c.lime("◆")} Everything is up to date.`,
+  );
+}
+
+async function update(cwd: string, names: string[], flags: Flags) {
+  const results = await check(cwd, flags, names);
+  const lock = readLock(cwd);
+  const deps = new Set<string>();
+  let updated = 0, conflicts = 0, kept = 0;
+
+  for (const { item, files } of results) {
+    const recorded: { file: string; content: string }[] = [];
+    for (const f of files) {
+      let next: string | null = null;
+      let note = "";
+      if (f.state === "same" || f.state === "local") {
+        recorded.push({ file: f.file, content: f.upstream });
+        continue;
+      } else if (f.state === "new" || f.state === "upstream") {
+        next = f.upstream;
+        note = f.state === "new" ? "added" : "updated";
+      } else if (f.state === "both") {
+        const m = merge3(f.base!, f.local!, f.upstream, { yours: "your version", theirs: `kinetic ${item.name}` });
+        next = m.text;
+        note = m.conflicts ? c.yellow(`merged with ${m.conflicts} conflict${m.conflicts === 1 ? "" : "s"}`) : "merged, your edits kept";
+        conflicts += m.conflicts;
+      } else if (f.state === "untracked") {
+        if (!flags.force) {
+          console.log(`${c.yellow("!")} ${f.file} ${c.dim("differs from upstream and was added before Kinetic kept install records, so there's nothing to merge from. Check `kinetic diff " + item.name + "`, then re-run with --force to replace it (a backup is kept).")}`);
+          kept++;
+          continue;
+        }
+        if (!flags.dryRun) {
+          const backup = join(cwd, LOCK_DIR, "backup", `${f.file}.${Date.now()}`);
+          mkdirSync(dirname(backup), { recursive: true });
+          copyFileSync(f.target, backup);
+        }
+        next = f.upstream;
+        note = `replaced ${c.dim(`(backup in ${LOCK_DIR}/backup)`)}`;
+      }
+      if (next === null) continue;
+      if (!flags.dryRun) {
+        mkdirSync(dirname(f.target), { recursive: true });
+        writeFileSync(f.target, next);
+      }
+      // The new common ancestor is upstream, so the next update only merges what changes after today.
+      recorded.push({ file: f.file, content: f.upstream });
+      console.log(`${c.green("✓")} ${f.file} ${c.dim("—")} ${note}`);
+      updated++;
+    }
+    for (const d of item.dependencies ?? []) deps.add(d);
+    if (recorded.length) record(cwd, lock, item.name, recorded);
+  }
+
+  if (!flags.dryRun) writeLock(cwd, lock);
+  if (updated && flags.install && deps.size) install(cwd, dedupe(deps), flags.dryRun);
+  console.log(`\n${c.lime("◆")} ${updated ? `Updated ${updated} file${updated === 1 ? "" : "s"}.` : "Nothing to update."}${kept ? ` ${kept} skipped.` : ""}`);
+  if (conflicts) {
+    console.log(c.yellow(`  ${conflicts} conflict${conflicts === 1 ? "" : "s"} to resolve: search for "<<<<<<<" and keep the lines you want.`));
+    process.exitCode = 1;
   }
 }
 
@@ -275,6 +493,8 @@ type Flags = {
   dryRun: boolean;
   install: boolean;
   yes: boolean;
+  force: boolean;
+  summary: boolean;
 };
 
 async function main() {
@@ -287,6 +507,8 @@ async function main() {
       "dry-run": { type: "boolean", default: false },
       "no-install": { type: "boolean", default: false },
       yes: { type: "boolean", short: "y", default: false },
+      force: { type: "boolean", default: false },
+      summary: { type: "boolean", default: false },
       help: { type: "boolean", short: "h", default: false },
     },
   });
@@ -302,11 +524,15 @@ async function main() {
     dryRun: values["dry-run"],
     install: !values["no-install"],
     yes: values.yes,
+    force: values.force,
+    summary: values.summary,
   };
   const cwd = process.cwd();
   if (command === "init") await init(cwd, flags);
   else if (command === "add") await add(cwd, rest, flags);
   else if (command === "list" || command === "ls") await list(cwd, flags);
+  else if (command === "diff") await diff(cwd, rest, flags);
+  else if (command === "update" || command === "upgrade") await update(cwd, rest, flags);
   else {
     console.log(`${c.red("✕")} Unknown command "${command}"`);
     console.log(HELP);

@@ -1,7 +1,7 @@
 {
   "name": "@kineticui/cli",
   "version": "0.3.0",
-  "description": "Kinetic UI CLI — `npx @kineticui/cli add dock` copies components into your project.",
+  "description": "Kinetic UI CLI \u2014 `npx @kineticui/cli add dock` copies components into your project.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "typecheck": "tsc -p tsconfig.json"
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "node --test test/*.test.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.10.0"

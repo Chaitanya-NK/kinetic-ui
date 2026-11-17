@@ -48,6 +48,7 @@ const index = [
   "",
   `- [Getting started](${site}/docs): installation, theming, motion and accessibility`,
   `- [AI tools and MCP](${site}/docs/ai): connect Claude, Cursor or VS Code to the registry`,
+  `- [Updating components](${site}/docs/updating): kinetic diff and kinetic update merge upstream fixes into copied components`,
   `- [Theme editor](${site}/themes): build a theme from three colours`,
   `- [Full reference for LLMs](${site}/llms-full.txt): every component's props, exports and usage in one file`,
   "",

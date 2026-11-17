@@ -44,6 +44,11 @@ export default function DocsPage() {
         <p>This adds the design tokens to your global CSS and creates <code className="font-mono text-foreground">kinetic.json</code>. Then add components:</p>
         <Command command="npx @kineticui/cli add button dialog dock" />
         <p>Files are written to <code className="font-mono text-foreground">components/kinetic/</code> and any npm dependencies are installed for you.</p>
+        <p>
+          Later, <code className="font-mono text-foreground">npx @kineticui/cli diff</code> shows what changed upstream and{" "}
+          <code className="font-mono text-foreground">npx @kineticui/cli update</code> merges fixes in without losing your edits.{" "}
+          <Link href="/docs/updating" className="text-accent hover:underline">How updating works</Link>
+        </p>
 
         <h3 className="mt-2 font-display text-xl font-semibold text-foreground">Option B — npm packages</h3>
         <Command command="npm i @kineticui/ui @kineticui/core @kineticui/motion @kineticui/icons" />

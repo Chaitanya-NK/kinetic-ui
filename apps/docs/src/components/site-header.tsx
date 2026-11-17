@@ -55,6 +55,7 @@ export function SiteHeader() {
     { id: "all-blocks", label: "All blocks", group: "Pages", icon: <LayersIcon />, onSelect: () => router.push("/blocks") },
     { id: "templates", label: "Templates", group: "Pages", icon: <LayersIcon />, onSelect: () => router.push("/templates") },
     { id: "ai-tools", label: "AI tools & MCP", group: "Pages", icon: <BoltIcon />, onSelect: () => router.push("/docs/ai") },
+    { id: "updating", label: "Updating components", group: "Pages", icon: <BoltIcon />, onSelect: () => router.push("/docs/updating") },
     ...blocks.map((e) => ({
       id: `block-${e.name}`,
       label: e.title,
