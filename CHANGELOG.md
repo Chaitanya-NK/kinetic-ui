@@ -2,7 +2,7 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`) share one version number.
 
-## [Unreleased]
+## [0.2.1] — 2026-11-17
 
 ### Fixed
 - Code surfaces follow the theme. New `--kn-code-*` tokens (with Tailwind colours `code`, `code-foreground`, `code-muted`, `code-border`, `code-string`, `code-tag`, `code-number`, `code-function`) give light and dark code colours, used by `CodeBlock`, `CodeEditor`, `LogViewer`, `FilePreview` and code inside `ChatMessage`. Previously these stayed dark in light mode.

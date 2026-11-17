@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/blocks",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Kinetic UI blocks — ready-made sections, screens and app layouts built from Kinetic components.",
   "license": "MIT",
   "type": "module",
@@ -24,10 +24,10 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@kineticui/core": "^0.2.0",
-    "@kineticui/icons": "^0.2.0",
-    "@kineticui/motion": "^0.2.0",
-    "@kineticui/ui": "^0.2.0",
+    "@kineticui/core": "^0.2.1",
+    "@kineticui/icons": "^0.2.1",
+    "@kineticui/motion": "^0.2.1",
+    "@kineticui/ui": "^0.2.1",
     "motion": "^12.23.0",
     "radix-ui": "^1.4.3"
   },
