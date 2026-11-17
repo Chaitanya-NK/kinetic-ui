@@ -7,7 +7,7 @@ export const site = {
   github: "https://github.com/Chaitanya-NK/kinetic-ui",
   npmScope: "@kineticui",
   /** Shown in the header and the homepage pill. Updated by `npm run version:set`. */
-  version: "0.2",
+  version: "0.3",
   /** Public URL of the deployed docs site. Set NEXT_PUBLIC_SITE_URL on Vercel. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://kinetic-ui.chaitanya-nk.com",
 };

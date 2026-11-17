@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/mcp",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "MCP server for Kinetic UI: lets Claude, Cursor, VS Code and other AI tools search, read and install Kinetic components.",
   "license": "MIT",
   "type": "module",

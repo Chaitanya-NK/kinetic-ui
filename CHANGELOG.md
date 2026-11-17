@@ -2,7 +2,7 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`) share one version number.
 
-## [Unreleased]
+## [0.3.0] — 2026-11-17
 
 ### Added
 - Signature components: `DynamicIsland` (with `islandMusic`, `islandTimer`, `islandUpload`, `islandCall` and `islandThinking` presets), `MorphSurface` (a pill that morphs into a panel and back), `useThemeRipple` / `ThemeRippleButton` (theme changes spread out from the pointer using View Transitions), and UI sounds (`SoundProvider`, `useSound`, `playSound`, `SoundToggle`: synthesised with WebAudio, no audio files, off by default).

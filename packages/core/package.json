@@ -1,6 +1,6 @@
 {
   "name": "@kineticui/core",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Kinetic UI core: design tokens, theme provider, cn() and hooks.",
   "license": "MIT",
   "type": "module",
