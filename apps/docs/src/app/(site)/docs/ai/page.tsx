@@ -40,8 +40,9 @@ export default function AiDocsPage() {
           picks the right component, adds it to your project and wires it up.
         </p>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2">
           {[
+            ["Agent Skill", "Teaches Claude and Cursor the library's conventions before they write a line."],
             ["MCP server", "Live search and install from Claude, Cursor, VS Code and any MCP client."],
             ["llms.txt", "A plain-text map of the library for tools that read docs."],
             ["shadcn registry", "Install with @kinetic/<name> using the shadcn CLI and its MCP."],
@@ -52,6 +53,45 @@ export default function AiDocsPage() {
             </div>
           ))}
         </div>
+
+        <H2 id="skill">Agent Skill</H2>
+        <p>
+          The skill tells your AI assistant how Kinetic UI works: check for an existing component first, install it the way your project already
+          does, style with tokens instead of raw colours, respect reduced motion, and keep components accessible. It includes the full component
+          list, core props and tokens, and it&apos;s regenerated with every release.
+        </p>
+        <Tabs defaultValue="claude-code">
+          <TabsList>
+            <TabsTrigger value="claude-code">Claude Code</TabsTrigger>
+            <TabsTrigger value="claude">Claude app</TabsTrigger>
+            <TabsTrigger value="cursor">Cursor</TabsTrigger>
+          </TabsList>
+          <TabsContent value="claude-code" className="flex flex-col gap-3 pt-4">
+            <p className="text-sm">Run this in your project. It writes <code className="font-mono">.claude/skills/kinetic-ui/</code> and a Cursor rule; commit both.</p>
+            <Command command="npx @kineticui/cli skill" />
+          </TabsContent>
+          <TabsContent value="claude" className="flex flex-col gap-3 pt-4">
+            <p className="text-sm">
+              Download the skill. In Claude, open <b className="text-foreground">Customize → Skills</b>, click <b className="text-foreground">+</b>, choose{" "}
+              <b className="text-foreground">Create skill → Upload a skill</b> and drop in the zip.
+            </p>
+            <a
+              href="/kinetic-ui-skill.zip"
+              download
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition-transform active:scale-95"
+            >
+              Download kinetic-ui-skill.zip
+            </a>
+          </TabsContent>
+          <TabsContent value="cursor" className="flex flex-col gap-3 pt-4">
+            <p className="text-sm">Adds a project rule at <code className="font-mono">.cursor/rules/kinetic-ui.mdc</code> that applies to your TSX and CSS files.</p>
+            <Command command="npx @kineticui/cli skill --cursor" />
+          </TabsContent>
+        </Tabs>
+        <p className="text-sm">
+          Browse it first: <a href="https://github.com/Chaitanya-NK/kinetic-ui/tree/main/skills/kinetic-ui" className="text-accent hover:underline">skills/kinetic-ui on GitHub</a>.
+          It works best together with the MCP server below.
+        </p>
 
         <H2 id="mcp">MCP server</H2>
         <p>

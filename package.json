@@ -15,7 +15,7 @@
   ],
   "scripts": {
     "build:packages": "node scripts/gen-index.mjs && npm run build -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli -w @kineticui/mcp && node scripts/gen-theme-css.mjs",
-    "registry": "node scripts/build-registry.mjs && node scripts/gen-props.mjs && node --no-warnings scripts/gen-llms.mjs",
+    "registry": "node scripts/build-registry.mjs && node scripts/gen-props.mjs && node --no-warnings scripts/gen-llms.mjs && node scripts/gen-skill.mjs",
     "build": "npm run build:packages && npm run registry && npm run build -w docs",
     "dev": "npm run build:packages && npm run registry && npm run dev -w docs",
     "typecheck": "npm run typecheck --workspaces --if-present",

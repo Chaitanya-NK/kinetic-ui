@@ -116,6 +116,7 @@ ${c.bold("Usage")}
   npx @kineticui/cli list                Show every available component
   npx @kineticui/cli diff [name...]      See what changed upstream since you added a component
   npx @kineticui/cli update [name...]    Pull upstream fixes in, keeping your own edits
+  npx @kineticui/cli skill               Teach Claude Code and Cursor the Kinetic UI conventions
 
 ${c.bold("Options")}
   --registry <url|dir>   Registry base URL or local folder
@@ -123,6 +124,7 @@ ${c.bold("Options")}
   --overwrite            Replace files that already exist
   --force                update: replace files you edited when there's no record to merge from
   --summary              diff: list changed files without printing the diff
+  --claude, --cursor     skill: install for just one tool (default: both)
   --dry-run              Show what would happen without writing
   --no-install           Skip installing npm dependencies
   -y, --yes              Accept defaults without prompting
@@ -465,6 +467,27 @@ async function update(cwd: string, names: string[], flags: Flags) {
   }
 }
 
+/** Installs the Agent Skill: .claude/skills/kinetic-ui for Claude Code, .cursor/rules/kinetic-ui.mdc for Cursor. */
+async function skill(cwd: string, flags: Flags) {
+  const { registry } = projectConfig(cwd, flags);
+  const m = await fetchJson<{ version: string; files: { path: string; content: string }[]; cursor: string }>(registry, "skill/manifest.json");
+  const both = !flags.claude && !flags.cursor;
+  const wrote: string[] = [];
+  const put = (path: string, content: string) => {
+    const target = join(cwd, path);
+    if (!flags.dryRun) {
+      mkdirSync(dirname(target), { recursive: true });
+      writeFileSync(target, content);
+    }
+    wrote.push(path);
+  };
+  if (both || flags.claude) for (const f of m.files) put(`.claude/skills/kinetic-ui/${f.path}`, f.content);
+  if (both || flags.cursor) put(".cursor/rules/kinetic-ui.mdc", m.cursor);
+  for (const w of wrote) console.log(`${c.green("✓")} ${w}`);
+  console.log(`\n${c.lime("◆")} Kinetic UI skill ${c.dim(`v${m.version}`)} installed. Commit it so your whole team's AI tools use it.`);
+  console.log(c.dim("  Re-run this command after upgrading Kinetic UI to refresh it."));
+}
+
 async function list(cwd: string, flags: Flags) {
   const config = readConfig(cwd);
   const registry = flags.registry ?? config?.registry ?? DEFAULT_REGISTRY;
@@ -495,6 +518,8 @@ type Flags = {
   yes: boolean;
   force: boolean;
   summary: boolean;
+  claude: boolean;
+  cursor: boolean;
 };
 
 async function main() {
@@ -509,6 +534,8 @@ async function main() {
       yes: { type: "boolean", short: "y", default: false },
       force: { type: "boolean", default: false },
       summary: { type: "boolean", default: false },
+      claude: { type: "boolean", default: false },
+      cursor: { type: "boolean", default: false },
       help: { type: "boolean", short: "h", default: false },
     },
   });
@@ -526,6 +553,8 @@ async function main() {
     yes: values.yes,
     force: values.force,
     summary: values.summary,
+    claude: values.claude,
+    cursor: values.cursor,
   };
   const cwd = process.cwd();
   if (command === "init") await init(cwd, flags);
@@ -533,6 +562,7 @@ async function main() {
   else if (command === "list" || command === "ls") await list(cwd, flags);
   else if (command === "diff") await diff(cwd, rest, flags);
   else if (command === "update" || command === "upgrade") await update(cwd, rest, flags);
+  else if (command === "skill") await skill(cwd, flags);
   else {
     console.log(`${c.red("✕")} Unknown command "${command}"`);
     console.log(HELP);

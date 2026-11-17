@@ -302,6 +302,8 @@
   --color-ring: var(--kn-ring);
   --shadow-overlay: var(--kn-shadow);
   --radius-kn: 12px;
+  /* Headings use font-display. Space Grotesk when it's loaded (e.g. @fontsource-variable/space-grotesk), else the system UI font. */
+  --font-display: "Space Grotesk Variable", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --ease-kn-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-kn-spring: cubic-bezier(0.2, 0.9, 0.3, 1.2);
 

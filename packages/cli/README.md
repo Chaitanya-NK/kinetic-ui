@@ -8,6 +8,7 @@ npx @kineticui/cli add button dialog    # copy components and install their depe
 npx @kineticui/cli list                 # show everything available
 npx @kineticui/cli diff                 # what changed upstream since you added things
 npx @kineticui/cli update               # merge upstream fixes in, keeping your edits
+npx @kineticui/cli skill                # teach Claude Code and Cursor the library's conventions
 ```
 
 `add` and `update` keep a copy of each file as installed in `.kinetic/`. That's the common ancestor for a three-way merge, so `update` keeps your edits and only stops for lines both of you changed (marked git-style). Commit the `.kinetic` folder.
