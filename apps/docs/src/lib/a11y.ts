@@ -7,6 +7,12 @@ export type A11yNote = { primitive?: string; keys?: [string, string][]; note?: s
 const radix = (primitive: string, keys: [string, string][], note?: string): A11yNote => ({ primitive, keys, note });
 
 export const a11y: Record<string, A11yNote> = {
+  "dynamic-island": { keys: [["Enter / Space", "Expand the island"], ["Esc", "Collapse"]], note: "Activity changes are announced through a polite live region. Controls inside are labelled buttons." },
+  "morph-surface": { keys: [["Enter / Space", "Open the panel"], ["Esc", "Close and return focus to the button"]], note: "The open panel is a labelled dialog and focus moves to its first field. The success state is a role=status message." },
+  "theme-ripple": { note: "The ripple is skipped for reduced motion and in browsers without View Transitions; the theme still changes instantly." },
+  "ui-sounds": { note: "Sounds are off until the person turns them on, and the choice is remembered. Never rely on sound alone to convey information." },
+  "liquid-glass": { note: "Purely visual. Keep text on glass large and high-contrast, since the backdrop changes behind it." },
+  "kinetic-type": { note: "The full text is the element's aria-label, so it's read once. Motion is disabled for reduced motion." },
   gauge: { note: "role=meter with aria-valuenow, min and max." },
   treemap: { keys: [["Tab", "Move between tiles"], ["Enter", "Zoom into a group"]], note: "Each tile is a labelled button with its value and share; the breadcrumb is a nav." },
   "bar-list": { note: "Rows with href render as links and with onItemClick as buttons, so they're reachable by keyboard." },

@@ -3,12 +3,14 @@
 import * as React from "react";
 import { motion } from "motion/react";
 import { cn, useMounted } from "@kineticui/core";
-import { useTheme } from "@kineticui/core/theme";
+import { useThemeRipple } from "./theme-ripple";
 import { MoonIcon, SunIcon } from "@kineticui/icons";
 
 export type ThemeSwitchProps = {
   /** toggle: animated sun/moon switch. segmented: Light / Dark / System. */
   variant?: "toggle" | "segmented";
+  /** Reveal the new theme with a circular ripple from the click (View Transitions). */
+  ripple?: boolean;
   className?: string;
 };
 
@@ -19,8 +21,9 @@ const modes = [
 ] as const;
 
 /** Light/dark switch wired to the Kinetic ThemeProvider. */
-export function ThemeSwitch({ variant = "toggle", className }: ThemeSwitchProps) {
-  const { mode, resolvedMode, setMode } = useTheme();
+export function ThemeSwitch({ variant = "toggle", ripple = true, className }: ThemeSwitchProps) {
+  const { mode, resolvedMode, setMode: setInstant, setModeFrom } = useThemeRipple();
+  const setMode = (m: (typeof modes)[number]["value"], e?: React.MouseEvent) => (ripple ? setModeFrom(m, e) : setInstant(m));
   const mounted = useMounted();
   const id = React.useId();
   const dark = mounted ? resolvedMode === "dark" : true;
@@ -36,7 +39,7 @@ export function ThemeSwitch({ variant = "toggle", className }: ThemeSwitchProps)
               type="button"
               role="radio"
               aria-checked={active}
-              onClick={() => setMode(m.value)}
+              onClick={(e) => setMode(m.value, e)}
               className={cn("relative rounded-full px-3.5 py-1.5 text-xs font-medium transition-colors", active ? "text-foreground" : "text-subtle hover:text-foreground")}
             >
               {active ? <motion.span layoutId={`kn-theme-${id}`} className="absolute inset-0 rounded-full bg-surface-overlay shadow-sm" /> : null}
@@ -54,7 +57,7 @@ export function ThemeSwitch({ variant = "toggle", className }: ThemeSwitchProps)
       role="switch"
       aria-checked={dark}
       aria-label="Dark mode"
-      onClick={() => setMode(dark ? "light" : "dark")}
+      onClick={(e) => setMode(dark ? "light" : "dark", e)}
       className={cn(
         "relative flex h-8 w-[60px] items-center rounded-full p-1 outline-none transition-colors duration-300 focus-visible:ring-2 focus-visible:ring-foreground",
         dark ? "bg-surface-overlay" : "bg-accent-soft",

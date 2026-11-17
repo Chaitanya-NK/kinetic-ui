@@ -116,6 +116,7 @@ import { primitiveDemos } from "./primitives";
 import { ai2Demos } from "./ai2";
 import { showpieceDemos } from "./showpieces";
 import { chart2Demos } from "./charts2";
+import { signature2Demos } from "./signature2";
 
 const team = [
   { alt: "Maya Kapoor", color: "#7C8CFF" },
@@ -221,6 +222,7 @@ export const demos: Record<string, () => React.ReactNode> = {
   ...ai2Demos,
   ...showpieceDemos,
   ...chart2Demos,
+  ...signature2Demos,
   button: () => (
     <Stack className="items-center">
       <Row>

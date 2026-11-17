@@ -1,5 +1,52 @@
 /** Real-world usage snippets shown on component pages, for components that wire into other libraries. */
 export const usage: Record<string, { title?: string; note?: string; code: string }[]> = {
+  "dynamic-island": [
+    {
+      code: `const [playing, setPlaying] = useState(true);
+
+<DynamicIsland
+  fixed
+  activity={islandMusic({
+    title: "Midnight Drive",
+    artist: "Neon Coast",
+    playing,
+    progress: 0.42,
+    onToggle: () => setPlaying((p) => !p),
+  })}
+/>
+
+// Other ready-made activities: islandTimer, islandUpload, islandCall, islandThinking.
+// Or pass your own: { id, label, leading, trailing, expanded }.`,
+    },
+  ],
+  "ui-sounds": [
+    {
+      code: `// Wrap the app once
+<SoundProvider>
+  <App />
+</SoundProvider>
+
+// Anywhere inside
+const { play } = useSound();
+<Button onClick={() => { save(); play("success"); }}>Save</Button>
+
+// Let people turn sounds on (they're off by default)
+<SoundToggle />`,
+    },
+  ],
+  "morph-surface": [
+    {
+      code: `<MorphSurface label="Feedback" width={320}>
+  {({ close, done }) => (
+    <form onSubmit={async (e) => { e.preventDefault(); await send(); done("Thanks!"); }}>
+      <MorphSurfaceHeader onClose={close}>Send feedback</MorphSurfaceHeader>
+      <Textarea />
+      <Button type="submit">Send</Button>
+    </form>
+  )}
+</MorphSurface>`,
+    },
+  ],
   form: [
     {
       note: "Install the form peer dependencies once: npm i react-hook-form zod @hookform/resolvers",

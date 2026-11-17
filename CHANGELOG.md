@@ -2,6 +2,15 @@
 
 All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`) share one version number.
 
+## [Unreleased]
+
+### Added
+- Signature components: `DynamicIsland` (with `islandMusic`, `islandTimer`, `islandUpload`, `islandCall` and `islandThinking` presets), `MorphSurface` (a pill that morphs into a panel and back), `useThemeRipple` / `ThemeRippleButton` (theme changes spread out from the pointer using View Transitions), and UI sounds (`SoundProvider`, `useSound`, `playSound`, `SoundToggle`: synthesised with WebAudio, no audio files, off by default).
+- Effects: `LiquidGlass` (refracting glass using an SVG displacement map in Chromium, with a frosted fallback elsewhere) and `KineticType` (variable-font weight, lens and wave effects that follow the pointer).
+
+### Changed
+- `ThemeSwitch` now uses the ripple transition. Pass `ripple={false}` for an instant switch.
+
 ## [0.2.1] — 2026-11-17
 
 ### Fixed

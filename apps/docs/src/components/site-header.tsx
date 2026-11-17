@@ -1,10 +1,12 @@
 "use client";
 
+import * as React from "react";
+
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useTheme, type ThemeAccent } from "@kineticui/core/theme";
+import type { ThemeAccent } from "@kineticui/core/theme";
 import { cn } from "@kineticui/core";
-import { Button, CommandPalette, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger, Kbd, MobileMenu } from "@kineticui/ui";
+import { Button, CommandPalette, DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuTrigger, Kbd, MobileMenu, useThemeRipple } from "@kineticui/ui";
 import { BoltIcon, CodeIcon, GridIcon, LayersIcon, HomeIcon, MoonIcon, SearchIcon, SunIcon } from "@kineticui/icons";
 import { useState } from "react";
 import { Logo } from "./logo";
@@ -30,7 +32,12 @@ const accents: { id: ThemeAccent; hex: string }[] = [
 export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
-  const { resolvedMode, setMode, accent, setAccent } = useTheme();
+  const { resolvedMode, accent, setAccent, setModeFrom } = useThemeRipple();
+  const themeBtn = React.useRef<HTMLButtonElement>(null);
+  const fromThemeButton = () => {
+    const r = themeBtn.current?.getBoundingClientRect();
+    return r ? { x: r.left + r.width / 2, y: r.top + r.height / 2 } : undefined;
+  };
   const [open, setOpen] = useState(false);
 
   const commands = [
@@ -61,7 +68,7 @@ export function SiteHeader() {
       label: resolvedMode === "dark" ? "Switch to light mode" : "Switch to dark mode",
       group: "Theme",
       icon: resolvedMode === "dark" ? <SunIcon /> : <MoonIcon />,
-      onSelect: () => setMode(resolvedMode === "dark" ? "light" : "dark"),
+      onSelect: () => setModeFrom(resolvedMode === "dark" ? "light" : "dark"),
     },
   ];
 
@@ -102,13 +109,13 @@ export function SiteHeader() {
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon-sm" aria-label="Theme">
+              <Button ref={themeBtn} variant="ghost" size="icon-sm" aria-label="Theme">
                 <span className="size-4 rounded-full" style={{ background: accents.find((a) => a.id === accent)?.hex }} />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Mode</DropdownMenuLabel>
-              <DropdownMenuRadioGroup value={resolvedMode} onValueChange={(v) => setMode(v as "dark" | "light")}>
+              <DropdownMenuRadioGroup value={resolvedMode} onValueChange={(v) => setModeFrom(v as "dark" | "light", fromThemeButton())}>
                 <DropdownMenuRadioItem value="dark"><MoonIcon /> Dark</DropdownMenuRadioItem>
                 <DropdownMenuRadioItem value="light"><SunIcon /> Light</DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>

@@ -1461,5 +1461,40 @@
     "title": "Bar List",
     "category": "data",
     "description": "Ranked horizontal bars with labels inside: top pages, referrers, countries. Show-all toggle and shares."
+  },
+  "dynamic-island": {
+    "title": "Dynamic Island",
+    "category": "signature",
+    "description": "A black pill that morphs between live activities like a phone's status area: music, timers, uploads, calls and AI thinking. Tap to expand.",
+    "height": 460
+  },
+  "morph-surface": {
+    "title": "Morph Surface",
+    "category": "signature",
+    "description": "A button that physically morphs into a panel or form and back, with a check-mark success state.",
+    "height": 440
+  },
+  "theme-ripple": {
+    "title": "Theme Ripple",
+    "category": "signature",
+    "description": "Switch light and dark with a circular reveal that spreads from the click, using View Transitions. Also powers ThemeSwitch."
+  },
+  "ui-sounds": {
+    "title": "UI Sounds",
+    "category": "signature",
+    "description": "Subtle interface sounds synthesised in the browser: tap, toggle, pop, success, error, notify, whoosh. No audio files, off by default.",
+    "height": 440
+  },
+  "liquid-glass": {
+    "title": "Liquid Glass",
+    "category": "effects",
+    "description": "Glass that refracts what's behind it at the edges, with colour dispersion and a specular rim. Real refraction in Chromium, frosted fallback elsewhere.",
+    "height": 520
+  },
+  "kinetic-type": {
+    "title": "Kinetic Type",
+    "category": "effects",
+    "description": "Letters that swell, grow or ripple as the cursor passes, using variable font weight. 60fps, no re-renders.",
+    "height": 420
   }
 }
