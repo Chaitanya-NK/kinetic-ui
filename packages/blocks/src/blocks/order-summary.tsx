@@ -72,8 +72,7 @@ export function OrderSummary() {
               </motion.div>
             ) : null}
           </AnimatePresence>
-          <Separator className="my-1" />
-          <div className="flex items-baseline justify-between"><dt className="font-semibold">Total</dt>
+          <div className="mt-1 flex border-t border-border pt-3 items-baseline justify-between"><dt className="font-semibold">Total</dt>
             <motion.dd key={total} initial={{ y: -6, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-display text-2xl font-semibold tabular-nums">${total.toFixed(2)}</motion.dd>
           </div>
         </dl>

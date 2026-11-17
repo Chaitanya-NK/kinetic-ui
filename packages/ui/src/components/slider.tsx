@@ -11,7 +11,7 @@ export type SliderProps = React.ComponentPropsWithoutRef<typeof SliderPrimitive.
 };
 
 export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.Root>, SliderProps>(
-  ({ className, showValue, formatValue = String, value, defaultValue, onValueChange, ...props }, ref) => {
+  ({ className, showValue, formatValue = String, value, defaultValue, onValueChange, "aria-label": ariaLabel, ...props }, ref) => {
     const [internal, setInternal] = React.useState<number[]>(defaultValue ?? [0]);
     const current = value ?? internal;
     return (
@@ -32,6 +32,8 @@ export const Slider = React.forwardRef<React.ElementRef<typeof SliderPrimitive.R
         {current.map((v, i) => (
           <SliderPrimitive.Thumb
             key={i}
+            // The thumb is the focusable control, so it carries the name (with "start"/"end" for ranges).
+            aria-label={current.length > 1 ? `${ariaLabel ?? "Value"} ${i === 0 ? "start" : "end"}` : (ariaLabel ?? "Value")}
             className="relative block size-5 rounded-full bg-foreground shadow-[0_0_0_5px_var(--kn-ring)] transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground"
           >
             {showValue ? (

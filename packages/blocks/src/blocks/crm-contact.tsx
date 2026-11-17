@@ -36,12 +36,12 @@ export function CrmContact() {
             {[MailIcon, PhoneIcon, CalendarIcon].map((I, i) => <Button key={i} variant="secondary" size="icon-sm" aria-label={["Email", "Call", "Schedule"][i]}><I size={15} /></Button>)}
           </div>
         </div>
-        <dl className="flex flex-col gap-3 border-t border-border pt-4 text-sm">
+        <ul className="flex flex-col gap-3 border-t border-border pt-4 text-sm">
           {[[MailIcon, "priya@orbit.example"], [PhoneIcon, "+91 98765 43210"], [BuildingIcon, "Orbit · 220 employees"], [MapPinIcon, "Bengaluru, IN"]].map(([I, v], i) => {
             const Ic = I as typeof MailIcon;
-            return <div key={i} className="flex items-center gap-2.5 text-muted"><Ic size={14} className="text-subtle" />{v as string}</div>;
+            return <li key={i} className="flex items-center gap-2.5 text-muted"><Ic size={14} className="text-subtle" aria-hidden />{v as string}</li>;
           })}
-        </dl>
+        </ul>
         <div className="flex flex-wrap gap-1.5 border-t border-border pt-4">{["Enterprise", "Decision maker", "Warm"].map((t) => <Badge key={t} size="sm">{t}</Badge>)}</div>
       </aside>
       <div className="flex min-w-0 flex-col gap-5">
@@ -67,7 +67,7 @@ export function CrmContact() {
           <Button size="sm" onClick={add} disabled={!note.trim()}><PlusIcon size={14} /> Log</Button>
         </div>
         <ol className="relative flex flex-col gap-1 pl-2">
-          <span className="absolute bottom-4 left-[23px] top-4 w-px bg-border" />
+          <li aria-hidden className="absolute bottom-4 left-[23px] top-4 w-px bg-border" />
           <AnimatePresence initial={false}>
             {acts.filter((a) => tab === "activity" || a.kind === "note").map((a) => {
               const I = icon[a.kind];

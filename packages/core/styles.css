@@ -56,7 +56,7 @@
 .light {
   --kn-code-bg: #f4f4f2;
   --kn-code-foreground: #27272a;
-  --kn-code-muted: #71717a;
+  --kn-code-muted: #68686f;
   --kn-code-border: rgba(0, 0, 0, 0.08);
   --kn-code-string: #15803d;
   --kn-code-tag: #be185d;
@@ -71,7 +71,7 @@
   --kn-border-strong: #d4d4d8;
   --kn-foreground: #18181b;
   --kn-muted: #52525b;
-  --kn-subtle: #71717a;
+  --kn-subtle: #68686f;
   --kn-accent: #4d7c0f;
   --kn-accent-foreground: #ffffff;
   --kn-accent-soft: #ecfccb;

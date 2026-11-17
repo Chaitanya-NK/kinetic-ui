@@ -1,0 +1,56 @@
+name: Visual baselines
+
+# Run this by hand (Actions → Visual baselines → Run workflow) the first time, and whenever a
+# change to how components look is intended. It re-records every screenshot in CI's Playwright
+# image, then opens a pull request with them so you can review the changes before merging.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run build:packages
+      - run: npm run registry
+      - run: npm run build -w docs
+      - name: Record screenshots
+        run: npx playwright test --project=visual --update-snapshots=all
+        env:
+          UPDATE_BASELINES: "1"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: tests/e2e/__screenshots__/
+          retention-days: 14
+      - name: Open a pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          branch="ci/visual-baselines-${GITHUB_RUN_NUMBER}"
+          git checkout -b "$branch"
+          git add tests/e2e/__screenshots__
+          if git diff --cached --quiet; then echo "Screenshots unchanged."; exit 0; fi
+          git commit -m "Update visual baselines"
+          git push origin "$branch"
+          if ! command -v gh >/dev/null; then
+            (type -p wget >/dev/null || (apt-get update && apt-get install -y wget)) >/dev/null
+            mkdir -p -m 755 /etc/apt/keyrings
+            wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg > /etc/apt/keyrings/githubcli-archive-keyring.gpg
+            echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list
+            apt-get update >/dev/null && apt-get install -y gh >/dev/null
+          fi
+          gh pr create --base main --head "$branch" --title "Update visual baselines" \
+            --body "Screenshots re-recorded by the Visual baselines workflow (run ${GITHUB_RUN_NUMBER}). Review the image changes, then merge." \
+            || echo "::notice::Pushed $branch. Open a pull request from it (Actions may not be allowed to create PRs in this repo's settings)."

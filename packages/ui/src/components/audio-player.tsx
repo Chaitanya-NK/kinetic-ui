@@ -112,7 +112,6 @@ export function AudioPlayer({ src, title, artist, cover, peaks, bars = 64, class
           <span>{fmt(time)}</span>
           <button
             type="button"
-            aria-label="Playback speed"
             onClick={() => {
               const next = rate >= 2 ? 0.75 : rate === 0.75 ? 1 : rate + 0.5;
               setRate(next);
@@ -120,6 +119,7 @@ export function AudioPlayer({ src, title, artist, cover, peaks, bars = 64, class
             }}
             className="rounded px-1.5 hover:bg-surface-raised hover:text-foreground"
           >
+            <span className="sr-only">Playback speed </span>
             {rate}×
           </button>
           <span>{fmt(duration)}</span>

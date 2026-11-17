@@ -31,7 +31,6 @@ export function TeamPage() {
           <motion.button
             key={p.name}
             type="button"
-            aria-label={`${p.name}, ${p.role}`}
             onClick={() => setFlipped(flipped === p.name ? null : p.name)}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

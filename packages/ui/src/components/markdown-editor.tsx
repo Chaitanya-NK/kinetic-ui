@@ -74,8 +74,10 @@ export function Markdown({ children, className }: { children: string; className?
             const task = /^\[( |x)\]\s(.*)/i.exec(it);
             return task ? (
               <li key={j} className="-ml-6 flex list-none items-center gap-2">
-                <input type="checkbox" readOnly checked={task[1] !== " "} className="accent-[var(--kn-accent)]" />
-                <span className={task[1] !== " " ? "text-muted line-through" : ""}>{inline(task[2]!, j)}</span>
+                <label className="flex items-center gap-2">
+                  <input type="checkbox" readOnly checked={task[1] !== " "} className="accent-[var(--kn-accent)]" />
+                  <span className={task[1] !== " " ? "text-muted line-through" : ""}>{inline(task[2]!, j)}</span>
+                </label>
               </li>
             ) : (
               <li key={j}>{inline(it, j)}</li>

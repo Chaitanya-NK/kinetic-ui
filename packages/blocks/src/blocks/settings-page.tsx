@@ -78,10 +78,10 @@ export function SettingsPage() {
                   <ThemeSwitch variant="segmented" />
                 </Row>
                 <Row title="Language">
-                  <Select className="w-44" defaultValue="en" onValueChange={touch} options={[{ value: "en", label: "English" }, { value: "hi", label: "Hindi" }, { value: "es", label: "Spanish" }, { value: "de", label: "German" }]} />
+                  <Select aria-label="Language" className="w-44" defaultValue="en" onValueChange={touch} options={[{ value: "en", label: "English" }, { value: "hi", label: "Hindi" }, { value: "es", label: "Spanish" }, { value: "de", label: "German" }]} />
                 </Row>
                 <Row title="Timezone">
-                  <Select className="w-44" defaultValue="ist" onValueChange={touch} options={[{ value: "ist", label: "Asia/Kolkata" }, { value: "utc", label: "UTC" }, { value: "pst", label: "America/Los_Angeles" }]} />
+                  <Select aria-label="Time zone" className="w-44" defaultValue="ist" onValueChange={touch} options={[{ value: "ist", label: "Asia/Kolkata" }, { value: "utc", label: "UTC" }, { value: "pst", label: "America/Los_Angeles" }]} />
                 </Row>
               </div>
             ) : section === "notifications" ? (

@@ -40,7 +40,7 @@ export function InviteTeam({ inviteLink = "https://kinetic.app/join/acme-8f2a" }
         }}
       >
         <Input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@company.com" leading={<MailIcon size={15} />} wrapperClassName="flex-1" aria-label="Email" />
-        <Select className="sm:w-32" value={role} onValueChange={setRole} options={roles} />
+        <Select aria-label="Role" className="sm:w-32" value={role} onValueChange={setRole} options={roles} />
         <Button type="submit" disabled={!valid}>Invite</Button>
       </form>
       <div className="flex flex-col">
@@ -54,7 +54,7 @@ export function InviteTeam({ inviteLink = "https://kinetic.app/join/acme-8f2a" }
                   <span className="truncate text-sm font-medium">{m.name ?? m.email}</span>
                   <span className="truncate text-xs text-subtle">{m.pending ? "Invite pending" : m.email}</span>
                 </div>
-                <Select className="h-8 w-28 text-xs" value={m.role} onValueChange={(r) => setMembers((ms) => ms.map((x) => (x.email === m.email ? { ...x, role: r } : x)))} options={roles} />
+                <Select aria-label={`Role for ${m.email}`} className="h-8 w-28 text-xs" value={m.role} onValueChange={(r) => setMembers((ms) => ms.map((x) => (x.email === m.email ? { ...x, role: r } : x)))} options={roles} />
                 <button type="button" aria-label={`Remove ${m.email}`} onClick={() => setMembers((ms) => ms.filter((x) => x.email !== m.email))} className="px-1 text-subtle hover:text-danger">
                   ✕
                 </button>

@@ -1,7 +1,7 @@
 {
   "name": "kinetic-ui-monorepo",
   "private": true,
-  "description": "Kinetic UI — motion-first React components. npm packages + copy-paste registry from one source.",
+  "description": "Kinetic UI \u2014 motion-first React components. npm packages + copy-paste registry from one source.",
   "license": "MIT",
   "workspaces": [
     "packages/core",
@@ -20,9 +20,15 @@
     "dev": "npm run build:packages && npm run registry && npm run dev -w docs",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "release": "npm run build:packages && npm publish -w @kineticui/core -w @kineticui/icons -w @kineticui/motion -w @kineticui/ui -w @kineticui/blocks -w @kineticui/cli -w @kineticui/mcp --access public",
-    "version:set": "node scripts/set-version.mjs"
+    "version:set": "node scripts/set-version.mjs",
+    "test:e2e": "playwright test",
+    "test:a11y": "playwright test --project=a11y",
+    "test:visual": "playwright test --project=visual",
+    "test:unit": "npm test -w @kineticui/cli"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
+    "@playwright/test": "^1.63.0",
     "tsup": "^8.5.0",
     "typescript": "~5.9.3"
   },

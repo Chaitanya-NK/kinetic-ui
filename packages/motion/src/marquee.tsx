@@ -40,7 +40,8 @@ export function Marquee({
         style={{ "--kn-marquee-duration": `${duration}s`, gap } as React.CSSProperties}
       >
         <div className="flex shrink-0" style={{ gap }}>{children}</div>
-        <div className="flex shrink-0" style={{ gap }} aria-hidden>
+        {/* The visual copy for the seamless loop: hidden from assistive tech and made inert so its links can't be tabbed to. */}
+        <div className="flex shrink-0" style={{ gap }} aria-hidden ref={(el) => el?.setAttribute("inert", "")}>
           {children}
         </div>
       </div>

@@ -67,7 +67,7 @@ export function FooterColumns({ brand = "Kinetic" }: { brand?: string }) {
             <Social label="LinkedIn" d="M4.98 3.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.5h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1v5.45h-4v-4.85c0-1.15-.02-2.65-1.62-2.65-1.62 0-1.87 1.26-1.87 2.57v4.93h-4z" />
             <span className="mx-2 h-6 w-px bg-border" />
             <ThemeSwitch />
-            <Select className="h-9 w-32" defaultValue="en" options={[{ value: "en", label: "English" }, { value: "hi", label: "हिन्दी" }, { value: "es", label: "Español" }]} />
+            <Select aria-label="Language" className="h-9 w-32" defaultValue="en" options={[{ value: "en", label: "English" }, { value: "hi", label: "हिन्दी" }, { value: "es", label: "Español" }]} />
           </div>
         </div>
       </div>

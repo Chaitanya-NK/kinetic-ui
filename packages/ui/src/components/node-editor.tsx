@@ -493,7 +493,8 @@ function Port({ side, node, port, connected }: { side: "in" | "out"; node: strin
       data-port={side}
       data-port-node={node}
       data-port-id={port.id}
-      aria-label={`${side === "in" ? "Input" : "Output"} ${port.label ?? port.id}`}
+      aria-hidden
+      title={`${side === "in" ? "Input" : "Output"} ${port.label ?? port.id}`}
       className={cn("group absolute top-1/2 grid size-5 -translate-y-1/2 cursor-crosshair place-items-center", side === "in" ? "-left-2.5" : "-right-2.5")}
     >
       <span

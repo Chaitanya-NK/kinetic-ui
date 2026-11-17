@@ -15,3 +15,7 @@ apps/docs/src/generated
 apps/docs/public/md
 apps/docs/public/llms.txt
 apps/docs/public/llms-full.txt
+
+# Playwright
+/test-results/
+/playwright-report/

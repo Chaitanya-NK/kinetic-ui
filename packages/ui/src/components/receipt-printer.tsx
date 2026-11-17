@@ -160,14 +160,14 @@ export function ReceiptPrinter({
         >
           <Row className="text-center font-display text-base font-bold tracking-tight text-neutral-900">{merchant}</Row>
           {meta.map((m, k) => (
-            <Row key={k} className="text-center text-[11px] text-neutral-500">
+            <Row key={k} className="text-center text-[11px] text-neutral-600">
               {m}
             </Row>
           ))}
           <Rule />
           {items.map((l, k) => (
             <Row key={k} className="flex gap-2">
-              <span className="w-6 shrink-0 text-neutral-500">{l.qty ?? 1}x</span>
+              <span className="w-6 shrink-0 text-neutral-600">{l.qty ?? 1}x</span>
               <span className="min-w-0 flex-1 truncate">{l.label}</span>
               <span className="tabular-nums">{money(l.amount * (l.qty ?? 1))}</span>
             </Row>
@@ -200,7 +200,7 @@ export function ReceiptPrinter({
           {barcode && (
             <Row className="mt-2 text-neutral-900">
               <Barcode value={barcode} />
-              <div className="mt-1 text-center text-[10px] tracking-[0.3em] text-neutral-500">{barcode}</div>
+              <div className="mt-1 text-center text-[10px] tracking-[0.3em] text-neutral-600">{barcode}</div>
             </Row>
           )}
           {/* torn zigzag edges */}

@@ -71,7 +71,7 @@ export function Carousel({ children, perView = 1, autoplay, loop = true, showArr
         if (e.key === "ArrowLeft") go(index - 1);
       }}
     >
-      <div ref={track} className="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" style={{ gap }}>
+      <div ref={track} tabIndex={0} role="group" aria-label="Slides" className="flex snap-x snap-mandatory overflow-x-auto outline-none focus-visible:ring-2 focus-visible:ring-ring overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden" style={{ gap }}>
         {children.map((child, i) => (
           <div
             key={i}

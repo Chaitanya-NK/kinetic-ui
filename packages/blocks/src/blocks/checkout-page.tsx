@@ -122,8 +122,7 @@ export function CheckoutPage() {
           {discount ? <div className="flex justify-between text-success"><dt>Discount</dt><dd className="font-mono">−{usd(discount)}</dd></div> : null}
           <div className="flex justify-between text-muted"><dt>Delivery</dt><dd className="font-mono">{ship ? usd(ship) : "Free"}</dd></div>
           <div className="flex justify-between text-muted"><dt>GST (18%)</dt><dd className="font-mono">{usd(tax)}</dd></div>
-          <Separator className="my-1" />
-          <div className="flex justify-between text-base font-semibold"><dt>Total</dt><dd className="font-mono">{usd(total)}</dd></div>
+          <div className="mt-1 flex border-t border-border pt-3 justify-between text-base font-semibold"><dt>Total</dt><dd className="font-mono">{usd(total)}</dd></div>
         </dl>
         <Button size="lg" loading={busy} disabled={paid} className="hidden lg:inline-flex" onClick={() => { setBusy(true); setTimeout(() => { setBusy(false); setPaid(true); }, 1100); }}>
           Pay {usd(total)}

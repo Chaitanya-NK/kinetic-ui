@@ -68,7 +68,7 @@ export function LogViewer({ lines, follow = true, height = 320, title = "Logs", 
           ))}
           <label className="ml-1 flex h-7 items-center gap-1.5 rounded-md bg-code-foreground/5 px-2">
             <SearchIcon size={12} className="text-code-muted" />
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Filter" aria-label="Filter logs" className="w-24 bg-transparent font-mono text-[11px] outline-none placeholder:text-code-muted/80" />
+            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Filter" aria-label="Filter logs" className="w-24 bg-transparent font-mono text-[11px] outline-none placeholder:text-code-muted" />
           </label>
         </div>
       </div>
@@ -85,7 +85,7 @@ export function LogViewer({ lines, follow = true, height = 320, title = "Logs", 
       >
         {shown.map((l, i) => (
           <div key={i} className="flex gap-3 hover:bg-code-foreground/5">
-            {l.time ? <span className="shrink-0 text-code-muted/80">{l.time}</span> : null}
+            {l.time ? <span className="shrink-0 text-code-muted">{l.time}</span> : null}
             <span className={cn("w-12 shrink-0 uppercase", levelStyle[l.level ?? "info"])}>{l.level ?? "info"}</span>
             {l.source ? <span className="shrink-0 text-code-muted">[{l.source}]</span> : null}
             <span className="whitespace-pre-wrap break-all">

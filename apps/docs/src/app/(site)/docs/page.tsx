@@ -47,7 +47,7 @@ export default function DocsPage() {
         <p>
           Later, <code className="font-mono text-foreground">npx @kineticui/cli diff</code> shows what changed upstream and{" "}
           <code className="font-mono text-foreground">npx @kineticui/cli update</code> merges fixes in without losing your edits.{" "}
-          <Link href="/docs/updating" className="text-accent hover:underline">How updating works</Link>
+          <Link href="/docs/updating" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">How updating works</Link>
         </p>
 
         <h3 className="mt-2 font-display text-xl font-semibold text-foreground">Option B — npm packages</h3>
@@ -115,7 +115,7 @@ export function Providers({ children }) {
           <code className="font-mono text-foreground">mono</code>, <code className="font-mono text-foreground">forest</code> and{" "}
           <code className="font-mono text-foreground">ocean</code>. Set <code className="font-mono text-foreground">defaultTheme</code> on the provider or{" "}
           <code className="font-mono text-foreground">data-theme</code> on any element, or build your own in the{" "}
-          <Link href="/themes" className="text-accent hover:underline">theme editor</Link>.
+          <Link href="/themes" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">theme editor</Link>.
         </p>
         <CodeBlock
           code={`<ThemeProvider defaultTheme="midnight">…</ThemeProvider>
@@ -134,7 +134,7 @@ const css = themeToCss(createTheme({ mode: "dark", background: "#0b1020", foregr
           Radix primitives, so keyboard navigation, focus management and ARIA come for free.
         </p>
         <p>
-          Next: <Link href="/components" className="text-accent hover:underline">browse all components →</Link>
+          Next: <Link href="/components" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">browse all components →</Link>
         </p>
       </article>
     </div>

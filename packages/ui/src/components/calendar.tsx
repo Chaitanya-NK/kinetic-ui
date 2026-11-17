@@ -85,10 +85,15 @@ export function Calendar(props: CalendarProps) {
         </button>
       </div>
       <div role="grid" ref={gridRef} className="grid grid-cols-7 gap-y-1 text-center text-sm" onPointerLeave={() => setHover(undefined)}>
-        {weekdays.map((w) => (
-          <span key={w} role="columnheader" className="pb-1 text-[11px] text-subtle">{w}</span>
-        ))}
-        {days.map((d) => {
+        {/* Rows use display:contents so the 7-column grid layout is untouched while assistive tech sees a proper grid. */}
+        <div role="row" className="contents">
+          {weekdays.map((w) => (
+            <span key={w} role="columnheader" className="pb-1 text-[11px] text-subtle">{w}</span>
+          ))}
+        </div>
+        {Array.from({ length: Math.ceil(days.length / 7) }, (_, week) => (
+        <div key={week} role="row" className="contents">
+        {days.slice(week * 7, week * 7 + 7).map((d) => {
           const outside = d.getMonth() !== month.getMonth();
           const isDisabled = disabled?.(d) ?? false;
           const selectedSingle = props.mode !== "range" && sameDay(d, props.selected as Date | undefined);
@@ -121,7 +126,7 @@ export function Calendar(props: CalendarProps) {
                 }}
                 className={cn(
                   "flex size-9 items-center justify-center rounded-[10px] tabular-nums transition-colors outline-none focus-visible:ring-2 focus-visible:ring-foreground disabled:cursor-not-allowed disabled:text-border-strong disabled:line-through",
-                  outside ? "text-border-strong" : "text-foreground",
+                  outside ? "text-subtle" : "text-foreground",
                   !selectedSingle && !edge && !isDisabled && "hover:bg-surface-overlay",
                   sameDay(d, today) && !selectedSingle && !edge && "font-semibold text-accent",
                   (selectedSingle || edge) && "bg-accent font-semibold text-accent-foreground",
@@ -133,6 +138,8 @@ export function Calendar(props: CalendarProps) {
             </span>
           );
         })}
+        </div>
+        ))}
       </div>
     </div>
   );

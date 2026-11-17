@@ -18,7 +18,7 @@ export type Review = {
 
 function Stars({ value, size = 14 }: { value: number; size?: number }) {
   return (
-    <span className="inline-flex gap-0.5" aria-label={`${value} out of 5 stars`}>
+    <span className="inline-flex gap-0.5" role="img" aria-label={`${value} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => {
         const f = Math.max(0, Math.min(1, value - i));
         return (

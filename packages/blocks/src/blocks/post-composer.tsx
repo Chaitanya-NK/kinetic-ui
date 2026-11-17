@@ -25,7 +25,7 @@ export function PostComposer() {
         <div className="flex gap-3">
           <Avatar alt="Maya Kapoor" color="#7C8CFF" />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            <Select className="h-8 w-fit rounded-full border-accent/40 px-3 text-xs text-accent" value={audience} onValueChange={setAudience} options={[{ value: "everyone", label: "Everyone" }, { value: "followers", label: "Followers" }, { value: "team", label: "Only my team" }]} />
+            <Select aria-label="Audience" className="h-8 w-fit rounded-full border-accent/40 px-3 text-xs text-accent" value={audience} onValueChange={setAudience} options={[{ value: "everyone", label: "Everyone" }, { value: "followers", label: "Followers" }, { value: "team", label: "Only my team" }]} />
             <textarea
               value={text}
               onChange={(e) => setText(e.target.value)}
@@ -54,7 +54,7 @@ export function PostComposer() {
               <Button variant="ghost" size="icon-sm" aria-label="Add image" disabled={images.length >= 4} onClick={() => input.current?.click()}><ImageIcon size={17} className="text-accent" /></Button>
               <Button variant="ghost" size="icon-sm" aria-label="Schedule" onClick={() => toast("Scheduling coming soon")}><CalendarIcon size={17} className="text-accent" /></Button>
               <div className="ml-auto flex items-center gap-3">
-                <span className="relative flex size-7 items-center justify-center" aria-label={`${left} characters left`}>
+                <span className="relative flex size-7 items-center justify-center" role="img" aria-label={`${left} characters left`}>
                   <svg viewBox="0 0 24 24" className="absolute inset-0 -rotate-90" aria-hidden>
                     <circle cx="12" cy="12" r={r} fill="none" stroke="var(--kn-border)" strokeWidth="2.5" />
                     <motion.circle cx="12" cy="12" r={r} fill="none" strokeWidth="2.5" strokeLinecap="round" strokeDasharray={c} animate={{ strokeDashoffset: c * (1 - pct), stroke: left < 0 ? "var(--kn-danger)" : left < 20 ? "var(--kn-warning)" : "var(--kn-accent)" }} />

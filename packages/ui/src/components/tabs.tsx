@@ -92,7 +92,8 @@ export const TabsContent = React.forwardRef<
 TabsContent.displayName = "TabsContent";
 
 export type SegmentedControlProps = {
-  options: { value: string; label: React.ReactNode }[];
+  /** `ariaLabel` names icon-only segments. */
+  options: { value: string; label: React.ReactNode; ariaLabel?: string }[];
   value?: string;
   defaultValue: string;
   onValueChange?: (value: string) => void;
@@ -114,6 +115,7 @@ export function SegmentedControl({ options, value, defaultValue, onValueChange, 
             type="button"
             role="radio"
             aria-checked={active}
+            aria-label={o.ariaLabel}
             onClick={() => setCurrent(o.value)}
             className={cn(
               "relative flex-1 rounded-lg px-3.5 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground",

@@ -67,7 +67,6 @@ export function Combobox(props: ComboboxProps) {
     <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
       <PopoverPrimitive.Trigger
         disabled={disabled}
-        aria-label={props["aria-label"]}
         className={cn(
           "flex min-h-11 w-full items-center gap-2 rounded-xl border border-border bg-background px-2 py-1.5 text-left text-sm outline-none transition-[border-color,box-shadow]",
           "focus-visible:border-accent focus-visible:shadow-[0_0_0_4px_var(--kn-ring)] data-[state=open]:border-accent disabled:opacity-50",
@@ -75,15 +74,15 @@ export function Combobox(props: ComboboxProps) {
         )}
       >
         <span className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5 px-1.5">
+          {props["aria-label"] ? <span className="sr-only">{`${props["aria-label"]}: `}</span> : null}
           {selected.length === 0 ? <span className="text-subtle">{placeholder}</span> : null}
           {props.multiple
             ? selected.map((v) => (
                 <span key={v} className="inline-flex items-center gap-1 rounded-lg bg-surface-overlay px-2 py-1 text-xs text-foreground">
                   {labelOf(v)}
                   <span
-                    role="button"
-                    tabIndex={-1}
-                    aria-label={`Remove ${labelOf(v)}`}
+                    aria-hidden
+                    title={`Remove ${labelOf(v)}`}
                     onPointerDown={(e) => {
                       e.preventDefault();
                       e.stopPropagation();

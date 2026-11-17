@@ -48,7 +48,7 @@ function Terminal() {
         <span className="size-2.5 rounded-full bg-[#FF5F57]" />
         <span className="size-2.5 rounded-full bg-[#FEBC2E]" />
         <span className="size-2.5 rounded-full bg-[#28C840]" />
-        <span className="ml-3 text-xs text-white/40">~/projects — zsh</span>
+        <span className="ml-3 text-xs text-white/60">~/projects — zsh</span>
       </div>
       <div className="h-64 p-4">
         {lines.map((l, i) => (

@@ -132,6 +132,16 @@ npm run typecheck
 5. `npm run dev` — the registry item, docs page, npm export and the props table (from your TypeScript types and JSDoc comments) are all generated.
 6. Optional: add keyboard notes in `apps/docs/src/lib/a11y.ts`.
 
+### Tests
+
+```bash
+npm run test:unit                           # CLI diff/merge tests
+npm run build -w docs && npm run test:a11y   # axe (WCAG 2.1 AA) on every page, demo, block and template
+npm run test:visual                         # screenshots of every demo, block and template
+```
+
+CI runs all three on every push and pull request. Accessibility failures name the rule and the element. Visual baselines live in `tests/e2e/__screenshots__` and are recorded in CI's Playwright image so they match exactly: when you mean to change how something looks, run **Actions → Visual baselines → Run workflow**, review the screenshots in the pull request it opens, and merge. Locally, the first `test:visual` run records your own baselines (not committed).
+
 ### Thumbnails
 
 Cards on the home page, the components index and the blocks index use static thumbnails in `apps/docs/public/thumbs`. After adding a component or block, or changing how one looks:

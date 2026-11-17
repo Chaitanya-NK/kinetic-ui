@@ -107,7 +107,7 @@ export function Gantt({ tasks, dayWidth = 28, today, onTaskClick, className }: G
                     style={{ left: left + 2, width: width - 4, background: `color-mix(in oklab, ${color} 28%, transparent)` }}
                   >
                     <span className="absolute inset-y-0 left-0" style={{ width: `${t.progress ?? 0}%`, background: color }} />
-                    <span className="relative truncate px-2" style={{ color: (t.progress ?? 0) > 40 ? "var(--kn-accent-foreground)" : "var(--kn-foreground)" }}>
+                    <span className="relative truncate px-2" style={{ color: (t.progress ?? 0) >= 15 ? "#0b0c0e" : "var(--kn-foreground)" }}>
                       {t.progress !== undefined ? `${t.progress}%` : ""}
                     </span>
                   </motion.button>

@@ -95,7 +95,7 @@ export function AiCommandPalette({ defaultOpen = true }: { defaultOpen?: boolean
                   <Answer q={asked} />
                 </motion.div>
               ) : (
-                <motion.ul key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="listbox" className="max-h-80 overflow-y-auto p-2">
+                <motion.ul key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} role="listbox" aria-label="Commands" className="max-h-80 overflow-y-auto p-2">
                   {rows.length ? (
                     rows.map((r, i) => {
                       const prev = rows[i - 1];
@@ -103,7 +103,7 @@ export function AiCommandPalette({ defaultOpen = true }: { defaultOpen?: boolean
                       const prevGroup = prev ? (prev.type === "ai" ? "AI" : prev.a.group) : null;
                       return (
                         <React.Fragment key={r.type === "ai" ? "ai" : r.a.id}>
-                          {group !== prevGroup ? <li className="px-3 pb-1 pt-2 font-mono text-[10px] uppercase tracking-wider text-subtle">{group}</li> : null}
+                          {group !== prevGroup ? <li role="presentation" className="px-3 pb-1 pt-2 font-mono text-[10px] uppercase tracking-wider text-subtle">{group}</li> : null}
                           <li
                             role="option"
                             aria-selected={active === i}
@@ -129,7 +129,7 @@ export function AiCommandPalette({ defaultOpen = true }: { defaultOpen?: boolean
                       );
                     })
                   ) : (
-                    <li className="p-8 text-center text-sm text-subtle">No results</li>
+                    <li role="option" aria-selected={false} aria-disabled className="p-8 text-center text-sm text-subtle">No results</li>
                   )}
                 </motion.ul>
               )}

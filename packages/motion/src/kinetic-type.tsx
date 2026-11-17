@@ -95,7 +95,8 @@ export function KineticType({ text, effect = "lens", radius = 160, minWeight = 3
 
   const words = text.split(/(\s+)/);
   return (
-    <Tag ref={root} aria-label={text} className={cn("inline-block", className)}>
+    <Tag ref={root} className={cn("inline-block", className)}>
+      <span className="sr-only">{text}</span>
       {words.map((w, wi) =>
         /^\s+$/.test(w) ? (
           <span key={wi} aria-hidden> </span>

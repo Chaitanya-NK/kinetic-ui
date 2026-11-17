@@ -112,13 +112,13 @@ export function CodeEditor({ value, defaultValue = "", onValueChange, language =
         <div className="flex items-center gap-2 border-b border-code-border px-4 py-2 font-mono text-xs text-code-foreground/60">
           <span className="size-2 rounded-full bg-accent" />
           {filename}
-          <span className="ml-auto text-code-muted/80">
+          <span className="ml-auto text-code-muted">
             Ln {line + 1}, {language}
           </span>
         </div>
       ) : null}
       <div className="relative flex" style={{ height }}>
-        <div ref={gutter} aria-hidden className="w-11 shrink-0 select-none overflow-hidden border-r border-code-border py-3 text-right font-mono text-[12px] leading-[22px] text-code-muted/70">
+        <div ref={gutter} aria-hidden className="w-11 shrink-0 select-none overflow-hidden border-r border-code-border py-3 text-right font-mono text-[12px] leading-[22px] text-code-muted">
           {lines.map((_, i) => (
             <div key={i} className={cn("pr-3", i === line && "text-code-foreground/70")}>{i + 1}</div>
           ))}

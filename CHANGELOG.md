@@ -8,7 +8,11 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 - CLI: `kinetic diff` shows what changed upstream since you added a component, and `kinetic update` pulls fixes in with a three-way merge that keeps your edits. Lines changed on both sides get git-style conflict markers. `add` and `update` now keep install records in `.kinetic/` (commit it). New "Updating components" docs page.
 - Agent Skill for Claude and Cursor, generated from the registry (`skills/kinetic-ui`). Install it with `npx @kineticui/cli skill`, or download the zip for the Claude app from the AI tools page.
 
+- Tests in CI: axe accessibility checks (WCAG 2.1 AA) and visual snapshots for every demo, block and template, plus a workflow that records new baselines and opens a pull request.
+
 ### Fixed
+- Accessibility fixes found by the new checks, across about 50 components and blocks: progress bars and sliders now have names; selects, combobox and tree-select are labelled properly; the calendar is a valid grid; text effects (Blur Text, Kinetic Type, Text Scramble) expose their text without ARIA misuse; label and visible text now match on story rings, votes, comment pins, phone input and more; scrollable code blocks, carousels and scroll areas can be reached by keyboard; the marquee's duplicate copy is inert; lists and definition lists are well formed; low-contrast text fixed in code blocks, logs, Gantt, Treemap, receipts and the light theme's subtle text.
+- `SegmentedControl` options take an `ariaLabel` for icon-only segments.
 - `font-display` now works outside the docs site: core styles define it (Space Grotesk when loaded, else the system font).
 
 ## [0.3.0] — 2026-11-17

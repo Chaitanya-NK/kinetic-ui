@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
-import { Button, EmptyState, NumberInput, Progress, Separator, toast } from "@kineticui/ui";
+import { Button, EmptyState, NumberInput, Progress, toast } from "@kineticui/ui";
 import { CartIcon, TrashIcon, BoltIcon } from "@kineticui/icons";
 
 type Line = { id: string; name: string; variant: string; price: number; qty: number; color: string };
@@ -36,7 +36,7 @@ export function CartScreen() {
             <BoltIcon size={14} className="text-accent" />
             {remaining ? <>You&apos;re <b>{usd(remaining)}</b> away from free shipping</> : <b>You&apos;ve unlocked free shipping!</b>}
           </p>
-          <Progress value={Math.min(100, (subtotal / FREE_SHIP) * 100)} size="sm" />
+          <Progress value={Math.min(100, (subtotal / FREE_SHIP) * 100)} size="sm" aria-label="Progress to free shipping" />
         </div>
         {lines.length ? (
           <ul className="flex flex-col">
@@ -67,8 +67,7 @@ export function CartScreen() {
         <dl className="flex flex-col gap-2 text-sm">
           <div className="flex justify-between text-muted"><dt>Subtotal</dt><dd className="font-mono">{usd(subtotal)}</dd></div>
           <div className="flex justify-between text-muted"><dt>Shipping</dt><dd className="font-mono">{remaining ? usd(9.99) : "Free"}</dd></div>
-          <Separator className="my-1" />
-          <div className="flex justify-between text-base font-semibold"><dt>Total</dt><dd className="font-mono">{usd(subtotal + (remaining ? 9.99 : 0))}</dd></div>
+          <div className="mt-1 flex border-t border-border pt-3 justify-between text-base font-semibold"><dt>Total</dt><dd className="font-mono">{usd(subtotal + (remaining ? 9.99 : 0))}</dd></div>
         </dl>
         <Button size="lg" disabled={!lines.length}>Checkout</Button>
         <p className="text-center text-xs text-subtle">Free returns within 30 days</p>

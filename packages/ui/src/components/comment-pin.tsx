@@ -26,7 +26,6 @@ function Pin({ thread, active, onClick }: { thread: PinThread; active: boolean; 
   return (
     <button
       type="button"
-      aria-label={`Comment by ${first?.author ?? "you"}`}
       onClick={(e) => {
         e.stopPropagation();
         onClick();
@@ -38,7 +37,8 @@ function Pin({ thread, active, onClick }: { thread: PinThread; active: boolean; 
       )}
       style={{ background: first?.color ?? "var(--kn-accent)" }}
     >
-      {thread.resolved ? <CheckIcon size={14} strokeWidth={3} /> : first ? initials(first.author) : "+"}
+      <span className="sr-only">{`Comment by ${first?.author ?? "you"}${thread.resolved ? ", resolved" : ""}`}</span>
+      <span aria-hidden>{thread.resolved ? <CheckIcon size={14} strokeWidth={3} /> : first ? initials(first.author) : "+"}</span>
       {thread.comments.length > 1 ? <span className="absolute -right-1.5 -top-1.5 flex size-4 items-center justify-center rounded-full bg-foreground font-mono text-[9px] text-background">{thread.comments.length}</span> : null}
     </button>
   );

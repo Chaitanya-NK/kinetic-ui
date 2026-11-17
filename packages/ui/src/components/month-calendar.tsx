@@ -86,11 +86,10 @@ export function MonthCalendar({ events, month, weekStartsOn = 1, maxPerDay = 3, 
             return (
               <div
                 key={k}
-                role="gridcell"
                 onClick={() => onDayClick?.(d)}
                 className={cn("relative flex min-h-24 flex-col gap-1 border-b border-r border-border p-1.5 last:border-r-0 [&:nth-child(7n)]:border-r-0", !inMonth && "bg-background/40", onDayClick && "cursor-pointer hover:bg-surface-raised/50")}
               >
-                <span className={cn("flex size-6 items-center justify-center self-end rounded-full font-mono text-xs", isToday ? "bg-accent font-bold text-accent-foreground" : inMonth ? "text-foreground" : "text-subtle/60")}>{d.getDate()}</span>
+                <span className={cn("flex size-6 items-center justify-center self-end rounded-full font-mono text-xs", isToday ? "bg-accent font-bold text-accent-foreground" : inMonth ? "text-foreground" : "text-subtle")}>{d.getDate()}</span>
                 {(expanded === k ? list : list.slice(0, maxPerDay)).map((e) => (
                   <button
                     key={e.id}

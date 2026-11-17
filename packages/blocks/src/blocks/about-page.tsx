@@ -60,7 +60,7 @@ export function AboutPage() {
       <div className="grid gap-4 md:grid-cols-3">
         {values.map(([t, d], i) => (
           <motion.div key={t} whileHover={{ y: -4 }} className="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-6">
-            <span className="font-display text-5xl font-bold text-accent/30">0{i + 1}</span>
+            <span aria-hidden className="font-display text-5xl font-bold text-accent/60">0{i + 1}</span>
             <span className="text-lg font-semibold">{t}</span>
             <span className="text-muted">{d}</span>
           </motion.div>

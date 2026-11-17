@@ -67,7 +67,6 @@ export function FeatureVoting({ items, onVote, onItemClick, className }: Feature
             <motion.button
               type="button"
               aria-pressed={!!it.voted}
-              aria-label={`${it.voted ? "Remove vote" : "Upvote"}: ${it.title}`}
               whileTap={{ scale: 0.9 }}
               onClick={() => onVote(it.id, !it.voted)}
               className={cn(
@@ -78,6 +77,7 @@ export function FeatureVoting({ items, onVote, onItemClick, className }: Feature
               <svg viewBox="0 0 24 24" className="size-4" fill={it.voted ? "currentColor" : "none"} stroke="currentColor" strokeWidth="2.2" strokeLinejoin="round" aria-hidden>
                 <path d="M12 5l7 9h-4v5H9v-5H5z" />
               </svg>
+              <span className="sr-only">{`${it.voted ? "Remove vote" : "Upvote"}: ${it.title}, `}</span>
               <motion.span key={it.votes} initial={{ y: -6, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="font-mono text-sm font-semibold">
                 {it.votes}
               </motion.span>

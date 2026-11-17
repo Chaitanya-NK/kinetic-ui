@@ -39,6 +39,7 @@ export function Avatar({ src, alt = "", fallback, size = "md", status, ring, col
           delayMs={src ? 400 : 0}
           className="flex size-full items-center justify-center font-semibold text-background"
           style={{ background: color ?? "var(--kn-info)" }}
+          role={alt ? "img" : undefined}
           aria-label={alt || undefined}
         >
           {fallback ?? initials(alt)}
@@ -46,6 +47,7 @@ export function Avatar({ src, alt = "", fallback, size = "md", status, ring, col
       </AvatarPrimitive.Root>
       {status ? (
         <span
+          role="img"
           aria-label={status}
           className={cn("absolute bottom-0 right-0 size-3 rounded-full border-2 border-background", statusColors[status])}
         />

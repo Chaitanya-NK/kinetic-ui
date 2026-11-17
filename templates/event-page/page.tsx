@@ -75,6 +75,8 @@ const tiers = [
   { name: "Workshop", price: "₹11,999", perks: ["Everything in Standard", "Both hands-on workshops", "Signed print"] },
 ];
 
+// Tab values become element ids, so keep them free of spaces.
+const slug = (s: string) => s.toLowerCase().replace(/\s+/g, "-");
 const initials = (n: string) => n.split(" ").map((w) => w[0]).join("");
 
 export default function EventPage() {
@@ -182,16 +184,16 @@ export default function EventPage() {
       <section id="agenda" className="mx-auto max-w-4xl scroll-mt-24 px-6 py-20">
         <div className="font-mono text-xs uppercase tracking-[0.2em] text-accent">Agenda</div>
         <h2 className="mt-2 font-display text-4xl font-semibold tracking-tight">Two days, one stage, two workshops</h2>
-        <Tabs defaultValue="Day 1" className="mt-8">
+        <Tabs defaultValue="day-1" className="mt-8">
           <TabsList>
             {Object.keys(agenda).map((d) => (
-              <TabsTrigger key={d} value={d}>
+              <TabsTrigger key={d} value={slug(d)}>
                 {d}
               </TabsTrigger>
             ))}
           </TabsList>
           {Object.entries(agenda).map(([d, slots]) => (
-            <TabsContent key={d} value={d} className="mt-6">
+            <TabsContent key={d} value={slug(d)} className="mt-6">
               <ol className="relative border-l border-border">
                 {slots.map((s, i) => (
                   <motion.li

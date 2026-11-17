@@ -62,7 +62,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
                 return (
                   <span key={d}>
                     {i ? ", " : ""}
-                    <Link href={`/components/${n}`} className="text-accent hover:underline">{n}</Link>
+                    <Link href={`/components/${n}`} className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">{n}</Link>
                   </span>
                 );
               })}
@@ -96,7 +96,7 @@ export default async function ComponentPage({ params }: { params: Promise<{ slug
           </div>
           <p className="text-sm text-subtle">
             Source:{" "}
-            <a href={`${site.github}/blob/main/${entry.source}`} className="text-accent hover:underline">{entry.source}</a>
+            <a href={`${site.github}/blob/main/${entry.source}`} className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">{entry.source}</a>
           </p>
         </section>
 

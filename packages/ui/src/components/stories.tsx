@@ -262,8 +262,10 @@ export type StoryRingProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 /** The avatar with a gradient ring. Grey once seen. */
 export function StoryRing({ story, seen, size = 64, showName = true, className, ...props }: StoryRingProps) {
   return (
-    <button type="button" className={cn("group flex w-fit flex-col items-center gap-1.5 outline-none", className)} aria-label={`${story.name}'s story${seen ? ", seen" : ""}`} {...props}>
+    <button type="button" className={cn("group flex w-fit flex-col items-center gap-1.5 outline-none", className)} {...props}>
+      <span className="sr-only">{`${story.name}'s story${seen ? ", seen" : ""}`}</span>
       <span
+        aria-hidden
         className="grid place-items-center rounded-full p-[2.5px] transition-transform group-hover:scale-105 group-active:scale-95 group-focus-visible:ring-2 group-focus-visible:ring-ring"
         style={{
           width: size + 10,
@@ -275,7 +277,7 @@ export function StoryRing({ story, seen, size = 64, showName = true, className, 
           <Avatar story={story} size={size} />
         </span>
       </span>
-      {showName && <span className={cn("max-w-[5rem] truncate text-xs", seen ? "text-subtle" : "text-foreground")}>{story.name.split(" ")[0]}</span>}
+      {showName && <span aria-hidden className={cn("max-w-[5rem] truncate text-xs", seen ? "text-subtle" : "text-foreground")}>{story.name.split(" ")[0]}</span>}
     </button>
   );
 }

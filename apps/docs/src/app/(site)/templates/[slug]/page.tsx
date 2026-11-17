@@ -56,7 +56,7 @@ export default async function TemplatePage({ params }: { params: Promise<{ slug:
           {t.notes ? <Alert tone="info" title="After installing">{t.notes}</Alert> : null}
           <p className="text-sm text-muted">
             New to Kinetic? Run <code className="font-mono text-foreground">npx @kineticui/cli init</code> first to add the theme to your global CSS. See{" "}
-            <Link href="/docs#installation" className="text-accent hover:underline">installation</Link>.
+            <Link href="/docs#installation" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">installation</Link>.
           </p>
 
           <h2 className="mt-4 font-display text-2xl font-semibold tracking-tight">What you get</h2>

@@ -48,8 +48,9 @@ export function RoadmapBoard() {
             </div>
             {c.items.map((i) => (
               <motion.div layout key={i.id} transition={{ type: "spring", stiffness: 400, damping: 34 }} className="flex gap-3 rounded-xl border border-border bg-surface p-3">
-                <motion.button whileTap={{ scale: 0.85 }} type="button" aria-pressed={!!i.voted} aria-label={`Upvote ${i.title}`} onClick={() => vote(c.id, i.id)} className={`flex h-14 w-11 shrink-0 flex-col items-center justify-center rounded-lg border text-xs font-semibold ${i.voted ? "border-accent bg-accent-soft text-accent" : "border-border hover:border-border-strong"}`}>
-                  <ChevronUpIcon size={15} /> {i.votes}
+                <motion.button whileTap={{ scale: 0.85 }} type="button" aria-pressed={!!i.voted} onClick={() => vote(c.id, i.id)} className={`flex h-14 w-11 shrink-0 flex-col items-center justify-center rounded-lg border text-xs font-semibold ${i.voted ? "border-accent bg-accent-soft text-accent" : "border-border hover:border-border-strong"}`}>
+                  <span className="sr-only">{`Upvote ${i.title}, `}</span>
+                  <ChevronUpIcon size={15} aria-hidden /> {i.votes}
                 </motion.button>
                 <div className="flex min-w-0 flex-1 flex-col gap-2">
                   <span className="text-sm font-medium leading-snug">{i.title}</span>

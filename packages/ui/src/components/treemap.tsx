@@ -98,12 +98,12 @@ export function Treemap({ data, height = 360, format = defaultFormat, drilldown 
                 transition={{ type: "spring", stiffness: 260, damping: 30, delay: i * 0.012 }}
                 className="absolute p-[2px] text-left disabled:cursor-default"
               >
-                <span className="relative flex size-full flex-col justify-between overflow-hidden rounded-lg p-2.5" style={{ background: `color-mix(in srgb, ${r.color} ${Math.round(22 + shade * 34)}%, var(--kn-surface))` }}>
+                <span className="relative flex size-full flex-col justify-between overflow-hidden rounded-lg p-2.5" style={{ background: `color-mix(in srgb, ${r.color} ${Math.round(22 + shade * 18)}%, var(--kn-surface))` }}>
                   {big || (r.w > 56 && r.h > 30) ? <span className="truncate text-xs font-semibold text-foreground">{r.node.name}</span> : null}
                   {big ? (
                     <span className="flex items-end justify-between gap-2">
-                      <span className="font-mono text-[11px] text-foreground/80">{format(r.total)}</span>
-                      <span className="font-mono text-[10px] text-foreground/60">{Math.round((r.total / grand) * 100)}%</span>
+                      <span className="font-mono text-[11px] text-foreground">{format(r.total)}</span>
+                      <span className="font-mono text-[10px] text-foreground">{Math.round((r.total / grand) * 100)}%</span>
                     </span>
                   ) : null}
                   {canDrill && big ? <ChevronRightIcon size={12} className="absolute right-2 top-2.5 text-foreground/60" /> : null}

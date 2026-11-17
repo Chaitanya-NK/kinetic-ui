@@ -78,7 +78,7 @@ export function FontPicker({ value, defaultValue = "Inter", onValueChange, fonts
       </div>
       <ul role="listbox" aria-label="Fonts" className="max-h-80 overflow-y-auto p-1.5">
         {list.map((f) => (
-          <li key={f.family}>
+          <li key={f.family} role="presentation">
             <button
               type="button"
               role="option"
@@ -97,7 +97,7 @@ export function FontPicker({ value, defaultValue = "Inter", onValueChange, fonts
             </button>
           </li>
         ))}
-        {!list.length ? <li className="py-10 text-center text-sm text-subtle">No fonts found</li> : null}
+        {!list.length ? <li role="option" aria-selected={false} aria-disabled className="py-10 text-center text-sm text-subtle">No fonts found</li> : null}
       </ul>
     </div>
   );

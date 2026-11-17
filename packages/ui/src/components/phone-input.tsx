@@ -93,10 +93,8 @@ export function PhoneInput({
       )}
     >
       <PopoverPrimitive.Root open={open} onOpenChange={setOpen}>
-        <PopoverPrimitive.Trigger
-          aria-label={`Country: ${country.name}`}
-          className="flex shrink-0 items-center gap-2 border-r border-border bg-surface px-3 text-sm text-foreground outline-none"
-        >
+        <PopoverPrimitive.Trigger className="flex shrink-0 items-center gap-2 border-r border-border bg-surface px-3 text-sm text-foreground outline-none">
+          <span className="sr-only">{`Country: ${country.name}, `}</span>
           <span className="rounded bg-surface-overlay px-1.5 py-0.5 font-mono text-[10px]">{country.code}</span>
           {country.dial}
           <ChevronDownIcon size={13} className="text-subtle" />
@@ -153,7 +151,7 @@ export function PhoneInput({
         }}
         className="min-w-0 flex-1 bg-transparent px-3 font-mono text-[15px] text-foreground outline-none placeholder:text-border-strong"
       />
-      {digits.length === max ? <span className="flex items-center pr-3 text-success" aria-label="Complete"><CheckIcon size={15} /></span> : null}
+      {digits.length === max ? <span className="flex items-center pr-3 text-success" role="img" aria-label="Complete"><CheckIcon size={15} /></span> : null}
     </div>
   );
 }

@@ -30,7 +30,7 @@ export function CodeBlock({ code, className, maxHeight = 520 }: { code: string; 
   return (
     <div className={cn("relative overflow-hidden rounded-2xl border border-border bg-code", className)}>
       <CopyButton text={code} className="absolute right-3 top-3 z-10" />
-      <pre className="overflow-auto p-5 pr-14 font-mono text-[13px] leading-relaxed text-code-foreground" style={{ maxHeight }}>
+      <pre tabIndex={0} className="overflow-auto p-5 pr-14 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring font-mono text-[13px] leading-relaxed text-code-foreground" style={{ maxHeight }}>
         <code>{code}</code>
       </pre>
     </div>

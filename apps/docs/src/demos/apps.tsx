@@ -50,6 +50,7 @@ const startNodes: EditorNode[] = [
         </div>
         <textarea
           data-nodrag
+          aria-label="Prompt"
           defaultValue="Summarise in two lines and rate urgency 1 to 5."
           rows={2}
           className="w-full resize-none rounded-md border border-border bg-surface px-2 py-1.5 text-[11px] text-foreground outline-none focus:border-accent"

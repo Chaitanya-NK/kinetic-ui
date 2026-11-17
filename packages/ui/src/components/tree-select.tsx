@@ -119,13 +119,13 @@ export function TreeSelect({
       <PopoverPrimitive.Trigger asChild disabled={disabled}>
         <button
           type="button"
-          aria-label={label}
           className={cn(
             "flex min-h-11 w-full items-center gap-2 rounded-xl border border-border bg-background px-3 py-1.5 text-left text-sm outline-none transition-[border-color,box-shadow] focus-visible:border-accent focus-visible:shadow-[0_0_0_4px_var(--kn-ring)] disabled:opacity-50 data-[state=open]:border-accent",
             className,
           )}
         >
           <span className="flex min-w-0 flex-1 flex-wrap items-center gap-1.5">
+            {label ? <span className="sr-only">{`${label}: `}</span> : null}
             {chips.length === 0 ? <span className="text-subtle">{placeholder}</span> : null}
             <AnimatePresence initial={false}>
               {(multiple ? chips.slice(0, maxChips) : chips).map((c) => (
@@ -140,9 +140,8 @@ export function TreeSelect({
                   {c.label}
                   {multiple ? (
                     <span
-                      role="button"
-                      tabIndex={-1}
-                      aria-label={`Remove ${c.label}`}
+                      aria-hidden
+                      title={`Remove ${c.label}`}
                       onPointerDown={(e) => {
                         e.preventDefault();
                         e.stopPropagation();

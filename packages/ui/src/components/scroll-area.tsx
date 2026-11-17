@@ -49,6 +49,7 @@ export const ScrollArea = React.forwardRef<React.ElementRef<typeof ScrollPrimiti
       <ScrollPrimitive.Root ref={ref} type={type} className={cn("relative overflow-hidden", className)} {...props}>
         <ScrollPrimitive.Viewport
           ref={inner}
+          tabIndex={0}
           onScroll={measure}
           style={mask.length ? { maskImage: mask.join(","), WebkitMaskImage: mask.join(","), maskComposite: "intersect", WebkitMaskComposite: "source-in" } : undefined}
           className={cn("size-full rounded-[inherit] outline-none focus-visible:ring-2 focus-visible:ring-accent", viewportClassName)}

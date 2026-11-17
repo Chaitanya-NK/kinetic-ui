@@ -130,7 +130,6 @@ export function Ticket({
             key="stub"
             role={tearable ? "button" : undefined}
             tabIndex={tearable ? 0 : undefined}
-            aria-label={tearable ? "Tear off the ticket stub" : undefined}
             onKeyDown={(e) => {
               if (tearable && (e.key === "Enter" || e.key === " ")) {
                 e.preventDefault();
@@ -161,6 +160,7 @@ export function Ticket({
               tearable && !reduced && (h ? "cursor-grab active:cursor-grabbing" : "cursor-grab active:cursor-grabbing"),
             )}
           >
+            {tearable && <span className="sr-only">Tear off the stub. </span>}
             <motion.div
               aria-hidden
               className={cn("pointer-events-none absolute bg-accent/70", h ? "-left-[2px] top-0 h-full w-[2px]" : "-top-[2px] left-0 h-[2px] w-full")}

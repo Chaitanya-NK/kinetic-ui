@@ -53,7 +53,6 @@ export function HeroVideo({
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.3 }}
           className="group flex items-center gap-4 self-start text-left sm:self-auto"
-          aria-label="Play film"
         >
           <span className="relative flex size-20 items-center justify-center rounded-full bg-accent text-accent-foreground">
             <span className="absolute inset-0 rounded-full bg-accent/50 animate-ping" />

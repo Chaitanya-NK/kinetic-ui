@@ -103,7 +103,7 @@ Generated from source. Everything else is documented at https://kinetic-ui.chait
 
 **SegmentedControl**
 
-- `options`: `{ value: string; label: ReactNode; }[]`
+- `options`: `{ value: string; label: ReactNode; ariaLabel?: string; }[]`. `ariaLabel` names icon-only segments.
 - `defaultValue`: `string`
 - `value?`: `string`
 - `onValueChange?`: `((value: string) => void)`
@@ -246,6 +246,7 @@ Generated from source. Everything else is documented at https://kinetic-ui.chait
 - `label?`: `ReactNode`. Text in the middle. Defaults to the percentage.
 - `color?`: `string` = "var(--kn-accent)"
 - `className?`: `string`
+- `aria-label?`: `string`. Accessible name. Defaults to "Progress".
 
 ## alert
 

@@ -75,7 +75,7 @@ export default async function BlockPage({ params }: { params: Promise<{ slug: st
           </TabsContent>
         </Tabs>
         <p className="text-sm text-subtle">
-          Source: <a href={`${site.github}/blob/main/${block.source}`} className="text-accent hover:underline">{block.source}</a>
+          Source: <a href={`${site.github}/blob/main/${block.source}`} className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">{block.source}</a>
         </p>
       </section>
 

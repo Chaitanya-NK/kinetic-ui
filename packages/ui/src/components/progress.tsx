@@ -12,19 +12,23 @@ export type ProgressProps = React.HTMLAttributes<HTMLDivElement> & {
 
 const heights = { sm: "h-1", md: "h-2", lg: "h-3.5" };
 
-export function Progress({ value, label, showValue, size = "md", striped, className, ...props }: ProgressProps) {
+export function Progress({ value, label, showValue, size = "md", striped, className, "aria-label": ariaLabel, ...props }: ProgressProps) {
   const indeterminate = value === undefined;
+  const id = React.useId();
   const pct = Math.max(0, Math.min(100, value ?? 0));
   return (
     <div className={cn("flex w-full flex-col gap-2", className)} {...props}>
       {label || showValue ? (
         <div className="flex justify-between text-sm">
-          <span className="text-muted">{label}</span>
+          <span id={`${id}-label`} className="text-muted">{label}</span>
           {showValue && !indeterminate ? <span className="font-mono text-accent">{Math.round(pct)}%</span> : null}
         </div>
       ) : null}
       <div
         role="progressbar"
+        // Named by the visible label when there is one, else by aria-label, else generically.
+        aria-labelledby={label && !ariaLabel ? `${id}-label` : undefined}
+        aria-label={ariaLabel ?? (label ? undefined : "Progress")}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-valuenow={indeterminate ? undefined : pct}
@@ -53,15 +57,18 @@ export type ProgressRingProps = {
   label?: React.ReactNode;
   color?: string;
   className?: string;
+  /** Accessible name. Defaults to "Progress". */
+  "aria-label"?: string;
 };
 
-export function ProgressRing({ value, size = 72, thickness = 6, label, color = "var(--kn-accent)", className }: ProgressRingProps) {
+export function ProgressRing({ value, size = 72, thickness = 6, label, color = "var(--kn-accent)", className, "aria-label": ariaLabel = "Progress" }: ProgressRingProps) {
   const r = (size - thickness) / 2;
   const c = 2 * Math.PI * r;
   const pct = Math.max(0, Math.min(100, value));
   return (
     <div
       role="progressbar"
+      aria-label={ariaLabel}
       aria-valuemin={0}
       aria-valuemax={100}
       aria-valuenow={pct}

@@ -190,7 +190,7 @@ function OrbitDemo() {
 function ScrollDemo() {
   const box = React.useRef<HTMLDivElement>(null);
   return (
-    <div ref={box} className="h-[560px] w-full max-w-4xl overflow-y-auto rounded-2xl border border-border bg-background [scrollbar-width:thin]">
+    <div ref={box} tabIndex={0} role="region" aria-label="Scrolling showcase" className="h-[560px] w-full max-w-4xl overflow-y-auto outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-2xl border border-border bg-background [scrollbar-width:thin]">
       <div className="flex h-[260px] items-end justify-center pb-6 text-sm text-subtle">Scroll down inside this box</div>
       <div className="px-6 pb-40">
         <ScrollShowcase

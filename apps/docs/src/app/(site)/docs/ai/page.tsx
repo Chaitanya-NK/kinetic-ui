@@ -89,7 +89,7 @@ export default function AiDocsPage() {
           </TabsContent>
         </Tabs>
         <p className="text-sm">
-          Browse it first: <a href="https://github.com/Chaitanya-NK/kinetic-ui/tree/main/skills/kinetic-ui" className="text-accent hover:underline">skills/kinetic-ui on GitHub</a>.
+          Browse it first: <a href="https://github.com/Chaitanya-NK/kinetic-ui/tree/main/skills/kinetic-ui" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">skills/kinetic-ui on GitHub</a>.
           It works best together with the MCP server below.
         </p>
 
@@ -156,13 +156,13 @@ export default function AiDocsPage() {
         <p>Tools that read documentation can use these plain-text files instead of crawling the site:</p>
         <ul className="flex flex-col gap-2 text-sm">
           <li>
-            <a href="/llms.txt" className="font-mono text-accent hover:underline">/llms.txt</a>: every component and block, one line each, linking to Markdown pages.
+            <a href="/llms.txt" className="font-mono text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">/llms.txt</a>: every component and block, one line each, linking to Markdown pages.
           </li>
           <li>
-            <a href="/llms-full.txt" className="font-mono text-accent hover:underline">/llms-full.txt</a>: the whole library in one file, with props, imports and usage.
+            <a href="/llms-full.txt" className="font-mono text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">/llms-full.txt</a>: the whole library in one file, with props, imports and usage.
           </li>
           <li>
-            <a href="/md/sortable-list.md" className="font-mono text-accent hover:underline">/md/&lt;name&gt;.md</a>: one component, including its full source.
+            <a href="/md/sortable-list.md" className="font-mono text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">/md/&lt;name&gt;.md</a>: one component, including its full source.
           </li>
         </ul>
         <p className="text-sm">In Cursor, add <code className="font-mono text-foreground">{site.url}/llms-full.txt</code> under Docs and mention <code className="font-mono">@Kinetic</code> in chat.</p>
@@ -178,8 +178,8 @@ export default function AiDocsPage() {
         </Alert>
 
         <p className="text-sm">
-          Next: browse the <Link href="/components" className="text-accent hover:underline">components</Link> or the{" "}
-          <Link href="/blocks" className="text-accent hover:underline">blocks</Link>.
+          Next: browse the <Link href="/components" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">components</Link> or the{" "}
+          <Link href="/blocks" className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent">blocks</Link>.
         </p>
       </article>
     </div>

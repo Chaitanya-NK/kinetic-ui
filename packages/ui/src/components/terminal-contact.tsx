@@ -177,10 +177,10 @@ export function TerminalContact({ contact, title, tone = "light", animate = true
             <Prompt>{typing(0)}</Prompt>
             {showStep(0) ? (
               <motion.dl initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-2 grid grid-cols-[110px_1fr] gap-y-1 opacity-90">
-                {contact.email ? (<><dt className="opacity-60">email:</dt><dd><a href={`mailto:${contact.email}`} className={link}>{contact.email}</a></dd></>) : null}
-                {contact.phone ? (<><dt className="opacity-60">phone:</dt><dd><a href={`tel:${contact.phone}`} className={link}>{contact.phone}</a></dd></>) : null}
-                {contact.location ? (<><dt className="opacity-60">location:</dt><dd>{contact.location}</dd></>) : null}
-                {contact.title ? (<><dt className="opacity-60">role:</dt><dd>{contact.title}</dd></>) : null}
+                {contact.email ? (<><dt className="opacity-75">email:</dt><dd><a href={`mailto:${contact.email}`} className={link}>{contact.email}</a></dd></>) : null}
+                {contact.phone ? (<><dt className="opacity-75">phone:</dt><dd><a href={`tel:${contact.phone}`} className={link}>{contact.phone}</a></dd></>) : null}
+                {contact.location ? (<><dt className="opacity-75">location:</dt><dd>{contact.location}</dd></>) : null}
+                {contact.title ? (<><dt className="opacity-75">role:</dt><dd>{contact.title}</dd></>) : null}
               </motion.dl>
             ) : null}
           </div>

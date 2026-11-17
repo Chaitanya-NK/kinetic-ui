@@ -47,7 +47,7 @@ export function EmailBuilder() {
       <main className="flex flex-col items-center gap-4 bg-[radial-gradient(var(--kn-border)_1px,transparent_1px)] bg-[size:16px_16px] p-6">
         <div className="flex w-full items-center justify-between">
           <span className="text-sm text-muted">Subject: <b className="text-foreground">What&apos;s new in Kinetic UI</b></span>
-          <SegmentedControl aria-label="Preview size" defaultValue="desktop" value={device} onValueChange={setDevice} options={[{ value: "desktop", label: <MonitorIcon size={14} /> }, { value: "mobile", label: <SmartphoneIcon size={14} /> }]} />
+          <SegmentedControl aria-label="Preview size" defaultValue="desktop" value={device} onValueChange={setDevice} options={[{ value: "desktop", label: <MonitorIcon size={14} />, ariaLabel: "Desktop" }, { value: "mobile", label: <SmartphoneIcon size={14} />, ariaLabel: "Mobile" }]} />
         </div>
         <motion.div animate={{ width: device === "desktop" ? 560 : 340 }} transition={{ type: "spring", stiffness: 260, damping: 30 }} className="max-w-full overflow-hidden rounded-xl bg-white text-[#111] shadow-overlay">
           <div className="flex items-center gap-2 px-6 py-4"><span className="size-5 rounded" style={{ background: accent }} /><b className="text-sm">Kinetic</b></div>

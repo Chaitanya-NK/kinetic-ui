@@ -29,7 +29,8 @@ export function BlurText({ text, by = "word", stagger = 0.08, delay = 0, directi
   };
   let k = 0;
   return (
-    <Tag ref={ref} aria-label={text} className={cn("flex flex-wrap", className)}>
+    <Tag ref={ref} className={cn("flex flex-wrap", className)}>
+      <span className="sr-only">{text}</span>
       {pieces.map((p, i) =>
         /^\s+$/.test(p) ? (
           <span key={i} aria-hidden>&nbsp;</span>

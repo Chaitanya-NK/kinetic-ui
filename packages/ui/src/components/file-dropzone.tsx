@@ -65,7 +65,9 @@ export function FileDropzone({
     if (bad.length) onReject?.(bad);
   };
 
+  // The hidden file input sits next to the drop zone, not inside it: a control inside a button confuses screen readers.
   return (
+    <>
     <div
       role="button"
       tabIndex={disabled ? -1 : 0}
@@ -100,20 +102,23 @@ export function FileDropzone({
       </span>
       <span className="text-sm font-semibold text-foreground">{over ? "Drop to upload" : title}</span>
       {hint ? <span className="text-xs text-subtle">{hint}</span> : null}
-      <input
-        ref={inputRef}
-        type="file"
-        accept={accept}
-        multiple={multiple}
-        disabled={disabled}
-        className="sr-only"
-        tabIndex={-1}
-        onChange={(e) => {
-          handle(e.target.files);
-          e.target.value = "";
-        }}
-      />
     </div>
+    <input
+      ref={inputRef}
+      type="file"
+      accept={accept}
+      multiple={multiple}
+      disabled={disabled}
+      aria-hidden
+      aria-label="Choose files"
+      className="sr-only"
+      tabIndex={-1}
+      onChange={(e) => {
+        handle(e.target.files);
+        e.target.value = "";
+      }}
+    />
+    </>
   );
 }
 

@@ -92,6 +92,8 @@ export const ImageCropper = React.forwardRef<ImageCropperHandle, ImageCropperPro
         onPointerUp={() => (drag.current = null)}
         onWheel={(e) => setZoomClamped(zoom - e.deltaY * 0.002)}
         tabIndex={0}
+        role="application"
+        aria-roledescription="crop area"
         aria-label="Crop area. Use arrow keys to move, plus and minus to zoom."
         onKeyDown={(e) => {
           const step = 10;

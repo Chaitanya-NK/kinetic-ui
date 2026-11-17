@@ -92,11 +92,11 @@ export function CodeBlock({ files, highlight = [], showLineNumbers = true, maxHe
         </div>
         <CopyButton value={file.code} className="border-code-border bg-code-foreground/5 text-code-foreground/60 hover:text-code-foreground" />
       </div>
-      <pre className="overflow-auto py-3 font-mono text-[12.5px] leading-[22px]" style={{ maxHeight }}>
+      <pre tabIndex={0} className="overflow-auto py-3 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring font-mono text-[12.5px] leading-[22px]" style={{ maxHeight }}>
         <code>
           {lines.map((row, i) => (
             <div key={i} className={cn("flex pr-4", highlight.includes(i + 1) ? "bg-accent/10 shadow-[inset_2px_0_0_var(--kn-accent)]" : "")}>
-              {showLineNumbers ? <span className="w-10 shrink-0 select-none pr-3 text-right text-code-muted/70">{i + 1}</span> : <span className="w-4" />}
+              {showLineNumbers ? <span aria-hidden className="w-10 shrink-0 select-none pr-3 text-right text-code-muted">{i + 1}</span> : <span className="w-4" />}
               <span className="whitespace-pre">
                 {row.length
                   ? row.map((tk, j) => (

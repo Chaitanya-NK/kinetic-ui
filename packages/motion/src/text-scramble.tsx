@@ -69,7 +69,8 @@ export function TextScramble({ text, duration = 900, charset = DEFAULT, scramble
   }, [run, startOnView]);
 
   return (
-    <Tag ref={ref} aria-label={text} onPointerEnter={scrambleOnHover ? run : undefined} className={cn("inline-block font-mono tabular-nums", className)}>
+    <Tag ref={ref} onPointerEnter={scrambleOnHover ? run : undefined} className={cn("inline-block font-mono tabular-nums", className)}>
+      <span className="sr-only">{text}</span>
       <span aria-hidden>{out}</span>
     </Tag>
   );
