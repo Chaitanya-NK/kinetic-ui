@@ -12,6 +12,8 @@ export const templatePreviews: Record<string, React.ComponentType> = {
   "saas-dashboard": dynamic(() => import("../../../../templates/saas-dashboard/preview")),
   "ai-chatbot": dynamic(() => import("../../../../templates/ai-chatbot/preview")),
   "docs-site": dynamic(() => import("../../../../templates/docs-site/preview")),
+  "link-in-bio": dynamic(() => import("../../../../templates/link-in-bio/page")),
+  "event-page": dynamic(() => import("../../../../templates/event-page/page")),
 };
 
 export function TemplatePreview({ slug }: { slug: string }) {

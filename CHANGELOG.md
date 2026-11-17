@@ -10,6 +10,7 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 - `NodeEditor`: a node-graph editor with draggable nodes, bezier wires from outputs to inputs (pick a wire up from an input to move it), pan, Ctrl/pinch zoom, fit to view, a draggable minimap, keyboard moves and deletes, and running/done/error states with animated wires.
 - `VoiceOrb` and `useMicrophoneLevel`: an orb for voice assistants with idle, listening, thinking and speaking states that follows the microphone level.
 - `SankeyChart`: flows across stages with automatic column layout, gradient or source-coloured bands, and hover tracing.
+- Templates: **Link in Bio** (holographic profile card, story highlights, a now-playing Dynamic Island, animated links, newsletter and optional sounds) and **Event Page** (countdown, globe of attendee cities, speakers, two-day agenda, ticket tiers, a tear-off pass and FAQ).
 - Effects: `LiquidGlass` (refracting glass using an SVG displacement map in Chromium, with a frosted fallback elsewhere) and `KineticType` (variable-font weight, lens and wave effects that follow the pointer).
 
 ### Changed

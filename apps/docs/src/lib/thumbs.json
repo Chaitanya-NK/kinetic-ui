@@ -293,6 +293,8 @@
   "templates": [
     "ai-chatbot",
     "docs-site",
+    "event-page",
+    "link-in-bio",
     "portfolio",
     "saas-dashboard",
     "saas-landing"

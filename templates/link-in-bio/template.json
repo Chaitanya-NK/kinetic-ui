@@ -1,0 +1,6 @@
+{
+  "title": "Link in Bio",
+  "description": "A personal link page with a holographic profile card, story highlights, a now-playing Dynamic Island, animated links, socials, a newsletter signup and optional UI sounds.",
+  "category": "marketing",
+  "files": [{ "src": "page.tsx", "target": "app/page.tsx", "type": "registry:page" }]
+}

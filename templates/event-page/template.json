@@ -1,0 +1,6 @@
+{
+  "title": "Event Page",
+  "description": "A conference or meetup site: hero with a live countdown and a globe of attendee cities, speakers, a two-day agenda, ticket tiers, a tear-off pass and an FAQ.",
+  "category": "marketing",
+  "files": [{ "src": "page.tsx", "target": "app/page.tsx", "type": "registry:page" }]
+}

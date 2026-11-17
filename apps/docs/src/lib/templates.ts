@@ -12,7 +12,7 @@ export type Template = {
   files: TemplateFile[];
 };
 
-const order = ["saas-landing", "saas-dashboard", "ai-chatbot", "portfolio", "docs-site"];
+const order = ["saas-landing", "saas-dashboard", "ai-chatbot", "portfolio", "link-in-bio", "event-page", "docs-site"];
 const rank = (n: string) => (order.indexOf(n) + 1 || 99);
 export const templates = (data as Template[]).slice().sort((a, b) => rank(a.name) - rank(b.name));
 export const getTemplate = (name: string) => templates.find((t) => t.name === name);
