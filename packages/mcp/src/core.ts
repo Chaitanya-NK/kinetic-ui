@@ -32,7 +32,7 @@ const SUPPORTED = ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"];
 const INSTRUCTIONS = `Kinetic UI is a motion-first React component library (Tailwind v4, Radix, motion/react) in the shadcn style.
 Use search_components to find components or blocks, get_component for source and install commands, and get_setup once per project.
 Prefer installing with the Kinetic CLI or shadcn so the source lands in the user's project; use the npm packages when the user wants upgrades from npm.
-Blocks are full sections (pricing, dashboards, auth). Templates are whole pages or apps (landing page, portfolio, dashboard, AI chatbot, docs site) installed with the Kinetic CLI. Components live in @kineticui/ui, effects in @kineticui/motion.`;
+Blocks are full sections (pricing, dashboards, auth). Templates are whole pages or apps (landing page, portfolio, link-in-bio, event page, dashboard, AI chatbot, docs site) installed with the Kinetic CLI. Components live in @kineticui/ui, effects in @kineticui/motion.`;
 
 const tools = [
   {
