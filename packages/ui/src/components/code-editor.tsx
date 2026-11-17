@@ -107,24 +107,24 @@ export function CodeEditor({ value, defaultValue = "", onValueChange, language =
   const shared = "m-0 whitespace-pre p-3 font-mono text-[13px] leading-[22px] [tab-size:2]";
 
   return (
-    <div className={cn("flex flex-col overflow-hidden rounded-2xl border border-border bg-[#0b0c0e] text-[#E8E8E3]", className)}>
+    <div className={cn("flex flex-col overflow-hidden rounded-2xl border border-border bg-code text-code-foreground", className)}>
       {filename ? (
-        <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2 font-mono text-xs text-white/60">
+        <div className="flex items-center gap-2 border-b border-code-border px-4 py-2 font-mono text-xs text-code-foreground/60">
           <span className="size-2 rounded-full bg-accent" />
           {filename}
-          <span className="ml-auto text-white/30">
+          <span className="ml-auto text-code-muted/80">
             Ln {line + 1}, {language}
           </span>
         </div>
       ) : null}
       <div className="relative flex" style={{ height }}>
-        <div ref={gutter} aria-hidden className="w-11 shrink-0 select-none overflow-hidden border-r border-white/5 py-3 text-right font-mono text-[12px] leading-[22px] text-white/25">
+        <div ref={gutter} aria-hidden className="w-11 shrink-0 select-none overflow-hidden border-r border-code-border py-3 text-right font-mono text-[12px] leading-[22px] text-code-muted/70">
           {lines.map((_, i) => (
-            <div key={i} className={cn("pr-3", i === line && "text-white/70")}>{i + 1}</div>
+            <div key={i} className={cn("pr-3", i === line && "text-code-foreground/70")}>{i + 1}</div>
           ))}
         </div>
         <div className="relative flex-1 overflow-hidden">
-          <div aria-hidden className="pointer-events-none absolute inset-x-0 bg-white/[0.04]" style={{ top: 12 + line * 22 - (ta.current?.scrollTop ?? 0), height: 22 }} />
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 bg-code-foreground/[0.05]" style={{ top: 12 + line * 22 - (ta.current?.scrollTop ?? 0), height: 22 }} />
           <pre ref={pre} aria-hidden className={cn(shared, "pointer-events-none absolute inset-0 overflow-hidden")}>
             {tokens.map((t, i) => (
               <span key={i} className={t.c}>{t.t}</span>

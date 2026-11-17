@@ -167,8 +167,8 @@ export function ThemesShowcase() {
           })}
         </div>
         <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-[#0D0D10] py-2 pl-4 pr-2 font-mono text-[13px] text-[#D4D4D8]">
-            <span className="truncate"><span className="text-[#8A8A93]">&lt;html </span>data-theme=&quot;<span className="text-accent">{id === "kinetic" ? "default" : id}</span>&quot;<span className="text-[#8A8A93]">&gt;</span></span>
+          <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-code py-2 pl-4 pr-2 font-mono text-[13px] text-code-foreground">
+            <span className="truncate"><span className="text-code-muted">&lt;html </span>data-theme=&quot;<span className="text-accent">{id === "kinetic" ? "default" : id}</span>&quot;<span className="text-code-muted">&gt;</span></span>
             <CopyButton text={`data-theme="${id === "kinetic" ? "default" : id}"`} />
           </div>
           <Link href="/themes" className="flex w-fit items-center gap-1 text-sm text-accent hover:underline">Open the theme editor <ArrowRightIcon size={14} /></Link>
@@ -248,7 +248,7 @@ export function TwoWays() {
               <span className="rounded-full border border-border-strong px-2.5 py-0.5 font-mono text-xs text-muted">{w.tag}</span>
             </div>
             <p className="text-muted">{w.body}</p>
-            <div className="relative min-w-0 rounded-2xl border border-border bg-[#0D0D10] p-4 pr-12 font-mono text-[13px] leading-6 text-[#D4D4D8]">
+            <div className="relative min-w-0 rounded-2xl border border-border bg-code p-4 pr-12 font-mono text-[13px] leading-6 text-code-foreground">
               <pre className="overflow-x-auto whitespace-pre">{w.code}</pre>
               <div className="absolute right-2 top-2"><CopyButton text={w.code.split("\n")[0]!} /></div>
             </div>
@@ -319,10 +319,10 @@ export function FinalCta({ components }: { components: number }) {
         <div className="relative mx-auto flex max-w-2xl flex-col items-center gap-6">
           <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-6xl">Build something that <span className="text-accent">moves.</span></h2>
           <p className="text-lg text-muted">{components} components, free and MIT licensed. Two commands to your first one.</p>
-          <div className="w-full max-w-md rounded-2xl border border-border bg-[#0D0D10] p-4 text-left font-mono text-[13px] leading-7 text-[#D4D4D8]">
+          <div className="w-full max-w-md rounded-2xl border border-border bg-code p-4 text-left font-mono text-[13px] leading-7 text-code-foreground">
             {lines.map((l, i) => (
               <div key={l} className="flex items-center gap-2">
-                <span className="text-[#8A8A93]">$</span>
+                <span className="text-code-muted">$</span>
                 <span>{l}</span>
                 <AnimatePresence>{step > i ? <motion.span initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ opacity: 0 }} className="text-success"><CheckIcon size={13} strokeWidth={3} /></motion.span> : null}</AnimatePresence>
               </div>

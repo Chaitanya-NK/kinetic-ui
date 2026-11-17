@@ -19,7 +19,7 @@ function InstallSwitcher() {
   const [tab, setTab] = React.useState("cli");
   const cmd = installs.find((i) => i.id === tab)!.cmd;
   return (
-    <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-[#0D0D10]">
+    <div className="w-full max-w-lg overflow-hidden rounded-2xl border border-border bg-code">
       <div className="flex items-center gap-1 border-b border-border px-2 pt-2">
         {installs.map((i) => (
           <button key={i.id} type="button" onClick={() => setTab(i.id)} className="relative px-3 pb-2 pt-1 font-mono text-xs">
@@ -28,10 +28,10 @@ function InstallSwitcher() {
           </button>
         ))}
       </div>
-      <div className="flex items-center justify-between gap-3 py-2.5 pl-4 pr-2 font-mono text-[13px] text-[#D4D4D8]">
+      <div className="flex items-center justify-between gap-3 py-2.5 pl-4 pr-2 font-mono text-[13px] text-code-foreground">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span key={tab} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }} className="overflow-x-auto whitespace-nowrap">
-            <span className="text-[#8A8A93]">$ </span>
+            <span className="text-code-muted">$ </span>
             {cmd}
           </motion.span>
         </AnimatePresence>

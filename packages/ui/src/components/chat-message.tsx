@@ -44,7 +44,7 @@ export function SimpleMarkdown({ children }: { children: string }) {
         if (b.startsWith("```")) {
           const body = b.replace(/^```\w*\n?/, "").replace(/```$/, "");
           return (
-            <pre key={i} className="overflow-x-auto rounded-xl border border-border bg-[#0b0c0e] p-3 font-mono text-[12.5px] leading-relaxed text-[#E8E8E3]">
+            <pre key={i} className="overflow-x-auto rounded-xl border border-border bg-code p-3 font-mono text-[12.5px] leading-relaxed text-code-foreground">
               {body}
             </pre>
           );

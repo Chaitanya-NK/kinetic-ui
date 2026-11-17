@@ -28,9 +28,9 @@ export function CopyButton({ text, className }: { text: string; className?: stri
 
 export function CodeBlock({ code, className, maxHeight = 520 }: { code: string; className?: string; maxHeight?: number }) {
   return (
-    <div className={cn("relative overflow-hidden rounded-2xl border border-border bg-[#0D0D10]", className)}>
+    <div className={cn("relative overflow-hidden rounded-2xl border border-border bg-code", className)}>
       <CopyButton text={code} className="absolute right-3 top-3 z-10" />
-      <pre className="overflow-auto p-5 pr-14 font-mono text-[13px] leading-relaxed text-[#D4D4D8]" style={{ maxHeight }}>
+      <pre className="overflow-auto p-5 pr-14 font-mono text-[13px] leading-relaxed text-code-foreground" style={{ maxHeight }}>
         <code>{code}</code>
       </pre>
     </div>
@@ -39,9 +39,9 @@ export function CodeBlock({ code, className, maxHeight = 520 }: { code: string; 
 
 export function Command({ command }: { command: string }) {
   return (
-    <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-[#0D0D10] py-2 pl-4 pr-2 font-mono text-[13px] text-[#D4D4D8]">
+    <div className="flex items-center justify-between gap-3 rounded-xl border border-border bg-code py-2 pl-4 pr-2 font-mono text-[13px] text-code-foreground">
       <span className="overflow-x-auto whitespace-nowrap">
-        <span className="text-[#8A8A93]">$ </span>
+        <span className="text-code-muted">$ </span>
         {command}
       </span>
       <CopyButton text={command} />

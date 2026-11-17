@@ -65,7 +65,7 @@ export function FilePreview({ file, height = 440, className }: { file: PreviewFi
     } else {
       const toks = kind === "code" ? tokenize(file.content, lang) : [{ t: file.content }];
       body = (
-        <pre className="h-full overflow-auto bg-[#0b0c0e] p-4 font-mono text-[12.5px] leading-[21px] text-[#E8E8E3]">
+        <pre className="h-full overflow-auto bg-code p-4 font-mono text-[12.5px] leading-[21px] text-code-foreground">
           {toks.map((t, i) => <span key={i} className={"c" in t ? t.c : undefined}>{t.t}</span>)}
         </pre>
       );

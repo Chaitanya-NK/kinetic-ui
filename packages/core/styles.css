@@ -17,6 +17,16 @@
 
 :root,
 .dark {
+  /* Code surfaces: terminals, code blocks and install commands. */
+  --kn-code-bg: #0b0c0e;
+  --kn-code-foreground: #e4e4e7;
+  --kn-code-muted: #8a8a93;
+  --kn-code-border: rgba(255, 255, 255, 0.09);
+  --kn-code-string: #6ee7a0;
+  --kn-code-tag: #f0a3d0;
+  --kn-code-number: #f4a86a;
+  --kn-code-function: #7c8cff;
+
   --kn-background: #0a0a0b;
   --kn-surface: #111114;
   --kn-surface-raised: #17171b;
@@ -44,6 +54,15 @@
 }
 
 .light {
+  --kn-code-bg: #f4f4f2;
+  --kn-code-foreground: #27272a;
+  --kn-code-muted: #71717a;
+  --kn-code-border: rgba(0, 0, 0, 0.08);
+  --kn-code-string: #15803d;
+  --kn-code-tag: #be185d;
+  --kn-code-number: #c2410c;
+  --kn-code-function: #4338ca;
+
   --kn-background: #fafaf9;
   --kn-surface: #ffffff;
   --kn-surface-raised: #f4f4f5;
@@ -251,6 +270,14 @@
 /* @end theme presets */
 
 @theme inline {
+  --color-code: var(--kn-code-bg);
+  --color-code-foreground: var(--kn-code-foreground);
+  --color-code-muted: var(--kn-code-muted);
+  --color-code-border: var(--kn-code-border);
+  --color-code-string: var(--kn-code-string);
+  --color-code-tag: var(--kn-code-tag);
+  --color-code-number: var(--kn-code-number);
+  --color-code-function: var(--kn-code-function);
   --color-background: var(--kn-background);
   --color-surface: var(--kn-surface);
   --color-surface-raised: var(--kn-surface-raised);
