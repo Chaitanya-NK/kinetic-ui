@@ -1496,5 +1496,35 @@
     "category": "effects",
     "description": "Letters that swell, grow or ripple as the cursor passes, using variable font weight. 60fps, no re-renders.",
     "height": 420
+  },
+  "holo-card": {
+    "title": "Holo Card",
+    "category": "playful",
+    "description": "A collectible-card holographic foil: rainbow sheen, sparkle and glare that shift as the card tilts toward the pointer.",
+    "height": 520
+  },
+  "ticket": {
+    "title": "Ticket",
+    "category": "playful",
+    "description": "An event ticket with a QR stub on a perforated edge. Drag the stub across the perforation to tear it off.",
+    "height": 460
+  },
+  "gravity-box": {
+    "title": "Gravity Box",
+    "category": "playful",
+    "description": "Drop tags, pills or avatars into a box and they tumble, stack and rotate with real physics. Drag and throw them.",
+    "height": 460
+  },
+  "stories": {
+    "title": "Stories",
+    "category": "playful",
+    "description": "Story rings and a full-screen player with segmented progress, tap to skip, hold to pause and a cube turn between people.",
+    "height": 680
+  },
+  "receipt-printer": {
+    "title": "Receipt Printer",
+    "category": "playful",
+    "description": "A thermal receipt that prints line by line out of a slot, totals worked out for you, then tears off.",
+    "height": 720
   }
 }

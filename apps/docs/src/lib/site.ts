@@ -49,6 +49,7 @@ export const categories: { id: string; label: string }[] = [
   { id: "overlay", label: "Overlay" },
   { id: "signature", label: "Signature" },
   { id: "effects", label: "Effects" },
+  { id: "playful", label: "Playful" },
   { id: "marketing", label: "Marketing" },
 ];
 

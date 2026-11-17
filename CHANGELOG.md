@@ -6,6 +6,7 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 
 ### Added
 - Signature components: `DynamicIsland` (with `islandMusic`, `islandTimer`, `islandUpload`, `islandCall` and `islandThinking` presets), `MorphSurface` (a pill that morphs into a panel and back), `useThemeRipple` / `ThemeRippleButton` (theme changes spread out from the pointer using View Transitions), and UI sounds (`SoundProvider`, `useSound`, `playSound`, `SoundToggle`: synthesised with WebAudio, no audio files, off by default).
+- Playful components: `HoloCard` (holographic foil with rainbow, sparkle and line patterns), `Ticket` (perforated QR stub you drag to tear off), `GravityBox` / `GravityPill` (tags that tumble and stack with physics; drag and throw), `Stories` / `StoryPlayer` / `StoryRing` (story rings and a player with tap, hold-to-pause and a cube turn between people) and `ReceiptPrinter` (a receipt that prints line by line, totals worked out, then tears off). New Playful category in the docs.
 - Effects: `LiquidGlass` (refracting glass using an SVG displacement map in Chromium, with a frosted fallback elsewhere) and `KineticType` (variable-font weight, lens and wave effects that follow the pointer).
 
 ### Changed

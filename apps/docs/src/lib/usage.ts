@@ -1,5 +1,41 @@
 /** Real-world usage snippets shown on component pages, for components that wire into other libraries. */
 export const usage: Record<string, { title?: string; note?: string; code: string }[]> = {
+  stories: [
+    {
+      code: `const stories: Story[] = [
+  {
+    id: "maya",
+    name: "Maya Kapoor",
+    avatar: "/maya.jpg",
+    items: [
+      { id: "1", src: "/stories/launch.jpg", caption: "We shipped it", time: "2h" },
+      { id: "2", content: <ReleaseCard />, duration: 8 },
+    ],
+  },
+];
+
+// Rings that open a full-screen player
+<Stories stories={stories} onSeenChange={saveSeen} />
+
+// Or just the player, inline
+<StoryPlayer stories={stories} onClose={() => router.back()} />`,
+    },
+  ],
+  "receipt-printer": [
+    {
+      code: `const { play } = useSound();
+
+<ReceiptPrinter
+  merchant="Kinetic Coffee"
+  meta={["Order #2048", "17 Nov 2026, 09:41"]}
+  items={[{ label: "Flat white", qty: 2, amount: 4.5 }, { label: "Croissant", amount: 3.75 }]}
+  tax={0.05}
+  barcode="KC-2048-0941"
+  printKey={order.id}          // print again whenever this changes
+  onLine={() => play("type")}  // tick per line with UI Sounds
+/>`,
+    },
+  ],
   "dynamic-island": [
     {
       code: `const [playing, setPlaying] = useState(true);

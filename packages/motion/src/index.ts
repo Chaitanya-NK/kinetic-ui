@@ -8,6 +8,8 @@ export * from "./confetti";
 export * from "./device-mockup";
 export * from "./globe";
 export * from "./gradient-text";
+export * from "./gravity-box";
+export * from "./holo-card";
 export * from "./kinetic-type";
 export * from "./liquid-glass";
 export * from "./magnetic";
