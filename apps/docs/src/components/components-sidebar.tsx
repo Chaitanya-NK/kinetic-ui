@@ -13,6 +13,7 @@ export function ComponentsSidebar({ active }: { active?: string }) {
           <Link href="/docs#theming" className="rounded-lg px-3 py-1.5 text-muted hover:text-foreground">Theming</Link>
           <Link href="/docs/updating" className="rounded-lg px-3 py-1.5 text-muted hover:text-foreground">Updating components</Link>
           <Link href="/docs/ai" className="rounded-lg px-3 py-1.5 text-muted hover:text-foreground">AI tools &amp; MCP</Link>
+          <Link href="/docs/figma" className="rounded-lg px-3 py-1.5 text-muted hover:text-foreground">Figma kit</Link>
         </div>
         {byCategory().map((cat) => (
           <div key={cat.id} className="flex flex-col gap-0.5">

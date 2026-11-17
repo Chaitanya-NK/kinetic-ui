@@ -19,6 +19,8 @@ jobs:
       - run: npm run registry
       - run: npm run typecheck
       - run: npm run test:unit
+      - name: Figma plugin is built from the current tokens and icons
+        run: npm run test:figma && git diff --exit-code -- figma/code.js figma/src/data.generated.ts
       - run: npm run build -w docs
 
   # Accessibility (axe, WCAG 2.1 AA) and visual snapshots of every demo, block and template.

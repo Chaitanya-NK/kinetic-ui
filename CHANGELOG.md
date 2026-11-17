@@ -8,6 +8,7 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 - CLI: `kinetic diff` shows what changed upstream since you added a component, and `kinetic update` pulls fixes in with a three-way merge that keeps your edits. Lines changed on both sides get git-style conflict markers. `add` and `update` now keep install records in `.kinetic/` (commit it). New "Updating components" docs page.
 - Agent Skill for Claude and Cursor, generated from the registry (`skills/kinetic-ui`). Install it with `npx @kineticui/cli skill`, or download the zip for the Claude app from the AI tools page.
 
+- Figma kit: a plugin (`figma/`) that builds variables with dark and light modes, text styles, all 348 icons and the core components as variant sets, generated from the same tokens and icons as the code. Download it from the new Figma kit docs page.
 - Tests in CI: axe accessibility checks (WCAG 2.1 AA) and visual snapshots for every demo, block and template, plus a workflow that records new baselines and opens a pull request.
 
 ### Fixed

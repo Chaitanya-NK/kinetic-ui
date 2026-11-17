@@ -8,7 +8,7 @@ const index = JSON.parse(readFileSync(join(process.cwd(), "apps/docs/public/r/in
 export const components = index.items.filter((e) => e.type !== "registry:block" && e.type !== "registry:item").map((e) => e.name);
 export const blocks = index.items.filter((e) => e.type === "registry:block").map((e) => e.name);
 export const templates = index.items.filter((e) => e.type === "registry:item").map((e) => e.name);
-export const docsPages = ["/", "/docs", "/docs/ai", "/docs/updating", "/components", "/blocks", "/templates", "/themes", "/icons"];
+export const docsPages = ["/", "/docs", "/docs/ai", "/docs/updating", "/docs/figma", "/components", "/blocks", "/templates", "/themes", "/icons"];
 
 /**
  * Make a page render the same way every run: a fixed date, repeatable Math.random,

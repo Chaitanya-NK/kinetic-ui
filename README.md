@@ -142,6 +142,10 @@ npm run test:visual                         # screenshots of every demo, block a
 
 CI runs all three on every push and pull request. Accessibility failures name the rule and the element. Visual baselines live in `tests/e2e/__screenshots__` and are recorded in CI's Playwright image so they match exactly: when you mean to change how something looks, run **Actions → Visual baselines → Run workflow**, review the screenshots in the pull request it opens, and merge. Locally, the first `test:visual` run records your own baselines (not committed).
 
+### Figma kit
+
+`figma/` holds a Figma plugin that builds the kit from the same tokens and icons. After changing tokens or icons, run `npm run test:figma` (rebuilds `figma/code.js` and runs it against a mocked Figma API) and commit the result. See [figma/README.md](figma/README.md).
+
 ### Thumbnails
 
 Cards on the home page, the components index and the blocks index use static thumbnails in `apps/docs/public/thumbs`. After adding a component or block, or changing how one looks:
