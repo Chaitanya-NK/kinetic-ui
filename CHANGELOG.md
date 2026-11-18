@@ -9,11 +9,13 @@ All packages (`@kineticui/core`, `icons`, `motion`, `ui`, `blocks`, `cli`, `mcp`
 - Agent Skill for Claude and Cursor, generated from the registry (`skills/kinetic-ui`). Install it with `npx @kineticui/cli skill`, or download the zip for the Claude app from the AI tools page.
 
 - Figma kit: a plugin (`figma/`) that builds variables with dark and light modes, text styles, all 348 icons and the core components as variant sets, generated from the same tokens and icons as the code. Download it from the new Figma kit docs page.
+- Homepage: a "Fits your workflow" section for the Figma kit, Agent Skill, MCP server, `kinetic update` and the CI accessibility checks.
 - Tests in CI: axe accessibility checks (WCAG 2.1 AA) and visual snapshots for every demo, block and template, plus a workflow that records new baselines and opens a pull request.
 
 ### Fixed
 - Accessibility fixes found by the new checks, across about 50 components and blocks: progress bars and sliders now have names; selects, combobox and tree-select are labelled properly; the calendar is a valid grid; text effects (Blur Text, Kinetic Type, Text Scramble) expose their text without ARIA misuse; label and visible text now match on story rings, votes, comment pins, phone input and more; scrollable code blocks, carousels and scroll areas can be reached by keyboard; the marquee's duplicate copy is inert; lists and definition lists are well formed; low-contrast text fixed in code blocks, logs, Gantt, Treemap, receipts and the light theme's subtle text.
 - `SegmentedControl` options take an `ariaLabel` for icon-only segments.
+- `TerminalContact` skips its typing intro for people who prefer reduced motion.
 - `font-display` now works outside the docs site: core styles define it (Space Grotesk when loaded, else the system font).
 
 ## [0.3.0] — 2026-11-17

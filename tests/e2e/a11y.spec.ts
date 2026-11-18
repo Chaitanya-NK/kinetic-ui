@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
-import { blocks, components, docsPages, prepare, settle, templates } from "./pages";
+import { blocks, components, docsPages, prepare, revealAll, settle, templates } from "./pages";
 
 /**
  * Accessibility checks with axe-core (WCAG 2.1 A and AA). Serious and critical problems fail the test.
@@ -19,7 +19,9 @@ for (const { name, url } of pages) {
   test(name, async ({ page }) => {
     await prepare(page);
     await page.goto(url);
-    await settle(page, 800);
+    // Long enough for entrance animations (the homepage hero runs about 1.4s) so contrast is measured on settled UI.
+    await settle(page, 1500);
+    await revealAll(page);
     const skip = exceptions[url.split("/").pop() || url]?.rules ?? [];
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])

@@ -231,7 +231,7 @@ export function TwoWays() {
       tag: "CLI",
       body: "shadcn-style: the file lands in your repo and its dependencies install with it. Change anything.",
       code: `npx @kineticui/cli add pricing-table\n\n✓ components/kinetic/pricing-table.tsx\n✓ components/kinetic/button.tsx`,
-      points: ["Own every line", "Works with the shadcn CLI too", "Pulls in what it depends on"],
+      points: ["Own every line", "Pull in fixes later without losing your edits", "Works with the shadcn CLI too"],
     },
   ];
   return (
@@ -257,6 +257,126 @@ export function TwoWays() {
             </ul>
           </Reveal>
         ))}
+      </div>
+    </section>
+  );
+}
+
+/* ------------------------------------------------------------------ workflow */
+
+function WorkflowCard({ href, kicker, title, body, children, className }: { href: string; kicker: string; title: string; body: string; children: React.ReactNode; className?: string }) {
+  return (
+    <Link href={href} className={`group relative flex min-w-0 flex-col overflow-hidden rounded-3xl border border-border bg-surface p-6 transition-colors hover:border-border-strong ${className ?? ""}`}>
+      <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">{kicker}</span>
+      <h3 className="mt-2 font-display text-2xl font-semibold tracking-tight">{title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted">{body}</p>
+      <div className="mt-6 flex flex-1 items-end">{children}</div>
+      <ArrowRightIcon size={18} aria-hidden className="absolute right-6 top-6 text-subtle transition-transform group-hover:translate-x-0.5 group-hover:text-accent" />
+    </Link>
+  );
+}
+
+const swatchTokens = ["background", "surface", "surface-raised", "border", "foreground", "muted", "accent", "success", "warning", "danger"];
+
+export function Workflow({ counts }: { counts: { icons: number; pages: number } }) {
+  return (
+    <section className="mx-auto mt-28 max-w-7xl px-4 sm:px-6">
+      <Reveal className="mb-10 flex flex-col gap-2 text-center">
+        <Kicker>FITS YOUR WORKFLOW</Kicker>
+        <h2 className="font-display text-4xl font-semibold tracking-tight sm:text-5xl">From Figma to your editor to CI.</h2>
+        <p className="mx-auto max-w-2xl text-muted">Design with the same tokens you ship, let your AI assistant build with the library the right way, and keep copied components up to date.</p>
+      </Reveal>
+      <div className="grid gap-5 lg:grid-cols-3 [&>*]:min-w-0">
+        <Reveal className="lg:col-span-2">
+          <WorkflowCard
+            href="/docs/figma"
+            kicker="Figma kit"
+            title="Design with the real thing"
+            body={`A plugin builds the kit in your file: colour variables with dark and light modes, text styles, all ${counts.icons} icons and the core components, generated from the same source as the code.`}
+            className="h-full"
+          >
+            <div aria-hidden className="grid w-full gap-3 sm:grid-cols-[1.1fr_1fr]">
+              <div className="rounded-2xl border border-border bg-background p-3">
+                <div className="mb-2 flex items-center justify-between font-mono text-[10px] text-subtle">
+                  <span>Kinetic UI</span>
+                  <span className="flex gap-1">
+                    <span className="rounded bg-surface-overlay px-1.5 py-0.5 text-foreground">Dark</span>
+                    <span className="rounded px-1.5 py-0.5">Light</span>
+                  </span>
+                </div>
+                {swatchTokens.slice(0, 6).map((t) => (
+                  <div key={t} className="flex items-center gap-2 py-1 font-mono text-[11px] text-muted">
+                    <span className="size-3.5 rounded border border-border-strong" style={{ background: `var(--kn-${t})` }} />
+                    {t}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col gap-2 rounded-2xl border border-dashed border-border-strong p-3">
+                <span className="font-mono text-[10px] text-subtle">Button · Variant × Size</span>
+                <div className="flex flex-wrap gap-1.5">
+                  <span className="rounded-lg bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground">Primary</span>
+                  <span className="rounded-lg border border-border bg-surface-overlay px-2.5 py-1 text-[11px] font-medium">Secondary</span>
+                  <span className="rounded-lg border border-border-strong px-2.5 py-1 text-[11px] font-medium">Outline</span>
+                  <span className="rounded-lg bg-accent-soft px-2.5 py-1 text-[11px] font-medium text-accent-soft-foreground">Soft</span>
+                </div>
+                <span className="mt-2 font-mono text-[10px] text-subtle">Icons · {counts.icons}</span>
+                <div className="grid grid-cols-8 gap-1.5 text-muted">
+                  {(["sparkle", "bolt", "search", "bell", "heart", "calendar", "chart", "bot"] as IconName[]).map((n) => (
+                    <span key={n} className="grid aspect-square place-items-center rounded-md bg-surface-overlay">
+                      <Icon name={n} size={14} />
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-auto flex gap-1.5 pt-1">
+                  {swatchTokens.slice(6).map((t) => <span key={t} className="h-6 flex-1 rounded-md" style={{ background: `var(--kn-${t})` }} />)}
+                </div>
+              </div>
+            </div>
+          </WorkflowCard>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <WorkflowCard href="/docs/ai#skill" kicker="Agent Skill" title="Your AI knows the rules" body="One command teaches Claude and Cursor the conventions: reuse components, style with tokens, respect reduced motion." className="h-full">
+            <div className="w-full rounded-2xl border border-border bg-code p-4 font-mono text-[12px] leading-6 text-code-foreground">
+              <div><span className="text-code-muted">$</span> npx @kineticui/cli skill</div>
+              <div className="text-success">✓ .claude/skills/kinetic-ui/SKILL.md</div>
+              <div className="text-success">✓ .cursor/rules/kinetic-ui.mdc</div>
+            </div>
+          </WorkflowCard>
+        </Reveal>
+        <Reveal delay={0.04}>
+          <WorkflowCard href="/docs/ai#mcp" kicker="MCP server" title="Ask for UI in plain words" body="Claude, Cursor and VS Code search the registry and install the right component for you." className="h-full">
+            <div aria-hidden className="flex w-full flex-col gap-2 text-[12px]">
+              <span className="ml-auto rounded-2xl rounded-br-md bg-accent px-3 py-2 font-medium text-accent-foreground">Add a pricing table with a yearly toggle</span>
+              <span className="w-fit rounded-xl border border-border bg-background px-3 py-1.5 font-mono text-[11px] text-muted">
+                search_components → <span className="text-foreground">pricing-table</span>
+              </span>
+            </div>
+          </WorkflowCard>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <WorkflowCard href="/docs/updating" kicker="kinetic update" title="Own the code, keep the fixes" body="Copied a component and changed it? Updates merge in line by line and keep your edits." className="h-full">
+            <div className="w-full rounded-2xl border border-border bg-code p-4 font-mono text-[12px] leading-6 text-code-foreground">
+              <div><span className="text-code-muted">$</span> npx @kineticui/cli update</div>
+              <div>✓ button.tsx <span className="text-code-muted">— updated</span></div>
+              <div>✓ pricing-table.tsx <span className="text-code-muted">— merged, your edits kept</span></div>
+            </div>
+          </WorkflowCard>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <WorkflowCard href="https://github.com/Chaitanya-NK/kinetic-ui/actions/workflows/ci.yml" kicker="Tested in CI" title="Accessible, and it stays that way" body={`Every release is checked against WCAG 2.1 AA on all ${counts.pages} pages, demos, blocks and templates, and screenshot-tested so nothing changes by accident.`} className="h-full">
+            <div aria-hidden className="flex w-full items-center gap-4 rounded-2xl border border-border bg-background p-4">
+              <span className="grid size-12 shrink-0 place-items-center rounded-full bg-success-soft text-success">
+                <CheckIcon size={22} />
+              </span>
+              <span className="flex flex-col">
+                <span className="font-display text-2xl font-semibold tabular-nums">
+                  {counts.pages}/{counts.pages}
+                </span>
+                <span className="text-xs text-muted">pages pass axe · WCAG 2.1 AA</span>
+              </span>
+            </div>
+          </WorkflowCard>
+        </Reveal>
       </div>
     </section>
   );

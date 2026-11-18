@@ -35,3 +35,16 @@ export async function settle(page: Page, extra = 300) {
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(extra);
 }
+
+/** Scroll to the bottom and back so scroll-triggered reveals have all run, then let them finish. */
+export async function revealAll(page: Page) {
+  await page.evaluate(async () => {
+    const step = window.innerHeight * 0.8;
+    for (let y = 0; y < document.documentElement.scrollHeight; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 60));
+    }
+    window.scrollTo(0, 0);
+  });
+  await page.waitForTimeout(900);
+}

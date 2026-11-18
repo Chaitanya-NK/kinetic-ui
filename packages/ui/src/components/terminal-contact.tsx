@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { motion } from "motion/react";
-import { cn } from "@kineticui/core";
+import { cn, useReducedMotion } from "@kineticui/core";
 import { MacWindow } from "./mac-window";
 import { SocialIcon, detectNetwork } from "./social-icons";
 import { buildVCard, downloadVCard, type ContactInfo } from "./vcard";
@@ -37,6 +37,13 @@ export function TerminalContact({ contact, title, tone = "light", animate = true
   const [copied, setCopied] = React.useState<string | null>(null);
   const [introDone, setIntroDone] = React.useState(!animate);
   const [typed, setTyped] = React.useState({ step: animate ? 0 : 3, chars: 0 });
+  const reduced = useReducedMotion();
+  // People who prefer reduced motion get the finished terminal straight away, without the typing intro.
+  React.useEffect(() => {
+    if (!reduced) return;
+    setIntroDone(true);
+    setTyped({ step: 3, chars: 0 });
+  }, [reduced]);
   const body = React.useRef<HTMLDivElement>(null);
   const inputRef = React.useRef<HTMLInputElement>(null);
 

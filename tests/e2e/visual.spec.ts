@@ -11,7 +11,6 @@ const skip: Record<string, string> = {
   "c-agent-plan": "Steps advance on a timer by design.",
   "c-live-cursors": "Cursors move continuously by design.",
   "c-chat-message": "Streams text with a blinking caret.",
-  "c-terminal-contact": "Types its intro on a loop.",
   "b-blog-post": "Reading progress and animated cover never settle.",
   "t-event-page": "Live countdown and aurora never settle.",
 };

@@ -2,7 +2,7 @@ import { templates } from "@/lib/templates";
 import { iconNames } from "@kineticui/icons";
 import { HomeShowcase } from "@/components/home-showcase";
 import { Hero } from "@/components/home/hero";
-import { BlocksMarquee, CategoryTiles, FinalCta, IconsStrip, StatsBand, TemplatesShowcase, ThemesShowcase, TwoWays, type BlockCard, type CategoryTile } from "@/components/home/sections";
+import { BlocksMarquee, CategoryTiles, FinalCta, IconsStrip, StatsBand, TemplatesShowcase, ThemesShowcase, TwoWays, Workflow, type BlockCard, type CategoryTile } from "@/components/home/sections";
 import { blocks, byCategory, entries } from "@/lib/site";
 import { thumb } from "@/lib/thumbs";
 
@@ -52,6 +52,8 @@ export default function Home() {
       />
       <ThemesShowcase />
       <TwoWays />
+      {/* Docs pages + every demo, block and template, as checked by the a11y suite. */}
+      <Workflow counts={{ icons: counts.icons, pages: 10 + counts.components + counts.blocks + counts.templates }} />
       <IconsStrip names={featuredIcons} total={counts.icons} />
       <CategoryTiles tiles={tiles} />
       <FinalCta components={counts.components} />
