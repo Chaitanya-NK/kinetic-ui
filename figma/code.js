@@ -1,8 +1,8 @@
-// Kinetic UI kit for Figma v0.3.0. Built by figma/build.mjs; edit figma/src/code.ts instead.
+// Kinetic UI kit for Figma v0.4.0. Built by figma/build.mjs; edit figma/src/code.ts instead.
 "use strict";
 (() => {
   // figma/src/data.generated.ts
-  var version = "0.3.0";
+  var version = "0.4.0";
   var tokens = {
     "dark": {
       "code-bg": "#0b0c0e",

@@ -19,8 +19,12 @@ jobs:
       - run: npm run registry
       - run: npm run typecheck
       - run: npm run test:unit
-      - name: Figma plugin is built from the current tokens and icons
-        run: npm run test:figma && git diff --exit-code -- figma/code.js figma/src/data.generated.ts
+      - name: Figma plugin works against the mocked Figma API
+        run: npm run test:figma
+      - name: Committed generated files are up to date
+        # The Agent Skill and Figma plugin (and their zips) are generated from the registry, tokens, icons
+        # and version. If this fails, run `npm run build:packages && npm run registry && npm run figma` and commit.
+        run: git diff --exit-code --stat -- skills figma apps/docs/public/kinetic-ui-skill.zip apps/docs/public/kinetic-ui-figma-kit.zip
       - run: npm run build -w docs
 
   # Accessibility (axe, WCAG 2.1 AA) and visual snapshots of every demo, block and template.

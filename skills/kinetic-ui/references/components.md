@@ -1,4 +1,4 @@
-# Kinetic UI components (v0.3.0)
+# Kinetic UI components (v0.4.0)
 
 209 components. Install source with `npx @kineticui/cli add <name>`, or import from npm as shown.
 

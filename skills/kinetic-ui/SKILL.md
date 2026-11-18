@@ -5,7 +5,7 @@ description: Build interfaces with Kinetic UI, the motion-first React component 
 
 # Kinetic UI
 
-Kinetic UI (v0.3.0) is a motion-first, accessible React library: 209 components, 78 blocks and 7 templates on Tailwind CSS v4, Radix and motion/react. Follow these conventions so new code looks and behaves like the rest of the library.
+Kinetic UI (v0.4.0) is a motion-first, accessible React library: 209 components, 78 blocks and 7 templates on Tailwind CSS v4, Radix and motion/react. Follow these conventions so new code looks and behaves like the rest of the library.
 
 ## 1. Use what exists before writing UI
 
