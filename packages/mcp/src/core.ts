@@ -26,7 +26,7 @@ export type Source = {
 type Json = null | boolean | number | string | Json[] | { [k: string]: Json };
 export type JsonRpcMessage = { jsonrpc: "2.0"; id?: string | number | null; method?: string; params?: Record<string, unknown>; result?: unknown; error?: unknown };
 
-const SERVER = { name: "kinetic-ui", title: "Kinetic UI", version: "0.3.0" };
+const SERVER = { name: "kinetic-ui", title: "Kinetic UI", version: "0.4.0" };
 const SUPPORTED = ["2025-11-25", "2025-06-18", "2025-03-26", "2024-11-05"];
 
 const INSTRUCTIONS = `Kinetic UI is a motion-first React component library (Tailwind v4, Radix, motion/react) in the shadcn style.

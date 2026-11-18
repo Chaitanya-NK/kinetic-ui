@@ -1,7 +1,7 @@
 {
   "name": "@kineticui/cli",
-  "version": "0.3.0",
-  "description": "Kinetic UI CLI \u2014 `npx @kineticui/cli add dock` copies components into your project.",
+  "version": "0.4.0",
+  "description": "Kinetic UI CLI — `npx @kineticui/cli add dock` copies components into your project.",
   "license": "MIT",
   "type": "module",
   "bin": {
